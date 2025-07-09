@@ -1,0 +1,28 @@
+{
+  "name": "music-player",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "concurrently \"npm run webpack:dev\" \"npm run astro:dev\"",
+    "webpack:dev": "webpack --mode development --watch",
+    "astro:dev": "astro dev",
+    "build": "webpack --mode production && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.11.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.2",
+    "sass": "^1.89.2",
+    "sass-loader": "^16.0.5",
+    "webpack": "^5.100.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}

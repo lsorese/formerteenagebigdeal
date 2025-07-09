@@ -1,0 +1,89 @@
+---
+const albumData = {
+  title: "From The Internet",
+  artist: "Former Teenage Big Deal",
+  artwork: "https://picsum.photos/300/300?random=1",
+  releaseDate: "2024",
+  tracks: [
+    {
+      id: 1,
+      title: "Neon Dreams",
+      duration: "3:42",
+      url: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+    },
+    {
+      id: 2,
+      title: "Electric Nights",
+      duration: "4:15",
+      url: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+    },
+    {
+      id: 3,
+      title: "Synthwave Sunset",
+      duration: "3:28",
+      url: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+    },
+    {
+      id: 4,
+      title: "Digital Rain",
+      duration: "5:03",
+      url: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+    },
+    {
+      id: 5,
+      title: "Chrome Reflection",
+      duration: "3:55",
+      url: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+    }
+  ]
+};
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{albumData.title} - {albumData.artist}</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+		<link rel="stylesheet" href="/css/styles.css">
+		<script define:vars={{ albumData }}>
+			window.albumData = albumData;
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="album-header">
+				<img src={albumData.artwork} alt={albumData.title} class="album-artwork" />
+				<div class="album-info">
+					<h1 class="album-title">{albumData.title}</h1>
+					<h2 class="album-artist">{albumData.artist}</h2>
+					<p class="album-release">Released {albumData.releaseDate}</p>
+					
+					<div class="player-controls">
+						<button class="play-button" id="playButton">▶ Play</button>
+						<div class="progress-bar" id="progressBar">
+							<div class="progress-fill" id="progressFill"></div>
+						</div>
+						<div class="time-display" id="timeDisplay">0:00</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="tracklist">
+				{albumData.tracks.map((track) => (
+					<div class="track" data-track-id={track.id}>
+						<div class="track-number">{track.id}</div>
+						<div class="track-info">
+							<div class="track-title">{track.title}</div>
+						</div>
+						<div class="track-duration">{track.duration}</div>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<script src="/js/main.bundle.js" is:inline></script>
+	</body>
+</html>

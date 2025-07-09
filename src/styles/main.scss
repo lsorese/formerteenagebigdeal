@@ -1,0 +1,275 @@
+// Variables
+$primary-color: #629aa0;
+$primary-hover: #4a7c84;
+$bg-dark: #1a1a1a;
+$bg-medium: #2a2a2a;
+$bg-light: #333;
+$text-primary: #fff;
+$text-secondary: #ccc;
+$text-muted: #999;
+$border-color: #333;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin transition($property: all, $duration: 0.3s) {
+  transition: $property $duration ease;
+}
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Base styles
+body {
+  font-family: Arial, sans-serif;
+  background-color: $bg-dark;
+  color: $text-primary;
+  line-height: 1.6;
+}
+
+// Layout
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+// Album header
+.album-header {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.album-artwork {
+  width: 300px;
+  height: 300px;
+  border-radius: 4px;
+  object-fit: cover;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    align-self: center;
+  }
+}
+
+.album-info {
+  flex: 1;
+}
+
+.album-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.album-artist {
+  font-size: 1.5rem;
+  color: $text-secondary;
+  margin-bottom: 20px;
+  
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+}
+
+.album-release {
+  color: $text-muted;
+  margin-bottom: 30px;
+}
+
+// Player controls
+.player-controls {
+  @include flex-center;
+  gap: 20px;
+  margin-bottom: 30px;
+  
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+}
+
+.play-button {
+  background: $primary-color;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  @include transition(background-color);
+  
+  &:hover {
+    background: $primary-hover;
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// Progress bar
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background: $bg-light;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  
+  &:hover {
+    .progress-fill {
+      box-shadow: 0 0 8px rgba($primary-color, 0.5);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    order: 3;
+    width: 100%;
+  }
+}
+
+.progress-fill {
+  height: 100%;
+  background: $primary-color;
+  width: 0%;
+  @include transition(width, 0.1s);
+  border-radius: 2px;
+}
+
+.time-display {
+  font-size: 14px;
+  color: $text-secondary;
+  min-width: 60px;
+  text-align: center;
+}
+
+
+// Tracklist
+.tracklist {
+  background: $bg-medium;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.track {
+  @include flex-center;
+  padding: 15px 20px;
+  border-bottom: 1px solid $border-color;
+  cursor: pointer;
+  @include transition(background-color);
+  
+  &:hover {
+    background: $bg-light;
+  }
+  
+  &.playing {
+    background: #3a3a3a;
+    color: $primary-color;
+    
+    .track-number {
+      color: $primary-color;
+    }
+  }
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 12px 15px;
+  }
+}
+
+.track-number {
+  width: 30px;
+  font-size: 14px;
+  color: $text-muted;
+  text-align: center;
+  @include transition(color);
+}
+
+.track-info {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.track-title {
+  font-weight: bold;
+  margin-bottom: 2px;
+  @include transition(color);
+}
+
+.track-duration {
+  font-size: 14px;
+  color: $text-muted;
+  @include transition(color);
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .album-header {
+    margin-bottom: 30px;
+  }
+  
+  .album-title {
+    font-size: 1.8rem;
+  }
+  
+  .album-artist {
+    font-size: 1.1rem;
+  }
+  
+  .player-controls {
+    margin-bottom: 20px;
+  }
+  
+  .track {
+    padding: 10px 12px;
+  }
+  
+  .track-number {
+    width: 25px;
+  }
+  
+  .track-info {
+    margin-left: 10px;
+  }
+}
+
+// Loading and error states
+.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 10px;
+}
