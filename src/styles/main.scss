@@ -29,9 +29,8 @@ $border-color: #ff00ff;
 // Base styles
 body {
   font-family: 'Comic Sans MS', cursive, Arial, sans-serif;
-  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff69b4);
-  background-size: 400% 400%;
-  animation: rainbow 3s ease infinite;
+  background: #000000 url('../stars.gif') repeat;
+  background-attachment: fixed;
   color: $text-primary;
   line-height: 1.6;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
@@ -49,7 +48,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.9);
   border: 3px solid $border-color;
   border-radius: 20px;
   box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
