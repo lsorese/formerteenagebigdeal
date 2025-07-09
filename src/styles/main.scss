@@ -1,13 +1,13 @@
-// Variables
-$primary-color: #629aa0;
-$primary-hover: #4a7c84;
-$bg-dark: #1a1a1a;
-$bg-medium: #2a2a2a;
-$bg-light: #333;
-$text-primary: #fff;
-$text-secondary: #ccc;
-$text-muted: #999;
-$border-color: #333;
+// Variables - Geocities Y2K Aesthetic
+$primary-color: #ff00ff;
+$primary-hover: #ff69b4;
+$bg-dark: #000080;
+$bg-medium: #008080;
+$bg-light: #00ffff;
+$text-primary: #ffff00;
+$text-secondary: #ff69b4;
+$text-muted: #00ff00;
+$border-color: #ff00ff;
 
 // Mixins
 @mixin flex-center {
@@ -28,10 +28,20 @@ $border-color: #333;
 
 // Base styles
 body {
-  font-family: Arial, sans-serif;
-  background-color: $bg-dark;
+  font-family: 'Comic Sans MS', cursive, Arial, sans-serif;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff69b4);
+  background-size: 400% 400%;
+  animation: rainbow 3s ease infinite;
   color: $text-primary;
   line-height: 1.6;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  padding: 20px
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 // Layout
@@ -39,6 +49,10 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 3px solid $border-color;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
 }
 
 // Album header
@@ -56,8 +70,11 @@ body {
 .album-artwork {
   width: 300px;
   height: 300px;
-  border-radius: 4px;
+  border-radius: 20px;
   object-fit: cover;
+  border: 5px solid $primary-color;
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
+  animation: pulse 2s ease-in-out infinite;
   
   @media (max-width: 768px) {
     width: 100%;
@@ -65,6 +82,12 @@ body {
     height: auto;
     align-self: center;
   }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 .album-info {
@@ -75,10 +98,22 @@ body {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: glow 2s ease-in-out infinite alternate;
   
   @media (max-width: 768px) {
     font-size: 2rem;
   }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+  to { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff; }
 }
 
 .album-artist {
@@ -109,37 +144,44 @@ body {
 }
 
 .play-button {
-  background: $primary-color;
-  border: none;
+  background: linear-gradient(45deg, $primary-color, $primary-hover);
+  border: 3px solid $text-primary;
   color: white;
   padding: 12px 24px;
-  border-radius: 4px;
+  border-radius: 20px;
   cursor: pointer;
   font-size: 16px;
-  @include transition(background-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+  @include transition(all, 0.3s);
   
   &:hover {
-    background: $primary-hover;
+    background: linear-gradient(45deg, $primary-hover, $primary-color);
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
   }
   
   &:active {
-    transform: scale(0.98);
+    transform: scale(0.95);
   }
 }
 
 // Progress bar
 .progress-bar {
   flex: 1;
-  height: 4px;
+  height: 8px;
   background: $bg-light;
-  border-radius: 2px;
+  border: 2px solid $primary-color;
+  border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
   position: relative;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
   
   &:hover {
     .progress-fill {
-      box-shadow: 0 0 8px rgba($primary-color, 0.5);
+      box-shadow: 0 0 15px rgba($primary-color, 0.8);
     }
   }
   
@@ -151,10 +193,11 @@ body {
 
 .progress-fill {
   height: 100%;
-  background: $primary-color;
+  background: linear-gradient(90deg, $primary-color, $primary-hover, $text-primary);
   width: 0%;
   @include transition(width, 0.1s);
-  border-radius: 2px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
 }
 
 .time-display {
@@ -167,26 +210,31 @@ body {
 
 // Tracklist
 .tracklist {
-  background: $bg-medium;
-  border-radius: 4px;
+  background: linear-gradient(135deg, $bg-medium, $bg-dark);
+  border: 3px solid $primary-color;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
 }
 
 .track {
   @include flex-center;
   padding: 15px 20px;
-  border-bottom: 1px solid $border-color;
+  border-bottom: 2px solid $border-color;
   cursor: pointer;
-  @include transition(background-color);
+  @include transition(all, 0.3s);
+  position: relative;
   
   &:hover {
-    background: $bg-light;
+    background: linear-gradient(90deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+    transform: translateX(5px);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
   }
   
   &.playing {
-    background: #3a3a3a;
+    background: linear-gradient(90deg, rgba(255, 0, 255, 0.4), rgba(0, 255, 255, 0.4));
     color: $primary-color;
+    animation: flashTrack 1s ease-in-out infinite;
     
     .track-number {
       color: $primary-color;
@@ -200,6 +248,11 @@ body {
   @media (max-width: 768px) {
     padding: 12px 15px;
   }
+}
+
+@keyframes flashTrack {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
 .track-number {
@@ -260,6 +313,51 @@ body {
   .track-info {
     margin-left: 10px;
   }
+}
+
+// Marquee animations
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  background: linear-gradient(90deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+  border: 2px solid $primary-color;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.marquee-text {
+  display: inline-block;
+  animation: scroll-left 15s linear infinite;
+  color: $primary-color;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.marquee-container-alt {
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 10px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.marquee-text-alt {
+  display: inline-block;
+  animation: scroll-alternate 3s ease-in-out infinite alternate;
+  color: $text-muted;
+  font-weight: bold;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes scroll-alternate {
+  0% { transform: translateX(-50px); }
+  100% { transform: translateX(50px); }
 }
 
 // Loading and error states

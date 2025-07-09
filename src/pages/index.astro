@@ -21,19 +21,24 @@ const albumData = albumDataJson;
 	</head>
 	<body>
 		<div class="container">
+			<div class="marquee-container">
+				<div class="marquee-text">
+					🎵 Welcome to the Logan from the internet music experience! 🎵 Now playing: {albumData.title} by {albumData.artist} 🎵
+				</div>
+			</div>
 			<div class="album-header">
 				<img src={albumData.artwork} alt={albumData.title} class="album-artwork" />
 				<div class="album-info">
 					<h1 class="album-title">{albumData.title}</h1>
 					<h2 class="album-artist">{albumData.artist}</h2>
-					<p class="album-release">Released {albumData.releaseDate}</p>
+					<p class="album-release">🎧 Released {albumData.releaseDate} 🎧</p>
 					
 					<div class="player-controls">
-						<button class="play-button" id="playButton">▶ Play</button>
+						<button class="play-button" id="playButton">🎵 PLAY 🎵</button>
 						<div class="progress-bar" id="progressBar">
 							<div class="progress-fill" id="progressFill"></div>
 						</div>
-						<div class="time-display" id="timeDisplay">0:00</div>
+						<div class="time-display" id="timeDisplay">⏰ 0:00</div>
 					</div>
 				</div>
 			</div>
@@ -41,13 +46,23 @@ const albumData = albumDataJson;
 			<div class="tracklist">
 				{albumData.tracks.map((track) => (
 					<div class="track" data-track-id={track.id}>
-						<div class="track-number">{track.id}</div>
+						<div class="track-number">💿 {track.id}</div>
 						<div class="track-info">
-							<div class="track-title">{track.title}</div>
+							<div class="track-title">🎶 {track.title}</div>
 						</div>
-						<div class="track-duration">{track.duration}</div>
+						<div class="track-duration">⏱️ {track.duration}</div>
 					</div>
 				))}
+			</div>
+			
+			<div style="text-align: center; margin-top: 30px;">
+				<img src="https://web.archive.org/web/20091027120406if_/http://geocities.com/enchantedforest/dell/5564/construction.gif" alt="Under Construction" style="width: 200px; height: auto;" />
+				<br />
+				<div class="marquee-container-alt">
+					<div class="marquee-text-alt">
+						🌟 Best viewed in Internet Explorer 6.0! 🌟
+					</div>
+				</div>
 			</div>
 		</div>
 

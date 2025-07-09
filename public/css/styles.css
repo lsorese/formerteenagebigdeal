@@ -8,16 +8,35 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #1a1a1a;
-  color: #fff;
+  font-family: "Comic Sans MS", cursive, Arial, sans-serif;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff69b4);
+  background-size: 400% 400%;
+  animation: rainbow 3s ease infinite;
+  color: #ffff00;
   line-height: 1.6;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  padding: 20px;
 }
 
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 3px solid #ff00ff;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
 }
 
 .album-header {
@@ -35,8 +54,11 @@ body {
 .album-artwork {
   width: 300px;
   height: 300px;
-  border-radius: 4px;
+  border-radius: 20px;
   object-fit: cover;
+  border: 5px solid #ff00ff;
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
+  animation: pulse 2s ease-in-out infinite;
 }
 @media (max-width: 768px) {
   .album-artwork {
@@ -47,6 +69,17 @@ body {
   }
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .album-info {
   flex: 1;
 }
@@ -55,6 +88,13 @@ body {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: glow 2s ease-in-out infinite alternate;
 }
 @media (max-width: 768px) {
   .album-title {
@@ -62,9 +102,17 @@ body {
   }
 }
 
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+  }
+  to {
+    text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+  }
+}
 .album-artist {
   font-size: 1.5rem;
-  color: #ccc;
+  color: #ff69b4;
   margin-bottom: 20px;
 }
 @media (max-width: 768px) {
@@ -74,7 +122,7 @@ body {
 }
 
 .album-release {
-  color: #999;
+  color: #00ff00;
   margin-bottom: 30px;
 }
 
@@ -92,33 +140,40 @@ body {
 }
 
 .play-button {
-  background: #629aa0;
-  border: none;
+  background: linear-gradient(45deg, #ff00ff, #ff69b4);
+  border: 3px solid #ffff00;
   color: white;
   padding: 12px 24px;
-  border-radius: 4px;
+  border-radius: 20px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+  transition: all 0.3s ease;
 }
 .play-button:hover {
-  background: #4a7c84;
+  background: linear-gradient(45deg, #ff69b4, #ff00ff);
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
 }
 .play-button:active {
-  transform: scale(0.98);
+  transform: scale(0.95);
 }
 
 .progress-bar {
   flex: 1;
-  height: 4px;
-  background: #333;
-  border-radius: 2px;
+  height: 8px;
+  background: #00ffff;
+  border: 2px solid #ff00ff;
+  border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
   position: relative;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .progress-bar:hover .progress-fill {
-  box-shadow: 0 0 8px rgba(98, 154, 160, 0.5);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
 }
 @media (max-width: 768px) {
   .progress-bar {
@@ -129,43 +184,49 @@ body {
 
 .progress-fill {
   height: 100%;
-  background: #629aa0;
+  background: linear-gradient(90deg, #ff00ff, #ff69b4, #ffff00);
   width: 0%;
   transition: width 0.1s ease;
-  border-radius: 2px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
 }
 
 .time-display {
   font-size: 14px;
-  color: #ccc;
+  color: #ff69b4;
   min-width: 60px;
   text-align: center;
 }
 
 .tracklist {
-  background: #2a2a2a;
-  border-radius: 4px;
+  background: linear-gradient(135deg, #008080, #000080);
+  border: 3px solid #ff00ff;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
 }
 
 .track {
   display: flex;
   align-items: center;
   padding: 15px 20px;
-  border-bottom: 1px solid #333;
+  border-bottom: 2px solid #ff00ff;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
 }
 .track:hover {
-  background: #333;
+  background: linear-gradient(90deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+  transform: translateX(5px);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
 }
 .track.playing {
-  background: #3a3a3a;
-  color: #629aa0;
+  background: linear-gradient(90deg, rgba(255, 0, 255, 0.4), rgba(0, 255, 255, 0.4));
+  color: #ff00ff;
+  animation: flashTrack 1s ease-in-out infinite;
 }
 .track.playing .track-number {
-  color: #629aa0;
+  color: #ff00ff;
 }
 .track:last-child {
   border-bottom: none;
@@ -176,10 +237,18 @@ body {
   }
 }
 
+@keyframes flashTrack {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
 .track-number {
   width: 30px;
   font-size: 14px;
-  color: #999;
+  color: #00ff00;
   text-align: center;
   transition: color 0.3s ease;
 }
@@ -197,7 +266,7 @@ body {
 
 .track-duration {
   font-size: 14px;
-  color: #999;
+  color: #00ff00;
   transition: color 0.3s ease;
 }
 
@@ -225,6 +294,56 @@ body {
   }
   .track-info {
     margin-left: 10px;
+  }
+}
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  background: linear-gradient(90deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+  border: 2px solid #ff00ff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.marquee-text {
+  display: inline-block;
+  animation: scroll-left 15s linear infinite;
+  color: #ff00ff;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.marquee-container-alt {
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 10px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.marquee-text-alt {
+  display: inline-block;
+  animation: scroll-alternate 3s ease-in-out infinite alternate;
+  color: #00ff00;
+  font-weight: bold;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes scroll-alternate {
+  0% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(50px);
   }
 }
 .loading {
