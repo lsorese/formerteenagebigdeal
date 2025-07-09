@@ -1,0 +1,38 @@
+{
+  "title": "From The Internet",
+  "artist": "Former Teenage Big Deal",
+  "artwork": "https://picsum.photos/300/300?random=1",
+  "releaseDate": "2024",
+  "tracks": [
+    {
+      "id": 1,
+      "title": "Neon Dreams",
+      "duration": "3:42",
+      "url": "/bell-ringing-05.wav"
+    },
+    {
+      "id": 2,
+      "title": "Electric Nights",
+      "duration": "4:15",
+      "url": "/bell-ringing-05.wav"
+    },
+    {
+      "id": 3,
+      "title": "Synthwave Sunset",
+      "duration": "3:28",
+      "url": "/bell-ringing-05.wav"
+    },
+    {
+      "id": 4,
+      "title": "Digital Rain",
+      "duration": "5:03",
+      "url": "/bell-ringing-05.wav"
+    },
+    {
+      "id": 5,
+      "title": "Chrome Reflection",
+      "duration": "3:55",
+      "url": "/bell-ringing-05.wav"
+    }
+  ]
+}
