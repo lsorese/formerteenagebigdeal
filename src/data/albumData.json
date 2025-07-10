@@ -8,31 +8,36 @@
       "id": 1,
       "title": "Neon Dreams",
       "duration": "3:42",
-      "url": "/bell-ringing-05.wav"
+      "url": "/bell-ringing-05.wav",
+      "lyrics": "**Verse 1:**<br />Lost in the **neon glow** tonight<br />City lights are burning bright<br />Dreaming of a *digital* paradise<br />Where the pixels dance and roll the dice<br /><br />**Chorus:**<br />Neon dreams, electric skies<br />Synthwave beats that *hypnotize*<br />In this **cyber wonderland**<br />Take my digital hand<br /><br />**Verse 2:**<br />VHS static fills the air<br />Retro futures everywhere<br />Chrome reflections on the street<br />Binary hearts that skip a beat<br /><br />**Outro:**<br />Neon dreams forever shine<br />In this [virtual world](https://example.com) of mine"
     },
     {
       "id": 2,
       "title": "Electric Nights",
       "duration": "4:15",
-      "url": "/bell-ringing-05.wav"
+      "url": "/bell-ringing-05.wav",
+      "lyrics": "**Verse 1:**<br />Dancing through the *electric maze*<br />Neon shadows light the way<br />Lost in rhythm, lost in time<br />Every beat's a **paradigm**<br /><br />**Chorus:**<br />Electric nights, we come alive<br />In the glow we *feel* so right<br />Pulse of [energy](https://example.com) so bright<br />These electric nights<br /><br />**Bridge:**<br />Lorem ipsum dolor sit amet<br />Consectetur adipiscing *elit*<br />Sed do eiusmod **tempor** incididunt"
     },
     {
       "id": 3,
       "title": "Synthwave Sunset",
       "duration": "3:28",
-      "url": "/bell-ringing-05.wav"
+      "url": "/bell-ringing-05.wav",
+      "lyrics": "**Verse 1:**<br />Purple haze across the sky<br />Synthesizers **harmonize**<br />Retrowave memories collide<br />In this *sunset* paradise<br /><br />**Chorus:**<br />Synthwave sunset, colors blend<br />Digital dreams that *never* end<br />In this **vintage** future land<br />Time slips through our hands<br /><br />**Verse 2:**<br />Lorem ipsum dolor sit amet<br />Consectetur *adipiscing* elit<br />Ut labore et dolore magna<br />Aliqua [nostrud](https://example.com) exercitation"
     },
     {
       "id": 4,
       "title": "Digital Rain",
       "duration": "5:03",
-      "url": "/bell-ringing-05.wav"
+      "url": "/bell-ringing-05.wav",
+      "lyrics": "**Verse 1:**<br />Green cascades of *coded* light<br />Falling through the **endless** night<br />Matrix dreams and cyber storms<br />Binary rain in digital forms<br /><br />**Chorus:**<br />Digital rain, wash away<br />All the *glitches* of today<br />In this **virtual** domain<br />Dancing in the digital rain<br /><br />**Bridge:**<br />Lorem ipsum dolor sit<br />Amet consectetur *adipiscing*<br />Elit sed do eiusmod [tempor](https://example.com)<br />Incididunt ut **labore** et dolore"
     },
     {
       "id": 5,
       "title": "Chrome Reflection",
       "duration": "3:55",
-      "url": "/bell-ringing-05.wav"
+      "url": "/bell-ringing-05.wav",
+      "lyrics": "**Verse 1:**<br />Mirror worlds of *silver* light<br />Reflections dancing through the night<br />Chrome surfaces **gleaming** bright<br />In this cyber satellite<br /><br />**Chorus:**<br />Chrome reflection, see yourself<br />In this *digital* wealth<br />Shining through the **virtual** stealth<br />Chrome reflection of our health<br /><br />**Outro:**<br />Lorem ipsum dolor sit amet<br />Consectetur *adipiscing* elit<br />Sed do eiusmod [tempor](https://example.com)<br />Incididunt ut **labore** magna"
     }
   ]
 }

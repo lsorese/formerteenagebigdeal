@@ -10,6 +10,13 @@ class AlbumPlayer {
 		this.progressBar = document.getElementById('progressBar');
 		this.progressFill = document.getElementById('progressFill');
 		this.timeDisplay = document.getElementById('timeDisplay');
+		this.lyricsContainer = document.getElementById('lyricsContainer');
+		this.lyricsToggle = document.getElementById('lyricsToggle');
+		this.lyricsContent = document.getElementById('lyricsContent');
+		this.lyricsText = document.getElementById('lyricsText');
+		this.lyricsTitle = document.getElementById('lyricsTitle');
+		
+		this.lyricsVisible = false;
 		
 		this.initializePlayer();
 		this.bindEvents();
@@ -101,6 +108,48 @@ class AlbumPlayer {
 		if (currentTrackElement) {
 			currentTrackElement.classList.add('playing');
 		}
+		
+		this.updateLyrics();
+	}
+	
+	updateLyrics() {
+		const currentTrack = this.tracks[this.currentTrack];
+		if (currentTrack && currentTrack.lyrics) {
+			this.lyricsTitle.textContent = `🎤 Lyrics - ${currentTrack.title}`;
+			this.lyricsText.innerHTML = this.convertMarkdownToHtml(currentTrack.lyrics);
+			this.lyricsContainer.style.display = 'block';
+		} else {
+			this.lyricsText.innerHTML = 'No lyrics available for this track.';
+			this.lyricsContainer.style.display = 'block';
+		}
+	}
+	
+	convertMarkdownToHtml(markdown) {
+		let html = markdown;
+		
+		// Convert **bold** to <strong>
+		html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+		
+		// Convert *italic* to <em>
+		html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+		
+		// Convert [link text](url) to <a href="url">link text</a>
+		html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+		
+		// <br /> tags are already in the text, so they'll be preserved
+		
+		return html;
+	}
+	
+	toggleLyrics() {
+		this.lyricsVisible = !this.lyricsVisible;
+		if (this.lyricsVisible) {
+			this.lyricsContent.style.display = 'block';
+			this.lyricsToggle.textContent = '📜 Hide Lyrics';
+		} else {
+			this.lyricsContent.style.display = 'none';
+			this.lyricsToggle.textContent = '📜 Show Lyrics';
+		}
 	}
 	
 	
@@ -126,6 +175,7 @@ class AlbumPlayer {
 			}
 		});
 		
+		this.lyricsToggle.addEventListener('click', () => this.toggleLyrics());
 		
 		document.querySelectorAll('.track').forEach((track, index) => {
 			track.addEventListener('click', () => this.selectTrack(index));

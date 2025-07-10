@@ -23,7 +23,7 @@ const albumData = albumDataJson;
 		<div class="container">
 			<div class="marquee-container">
 				<div class="marquee-text">
-					🎵 Welcome to the Logan from the internet music experience! 🎵 Now playing: {albumData.title} by {albumData.artist} 🎵
+					🎵 Welcome to the Logan from the internet music experience! 🎵 Now playing: {albumData.title} by {albumData.artist} 🎵 Welcome to the Logan from the internet music experience! 🎵 Now playing: {albumData.title} by {albumData.artist} 🎵
 				</div>
 			</div>
 			<div class="album-header">
@@ -53,6 +53,18 @@ const albumData = albumDataJson;
 						<div class="track-duration">⏱️ {track.duration}</div>
 					</div>
 				))}
+			</div>
+			
+			<div class="lyrics-container" id="lyricsContainer">
+				<div class="lyrics-header">
+					<h3 id="lyricsTitle">🎤 Lyrics</h3>
+					<button class="lyrics-toggle" id="lyricsToggle">📜 Show Lyrics</button>
+				</div>
+				<div class="lyrics-content" id="lyricsContent">
+					<div class="lyrics-text" id="lyricsText">
+						Select a song to view lyrics...
+					</div>
+				</div>
 			</div>
 			
 			<div style="text-align: center; margin-top: 30px;">
