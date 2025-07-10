@@ -51,6 +51,7 @@ const albumData = albumDataJson;
 							<div class="track-title">🎶 {track.title}</div>
 						</div>
 						<div class="track-duration">⏱️ {track.duration}</div>
+						<a href="#lyricsContainer" class="lyrics-link">Lyrics</a>
 					</div>
 				))}
 			</div>
@@ -58,9 +59,9 @@ const albumData = albumDataJson;
 			<div class="lyrics-container" id="lyricsContainer">
 				<div class="lyrics-header">
 					<h3 id="lyricsTitle">🎤 Lyrics</h3>
-					<button class="lyrics-toggle" id="lyricsToggle">📜 Show Lyrics</button>
+					<button class="lyrics-toggle" id="lyricsToggle">📜 Hide Lyrics</button>
 				</div>
-				<div class="lyrics-content" id="lyricsContent">
+				<div class="lyrics-content visible" id="lyricsContent">
 					<div class="lyrics-text" id="lyricsText">
 						Select a song to view lyrics...
 					</div>
