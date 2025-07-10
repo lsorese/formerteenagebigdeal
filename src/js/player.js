@@ -115,7 +115,7 @@ class AlbumPlayer {
 	updateLyrics() {
 		const currentTrack = this.tracks[this.currentTrack];
 		if (currentTrack && currentTrack.lyrics) {
-			this.lyricsTitle.textContent = `🎤 Lyrics - ${currentTrack.title}`;
+			this.lyricsTitle.textContent = `Lyrics - ${currentTrack.title}`;
 			this.lyricsText.innerHTML = this.convertMarkdownToHtml(currentTrack.lyrics);
 			this.lyricsContainer.style.display = 'block';
 		} else {
@@ -145,10 +145,10 @@ class AlbumPlayer {
 		this.lyricsVisible = !this.lyricsVisible;
 		if (this.lyricsVisible) {
 			this.lyricsContent.style.display = 'block';
-			this.lyricsToggle.textContent = '📜 Hide Lyrics';
+			this.lyricsToggle.textContent = 'Hide Lyrics';
 		} else {
 			this.lyricsContent.style.display = 'none';
-			this.lyricsToggle.textContent = '📜 Show Lyrics';
+			this.lyricsToggle.textContent = 'Show Lyrics';
 		}
 	}
 	

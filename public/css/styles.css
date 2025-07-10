@@ -1,6 +1,10 @@
 /*!***************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/main.scss ***!
   \***************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap);
+/*!*******************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/main.scss (1) ***!
+  \*******************************************************************************************************************/
 * {
   margin: 0;
   padding: 0;
@@ -8,23 +12,85 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #ffffff;
-  color: #000000;
+  font-family: "Comic Neue", "Comic Sans MS", cursive !important;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff) !important;
+  background-size: 400% 400% !important;
+  animation: rainbow-bg 3s ease-in-out infinite !important;
+  color: #ffffff !important;
   line-height: 1.4;
   margin: 0;
   padding: 20px;
   scroll-behavior: smooth;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+  position: relative;
+  overflow-x: hidden;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes rainbow-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes neon-glow {
+  0%, 100% {
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff, 0 0 20px #ff00ff;
+  }
+  50% {
+    text-shadow: 0 0 10px #00ffff, 0 0 15px #00ffff, 0 0 20px #00ffff, 0 0 25px #00ffff;
+  }
+}
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background: #ffffff;
-  border: 1px solid #cccccc;
+  background: linear-gradient(135deg, #ff0080, #8000ff, #0080ff, #ff8000) !important;
+  border: 5px solid #ffff00 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 0 30px rgba(255, 255, 0, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.2) !important;
+  position: relative;
+  overflow: hidden;
 }
 
+.container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: url(../5082620c79ba73873922.gif) repeat;
+  opacity: 0.1;
+  animation: rotate 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .album-header {
   display: flex;
   gap: 20px;
@@ -41,7 +107,10 @@ body {
   width: 200px;
   height: 200px;
   object-fit: cover;
-  border: 1px solid #cccccc;
+  border: 5px solid #00ff00 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.8), 0 0 50px rgba(255, 0, 255, 0.6) !important;
+  transition: all 0.3s ease !important;
 }
 @media (max-width: 768px) {
   .album-artwork {
@@ -51,32 +120,56 @@ body {
   }
 }
 
+.album-artwork:hover {
+  transform: scale(1.1) rotate(5deg) !important;
+  box-shadow: 0 0 50px rgb(255, 255, 0) !important;
+}
+
 .album-title {
-  font-size: 1.8rem;
+  font-size: 2.5rem !important;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #000000;
+  color: #ffff00 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 3px !important;
+  animation: neon-glow 2s ease-in-out infinite alternate !important;
+  text-align: center !important;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff) !important;
+  background-size: 400% 400% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 @media (max-width: 768px) {
   .album-title {
-    font-size: 1.5rem;
+    font-size: 2rem !important;
   }
 }
 
 .album-artist {
-  font-size: 1.2rem;
-  color: #666666;
+  font-size: 1.5rem !important;
+  color: #00ff00 !important;
   margin-bottom: 10px;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  text-align: center !important;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00 !important;
 }
 @media (max-width: 768px) {
   .album-artist {
-    font-size: 1rem;
+    font-size: 1.2rem !important;
   }
 }
 
 .album-release {
-  color: #999999;
+  color: #ff8000 !important;
   margin-bottom: 20px;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  text-shadow: 0 0 10px #ff8000, 0 0 20px #ff8000 !important;
+  text-align: center !important;
 }
 
 .player-controls {
@@ -93,25 +186,36 @@ body {
 }
 
 .play-button {
-  background: #f0f0f0;
-  border: 1px solid #cccccc;
-  color: #000000;
-  padding: 10px 20px;
+  background: linear-gradient(45deg, #ff0080, #8000ff) !important;
+  border: 3px solid #ffff00 !important;
+  color: #ffffff !important;
+  padding: 15px 30px !important;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.8) !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+  transition: all 0.3s ease !important;
 }
 
 .play-button:hover {
-  background: #e0e0e0;
+  background: linear-gradient(45deg, #ff00ff, #00ffff) !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 0 30px rgb(255, 0, 255) !important;
 }
 
 .progress-bar {
   flex: 1;
-  height: 6px;
-  background: #f0f0f0;
-  border: 1px solid #cccccc;
+  height: 12px !important;
+  background: linear-gradient(90deg, #ff0080, #8000ff) !important;
+  border: 2px solid #ffff00 !important;
+  border-radius: 10px !important;
   overflow: hidden;
   cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 255, 0, 0.8) !important;
 }
 @media (max-width: 768px) {
   .progress-bar {
@@ -122,36 +226,55 @@ body {
 
 .progress-fill {
   height: 100%;
-  background: #cccccc;
+  background: linear-gradient(90deg, #00ff00, #ffff00, #ff00ff) !important;
   width: 0%;
+  animation: rainbow-bg 2s ease-in-out infinite !important;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.8) !important;
 }
 
 .time-display {
-  font-size: 12px;
-  color: #666666;
-  min-width: 60px;
+  font-size: 16px !important;
+  color: #00ffff !important;
+  min-width: 80px !important;
   text-align: center;
+  font-weight: bold !important;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  padding: 5px 10px !important;
+  border-radius: 10px !important;
+  border: 1px solid #00ffff !important;
 }
 
 .tracklist {
-  background: #ffffff;
-  border: 1px solid #cccccc;
+  background: linear-gradient(135deg, #8000ff, #ff0080, #0080ff) !important;
+  border: 3px solid #00ff00 !important;
+  border-radius: 15px !important;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.8) !important;
 }
 
 .track {
   display: flex;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 15px !important;
+  border-bottom: 2px solid #ffff00 !important;
   cursor: pointer;
+  background: linear-gradient(90deg, rgba(255, 0, 255, 0.3), rgba(0, 255, 255, 0.3)) !important;
+  transition: all 0.3s ease !important;
+  font-weight: bold !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
 }
 
 .track:hover {
-  background: #f8f8f8;
+  background: linear-gradient(90deg, rgba(255, 255, 0, 0.8), rgba(255, 0, 255, 0.8)) !important;
+  transform: translateX(10px) !important;
+  box-shadow: 0 0 15px rgba(255, 255, 0, 0.8) !important;
 }
 
 .track.playing {
-  background: #f0f0f0;
+  background: linear-gradient(90deg, #ff0080, #8000ff, #0080ff) !important;
+  animation: rainbow-bg 1s ease-in-out infinite !important;
+  border: 2px solid #ffff00 !important;
+  box-shadow: 0 0 20px rgb(255, 255, 0) !important;
 }
 
 .track:last-child {
@@ -159,10 +282,12 @@ body {
 }
 
 .track-number {
-  width: 30px;
-  font-size: 12px;
-  color: #999999;
+  width: 40px !important;
+  font-size: 16px !important;
+  color: #00ff00 !important;
   text-align: center;
+  font-weight: bold !important;
+  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00 !important;
 }
 
 .track-info {
@@ -173,84 +298,162 @@ body {
 .track-title {
   font-weight: bold;
   margin-bottom: 2px;
+  color: #ffff00 !important;
+  text-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00 !important;
+  animation: neon-glow 3s ease-in-out infinite alternate !important;
+  font-size: 16px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
 }
 
 .track-duration {
-  font-size: 12px;
-  color: #999999;
+  font-size: 14px !important;
+  color: #ff00ff !important;
+  font-weight: bold !important;
+  text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff !important;
 }
 
 .lyrics-link {
-  font-size: 11px;
-  color: #666666;
+  font-size: 12px !important;
+  color: #ffffff !important;
   text-decoration: none;
   margin-left: 10px;
-  padding: 2px 6px;
-  border: 1px solid #cccccc;
-  background: #f8f8f8;
+  padding: 6px 12px !important;
+  border: 2px solid #ffff00 !important;
+  background: linear-gradient(45deg, #ff00ff, #00ffff) !important;
+  border-radius: 8px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.6) !important;
+  transition: all 0.3s ease !important;
 }
 
 .lyrics-link:hover {
-  background: #e0e0e0;
-  color: #000000;
+  background: linear-gradient(45deg, #ffff00, #ff00ff) !important;
+  color: #000000 !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 0 20px rgb(255, 0, 255) !important;
 }
 
 .marquee-container {
   overflow: hidden;
   white-space: nowrap;
-  background: #f8f8f8;
-  border: 1px solid #cccccc;
-  padding: 10px;
+  background: linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #ff8000) !important;
+  border: 3px solid #ffff00 !important;
+  border-radius: 15px !important;
+  padding: 15px !important;
   margin-bottom: 20px;
+  box-shadow: 0 0 25px rgba(255, 255, 0, 0.8) !important;
 }
 
 .marquee-text {
   display: inline-block;
-  animation: scroll-left 15s linear infinite;
-  color: #000000;
-  font-size: 14px;
+  animation: scroll-left 10s linear infinite, neon-glow 2s ease-in-out infinite alternate !important;
+  color: #ffff00 !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
   padding-right: 100%;
+  text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00 !important;
 }
 
 @keyframes scroll-left {
   0% {
-    transform: translateX(0);
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px #ffff00);
+  }
+  50% {
+    filter: drop-shadow(0 0 20px #ff00ff);
+  }
+}
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.shake {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
 .lyrics-container {
   margin-top: 20px;
-  background: #ffffff;
-  border: 1px solid #cccccc;
+  background: linear-gradient(135deg, #8000ff, #ff0080, #0080ff, #ff8000) !important;
+  border: 3px solid #00ff00 !important;
+  border-radius: 15px !important;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.8) !important;
 }
 
 .lyrics-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
-  background: #f8f8f8;
-  border-bottom: 1px solid #cccccc;
+  padding: 20px !important;
+  background: linear-gradient(90deg, #ff0080, #8000ff, #0080ff) !important;
+  border-bottom: 3px solid #ffff00 !important;
+  border-radius: 15px 15px 0 0 !important;
+  animation: rainbow-bg 3s ease-in-out infinite !important;
 }
 
 .lyrics-header h3 {
   margin: 0;
-  font-size: 1rem;
-  color: #000000;
+  font-size: 1.5rem !important;
+  color: #ffff00 !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00 !important;
+  animation: neon-glow 2s ease-in-out infinite alternate !important;
 }
 
 .lyrics-toggle {
-  background: #f0f0f0;
-  border: 1px solid #cccccc;
-  padding: 5px 10px;
+  background: linear-gradient(45deg, #ff00ff, #00ffff) !important;
+  border: 2px solid #ffff00 !important;
+  border-radius: 8px !important;
+  padding: 8px 15px !important;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.6) !important;
+  text-transform: uppercase !important;
 }
 
 .lyrics-toggle:hover {
-  background: #e0e0e0;
+  background: linear-gradient(45deg, #ffff00, #ff00ff) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 0 20px rgb(255, 0, 255) !important;
 }
 
 .lyrics-content {
@@ -263,9 +466,15 @@ body {
 }
 
 .lyrics-text {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #000000;
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+  font-weight: bold !important;
+  background: rgba(0, 0, 0, 0.3) !important;
+  padding: 15px !important;
+  border-radius: 10px !important;
+  border: 1px solid #ffff00 !important;
 }
 
 .lyrics-text strong {
@@ -288,22 +497,88 @@ body {
 }
 
 .error {
-  color: #cc0000;
-  font-size: 12px;
+  color: #ff0000 !important;
+  font-size: 16px !important;
   margin-top: 10px;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000 !important;
+  background: rgba(255, 255, 0, 0.3) !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  border: 2px solid #ff0000 !important;
 }
 
 @media (max-width: 480px) {
   .container {
     padding: 10px;
+    border-width: 3px !important;
   }
   .album-header {
     gap: 10px;
   }
   .track {
-    padding: 8px;
+    padding: 12px !important;
   }
   .track-info {
-    margin-left: 5px;
+    margin-left: 8px !important;
   }
+  .album-title {
+    font-size: 1.8rem !important;
+    animation: neon-glow 1.5s ease-in-out infinite alternate !important;
+  }
+  .album-artist {
+    font-size: 1rem !important;
+  }
+}
+.marquee-container-alt {
+  overflow: hidden;
+  white-space: nowrap;
+  background: linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #ff8000) !important;
+  border: 3px solid #00ff00 !important;
+  border-radius: 15px !important;
+  padding: 10px !important;
+  margin: 10px 0 !important;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.8) !important;
+}
+
+.marquee-text-alt {
+  display: inline-block;
+  animation: scroll-left 8s linear infinite !important;
+  color: #ffff00 !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  padding-right: 100%;
+  text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00 !important;
+}
+
+.blink-cursor::after {
+  content: "_";
+  color: #00ff00;
+  font-weight: bold;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+.sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.rainbow-text {
+  background: linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #ff8000, #ffff00, #00ff00, #ff0080);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow-bg 2s ease-in-out infinite;
 }
