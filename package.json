@@ -2,6 +2,7 @@
   "name": "music-player",
   "type": "module",
   "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "dev": "concurrently \"npm run webpack:dev\" \"npm run astro:dev\"",
     "webpack:dev": "webpack --mode development --watch",
