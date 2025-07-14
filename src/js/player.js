@@ -1,3 +1,5 @@
+import MediaModal from './modal.js';
+
 class AlbumPlayer {
 	constructor(tracks) {
 		this.tracks = tracks;
@@ -11,12 +13,11 @@ class AlbumPlayer {
 		this.progressFill = document.getElementById('progressFill');
 		this.timeDisplay = document.getElementById('timeDisplay');
 		this.lyricsContainer = document.getElementById('lyricsContainer');
-		this.lyricsToggle = document.getElementById('lyricsToggle');
 		this.lyricsContent = document.getElementById('lyricsContent');
 		this.lyricsText = document.getElementById('lyricsText');
 		this.lyricsTitle = document.getElementById('lyricsTitle');
-		
-		this.lyricsVisible = false;
+		this.currentTrackTitle = document.getElementById('currentTrackTitle');
+		this.currentTrackArtist = document.getElementById('currentTrackArtist');
 		
 		this.initializePlayer();
 		this.bindEvents();
@@ -24,6 +25,7 @@ class AlbumPlayer {
 	
 	initializePlayer() {
 		this.loadTrack(this.currentTrack);
+		this.updateLyrics();
 	}
 	
 	loadTrack(index) {
@@ -109,48 +111,40 @@ class AlbumPlayer {
 			currentTrackElement.classList.add('playing');
 		}
 		
+		this.updateCurrentlyPlaying();
 		this.updateLyrics();
+	}
+	
+	updateCurrentlyPlaying() {
+		const currentTrack = this.tracks[this.currentTrack];
+		if (currentTrack) {
+			this.currentTrackTitle.textContent = currentTrack.title;
+		} else {
+			this.currentTrackTitle.textContent = 'Select a track to play';
+		}
 	}
 	
 	updateLyrics() {
 		const currentTrack = this.tracks[this.currentTrack];
-		if (currentTrack && currentTrack.lyrics) {
+		if (currentTrack) {
 			this.lyricsTitle.textContent = `Lyrics - ${currentTrack.title}`;
-			this.lyricsText.innerHTML = this.convertMarkdownToHtml(currentTrack.lyrics);
 			this.lyricsContainer.style.display = 'block';
+			
+			// Hide all lyrics
+			document.querySelectorAll('.lyrics-text').forEach(lyricsEl => {
+				lyricsEl.classList.add('hidden');
+			});
+			
+			// Show current track's lyrics
+			const currentLyricsEl = document.getElementById(`lyricsText-${currentTrack.id}`);
+			if (currentLyricsEl) {
+				currentLyricsEl.classList.remove('hidden');
+			}
 		} else {
-			this.lyricsText.innerHTML = 'No lyrics available for this track.';
 			this.lyricsContainer.style.display = 'block';
 		}
 	}
 	
-	convertMarkdownToHtml(markdown) {
-		let html = markdown;
-		
-		// Convert **bold** to <strong>
-		html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-		
-		// Convert *italic* to <em>
-		html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-		
-		// Convert [link text](url) to <a href="url">link text</a>
-		html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-		
-		// <br /> tags are already in the text, so they'll be preserved
-		
-		return html;
-	}
-	
-	toggleLyrics() {
-		this.lyricsVisible = !this.lyricsVisible;
-		if (this.lyricsVisible) {
-			this.lyricsContent.style.display = 'block';
-			this.lyricsToggle.textContent = 'Hide Lyrics';
-		} else {
-			this.lyricsContent.style.display = 'none';
-			this.lyricsToggle.textContent = 'Show Lyrics';
-		}
-	}
 	
 	
 	
@@ -175,7 +169,6 @@ class AlbumPlayer {
 			}
 		});
 		
-		this.lyricsToggle.addEventListener('click', () => this.toggleLyrics());
 		
 		document.querySelectorAll('.track').forEach((track, index) => {
 			track.addEventListener('click', () => this.selectTrack(index));
@@ -189,4 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (albumData && albumData.tracks) {
 		new AlbumPlayer(albumData.tracks);
 	}
+	
+	// Initialize the modal component
+	new MediaModal();
 });

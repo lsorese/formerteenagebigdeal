@@ -1,6 +1,64 @@
 ---
 import albumDataJson from '../data/albumData.json';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import MarkdownIt from 'markdown-it';
+
 const albumData = albumDataJson;
+const md = new MarkdownIt({ breaks: true });
+
+// Configure custom renderer for images and links
+md.renderer.rules.image = function (tokens, idx, options, env) {
+  const token = tokens[idx];
+  const src = token.attrGet('src');
+  const alt = token.content || token.attrGet('alt') || '';
+  
+  // Check if it's a local image (same domain or relative path)
+  const isLocal = !src.startsWith('http') || src.includes(window?.location?.hostname || '');
+  
+  if (isLocal && /\.(png|jpg|jpeg|gif|webp)$/i.test(src)) {
+    return `<img src="${src}" alt="${alt}" class="modal-trigger-image" style="cursor: pointer; max-width: 100%; height: auto;">`;
+  }
+  
+  return `<img src="${src}" alt="${alt}" style="max-width: 100%; height: auto;">`;
+};
+
+md.renderer.rules.link_open = function (tokens, idx, options, env) {
+  const token = tokens[idx];
+  const href = token.attrGet('href');
+  
+  // Check if it's a YouTube link
+  if (href && (href.includes('youtube.com') || href.includes('youtu.be'))) {
+    token.attrSet('class', 'modal-trigger-youtube');
+    token.attrSet('style', 'cursor: pointer;');
+  }
+  
+  return `<a href="${href}" ${token.attrJoin('class') ? `class="${token.attrGet('class')}"` : ''} ${token.attrJoin('style') ? `style="${token.attrGet('style')}"` : ''}>`;
+};
+
+// Load lyrics for each track server-side
+const tracksWithLyrics = await Promise.all(albumData.tracks.map(async (track) => {
+  try {
+    const lyricsPath = join(process.cwd(), track.lyricsFile);
+    const lyricsContent = readFileSync(lyricsPath, 'utf-8');
+    
+    // Use markdown-it to render markdown
+    const lyricsHtml = md.render(lyricsContent);
+    
+    return {
+      ...track,
+      lyricsHtml
+    };
+  } catch (error) {
+    console.warn(`Could not load lyrics for ${track.title}:`, error.message);
+    const fallbackMarkdown = `# ${track.title}\n\n*Lyrics not available*`;
+    const lyricsHtml = md.render(fallbackMarkdown);
+    return {
+      ...track,
+      lyricsHtml
+    };
+  }
+}));
 ---
 
 <html lang="en">
@@ -12,10 +70,10 @@ const albumData = albumDataJson;
 		<title>{albumData.title} - {albumData.artist}</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
 		<link rel="stylesheet" href="/css/styles.css">
-		{albumData.tracks.map((track) => (
+		{tracksWithLyrics.map((track) => (
 			<link rel="preload" href={track.url} as="audio" type="audio/wav" />
 		))}
-		<script define:vars={{ albumData }}>
+		<script define:vars={{ albumData: { ...albumData, tracks: tracksWithLyrics } }}>
 			window.albumData = albumData;
 		</script>
 	</head>
@@ -23,7 +81,7 @@ const albumData = albumDataJson;
 		<div class="container">
 			<div class="marquee-container">
 				<div class="marquee-text">
-					🎵 Welcome to the Logan from the internet music experience! 🎵 Now playing: {albumData.title} by {albumData.artist} 🎵 Welcome to the Logan from the internet music experience! 🎵 Now playing: {albumData.title} by {albumData.artist} 🎵
+					Welcome to the Logan from the internet music experience! Now playing: {albumData.title} by {albumData.artist} • Welcome to the Logan from the internet music experience! Now playing: {albumData.title} by {albumData.artist} •
 				</div>
 			</div>
 			<div class="album-header">
@@ -31,26 +89,38 @@ const albumData = albumDataJson;
 				<div class="album-info">
 					<h1 class="album-title">{albumData.title}</h1>
 					<h2 class="album-artist">{albumData.artist}</h2>
-					<p class="album-release">🎧 Released {albumData.releaseDate} 🎧</p>
+					<p class="album-release">Released {albumData.releaseDate}</p>
 					
 					<div class="player-controls">
-						<button class="play-button" id="playButton">🎵 PLAY 🎵</button>
+						<button class="play-button" id="playButton">PLAY</button>
 						<div class="progress-bar" id="progressBar">
 							<div class="progress-fill" id="progressFill"></div>
 						</div>
-						<div class="time-display" id="timeDisplay">⏰ 0:00</div>
+						<div class="time-display" id="timeDisplay">0:00</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="currently-playing" id="currentlyPlaying">
+				<div class="currently-playing-header">
+					<h3>Currently Playing</h3>
+				</div>
+				<div class="currently-playing-content">
+					<div class="current-track-info" id="currentTrackInfo">
+						<div class="current-track-title" id="currentTrackTitle">Select a track to play</div>
+						<div class="current-track-artist" id="currentTrackArtist">{albumData.artist}</div>
 					</div>
 				</div>
 			</div>
 			
 			<div class="tracklist">
-				{albumData.tracks.map((track) => (
+				{tracksWithLyrics.map((track) => (
 					<div class="track" data-track-id={track.id}>
-						<div class="track-number">💿 {track.id}</div>
+						<div class="track-number">{track.id}</div>
 						<div class="track-info">
-							<div class="track-title">🎶 {track.title}</div>
+							<div class="track-title">{track.title}</div>
 						</div>
-						<div class="track-duration">⏱️ {track.duration}</div>
+						<div class="track-duration">{track.duration}</div>
 						<a href="#lyricsContainer" class="lyrics-link">Lyrics</a>
 					</div>
 				))}
@@ -58,22 +128,25 @@ const albumData = albumDataJson;
 			
 			<div class="lyrics-container" id="lyricsContainer">
 				<div class="lyrics-header">
-					<h3 id="lyricsTitle">🎤 Lyrics</h3>
-					<button class="lyrics-toggle" id="lyricsToggle">📜 Hide Lyrics</button>
+					<h3 id="lyricsTitle">Lyrics</h3>
 				</div>
-				<div class="lyrics-content visible" id="lyricsContent">
-					<div class="lyrics-text" id="lyricsText">
-						Select a song to view lyrics...
-					</div>
+				<div class="lyrics-content" id="lyricsContent">
+					{tracksWithLyrics.map((track, index) => (
+						<div 
+							class="lyrics-text hidden" 
+							id={`lyricsText-${track.id}`}
+							data-track-id={track.id}
+							set:html={track.lyricsHtml}
+						>
+						</div>
+					))}
 				</div>
 			</div>
 			
 			<div style="text-align: center; margin-top: 30px;">
-				<img src="https://web.archive.org/web/20091027120406if_/http://geocities.com/enchantedforest/dell/5564/construction.gif" alt="Under Construction" style="width: 200px; height: auto;" />
-				<br />
 				<div class="marquee-container-alt">
 					<div class="marquee-text-alt">
-						🌟 Best viewed in Internet Explorer 6.0! 🌟
+						Best viewed in Internet Explorer 6.0!
 					</div>
 				</div>
 			</div>

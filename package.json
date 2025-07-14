@@ -12,7 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.11.0"
+    "astro": "^5.11.0",
+    "markdown-it": "^14.1.0"
   },
   "devDependencies": {
     "concurrently": "^9.2.0",
