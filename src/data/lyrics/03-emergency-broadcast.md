@@ -1,10 +1,1 @@
-# Emergency Broadcast
-
-## Verse 1
-*Lyrics coming soon...*
-
-## Chorus
-*Lyrics coming soon...*
-
-## Verse 2
-*Lyrics coming soon...*
+Hello! This an emergency broadcast, this is not a test.

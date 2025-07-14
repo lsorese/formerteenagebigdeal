@@ -320,6 +320,76 @@ body {
   border: none;
   font-size: 0.8rem;
 }
+.lyrics-text p {
+  margin: 0 0 1em 0;
+}
+.lyrics-text p:last-child {
+  margin-bottom: 0;
+}
+.lyrics-text br {
+  line-height: 1.3;
+}
+.lyrics-text .youtube-collapsible {
+  margin: 1em 0;
+  border: 1px solid #000;
+  background: #fff;
+}
+.lyrics-text .youtube-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  cursor: pointer;
+  background: #fff;
+  border: none;
+  font-family: "Comic Sans MS", cursive;
+  font-size: 1em;
+  color: #000;
+}
+.lyrics-text .youtube-toggle:hover {
+  background: #f0f0f0;
+}
+.lyrics-text .youtube-toggle-text {
+  display: inline-block;
+  align-items: center;
+  gap: 8px;
+}
+.lyrics-text .youtube-toggle-arrow {
+  transition: transform 0.2s ease;
+  font-size: 0.8rem;
+}
+.lyrics-text .youtube-toggle-arrow.expanded {
+  transform: rotate(90deg);
+}
+.lyrics-text .youtube-embed-container {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 16/9;
+  margin: 0;
+  border: none;
+  border-top: 1px solid #000;
+}
+@media (max-width: 768px) {
+  .lyrics-text .youtube-embed-container {
+    max-width: 100%;
+  }
+}
+.lyrics-text .youtube-embed-container.hidden {
+  display: none;
+}
+.lyrics-text .youtube-embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.lyrics-text hr {
+  margin-bottom: 1em;
+  border: none;
+  border-top: 1px solid #aaa;
+}
 
 .lyrics-text strong {
   color: #000;
@@ -341,6 +411,15 @@ body {
   background: #fff;
   padding: 10px;
   border: 1px solid #ff0000;
+}
+
+.censor {
+  display: inline-block;
+  background-color: #000;
+  width: 40px;
+  height: 1em;
+  vertical-align: middle;
+  margin: 0 2px;
 }
 
 @media (max-width: 480px) {
@@ -471,9 +550,17 @@ body {
 
 .modal-video-container {
   position: relative;
-  width: 100%;
-  max-width: 800px;
+  width: 80vw;
+  min-width: 600px;
+  max-width: 1200px;
   aspect-ratio: 16/9;
+}
+@media (max-width: 768px) {
+  .modal-video-container {
+    width: 95vw;
+    min-width: 300px;
+    max-width: 100%;
+  }
 }
 
 .modal-video {
