@@ -58,6 +58,12 @@ class MediaModal {
                 this.openImage(target.src, target.alt || 'Image');
             }
             
+            // Handle links to local images
+            if (target.tagName === 'A' && this.isLocalImage(target.href)) {
+                e.preventDefault();
+                this.openImage(target.href, target.textContent || 'Image');
+            }
+            
             // Handle YouTube links
             if (target.tagName === 'A' && this.isYouTubeLink(target.href)) {
                 e.preventDefault();

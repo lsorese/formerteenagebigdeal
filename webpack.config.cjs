@@ -34,6 +34,15 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'src/images',
+          to: 'images',
+          noErrorOnMissing: true
+        }
+      ]
     })
   ],
   devServer: {

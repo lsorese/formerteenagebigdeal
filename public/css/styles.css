@@ -390,7 +390,6 @@ body {
   color: #000;
 }
 
-/* Modal Styles */
 .media-modal {
   position: fixed;
   top: 0;
@@ -398,12 +397,13 @@ body {
   width: 100%;
   height: 100%;
   z-index: 1000;
-  display: none;
-  font-family: "Comic Sans MS", cursive;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-
 .media-modal.active {
-  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal-backdrop {
@@ -412,7 +412,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -429,64 +429,51 @@ body {
 }
 
 .modal-header {
-  display: flex;
-  justify-content: flex-end;
-  padding: 8px;
-  background: #fff;
-  border-bottom: 1px dotted #000;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1001;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .modal-close {
   background: #fff;
   border: 1px solid #000;
   color: #000;
-  font-size: 1.2rem;
-  font-family: "Comic Sans MS", cursive;
+  font-size: 18px;
+  font-weight: bold;
   width: 30px;
   height: 30px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
+  font-family: "Comic Sans MS", cursive;
 }
-
 .modal-close:hover {
   background: #f0f0f0;
 }
 
 .modal-body {
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
+  position: relative;
 }
 
 .modal-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 100%;
-  max-height: 80vh;
 }
 
 .modal-image {
   max-width: 100%;
-  max-height: 70vh;
-  object-fit: contain;
-  border: 1px solid #000;
-  background: #fff;
+  max-height: 80vh;
+  height: auto;
+  display: block;
 }
 
 .modal-video-container {
   position: relative;
-  width: 80vw;
+  width: 100%;
   max-width: 800px;
-  height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  background: #000;
-  border: 1px solid #000;
+  aspect-ratio: 16/9;
 }
 
 .modal-video {
@@ -498,37 +485,12 @@ body {
 }
 
 .modal-caption {
-  padding: 12px;
+  padding: 10px;
   background: #fff;
   color: #000;
-  font-size: 0.9rem;
   text-align: center;
-  border-top: 1px dotted #000;
+  font-family: "Comic Sans MS", cursive;
+  font-size: 0.9rem;
+  border-top: 1px solid #000;
   width: 100%;
-  font-weight: normal;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .modal-backdrop {
-    padding: 10px;
-  }
-  
-  .modal-container {
-    max-width: 95vw;
-    max-height: 95vh;
-  }
-  
-  .modal-video-container {
-    width: 90vw;
-  }
-  
-  .modal-image {
-    max-height: 60vh;
-  }
-  
-  .modal-caption {
-    font-size: 0.8rem;
-    padding: 8px;
-  }
 }

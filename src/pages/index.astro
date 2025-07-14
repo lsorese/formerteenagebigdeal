@@ -33,7 +33,11 @@ md.renderer.rules.link_open = function (tokens, idx, options, env) {
     token.attrSet('style', 'cursor: pointer;');
   }
   
-  return `<a href="${href}" ${token.attrJoin('class') ? `class="${token.attrGet('class')}"` : ''} ${token.attrJoin('style') ? `style="${token.attrGet('style')}"` : ''}>`;
+  // Add target="_blank" to all links
+  token.attrSet('target', '_blank');
+  token.attrSet('rel', 'noopener noreferrer');
+  
+  return `<a href="${href}" ${token.attrJoin('class') ? `class="${token.attrGet('class')}"` : ''} ${token.attrJoin('style') ? `style="${token.attrGet('style')}"` : ''} target="_blank" rel="noopener noreferrer">`;
 };
 
 // Load lyrics for each track server-side
