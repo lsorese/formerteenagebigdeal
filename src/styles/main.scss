@@ -10,7 +10,7 @@
 
 body {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
-  background: #ffffff;
+  background: #ffffff repeat url('/public/images/bg.png') center center fixed;
   color: #000000;
   line-height: 1.2;
   margin: 0;
@@ -184,7 +184,8 @@ body {
 
 .tracklist {
   background: #fff;
-  border: none;
+  border: 1px dotted #000;
+
 }
 
 .track {
@@ -255,6 +256,7 @@ body {
   padding: 6px;
   margin-bottom: 15px;
   font-size: 0.8rem;
+  border: 1px dotted #000;
 }
 
 .marquee-text {
@@ -452,6 +454,7 @@ body {
   border: none;
   padding: 6px;
   margin: 8px 0;
+  border: 1px dotted #000;
   font-size: 0.8rem;
 }
 
