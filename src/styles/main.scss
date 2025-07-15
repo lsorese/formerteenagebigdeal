@@ -44,20 +44,21 @@ body {
 }
 
 .album-title {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin-bottom: 8px;
-  color: #000;
+  margin-top: 10px;
+  color: #fff;
   text-align: left;
-  font-weight: normal;
+  font-weight: bold;
   
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 }
 
 .album-artist {
   font-size: 1rem;
-  color: #666;
+  color: #f0f0f0;
   margin-bottom: 8px;
   text-align: left;
   font-weight: normal;
@@ -68,7 +69,7 @@ body {
 }
 
 .album-release {
-  color: #666;
+  color: #f9f9f9;
   margin-bottom: 15px;
   text-align: left;
   font-size: 0.9rem;
@@ -623,6 +624,7 @@ body {
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+  color: #fff;
 
   .album-artwork {
     max-width: 400px;
