@@ -9,6 +9,8 @@ class AlbumPlayer {
 		this.volume = 1.0;
 		
 		this.playButton = document.getElementById('playButton');
+		this.prevButton = document.getElementById('prevButton');
+		this.nextButton = document.getElementById('nextButton');
 		this.progressBar = document.getElementById('progressBar');
 		this.progressFill = document.getElementById('progressFill');
 		this.timeDisplay = document.getElementById('timeDisplay');
@@ -50,7 +52,7 @@ class AlbumPlayer {
 		
 		this.sound.play();
 		this.isPlaying = true;
-		this.playButton.textContent = '⏸ Pause';
+		this.playButton.textContent = '⏸';
 		this.updateProgress();
 	}
 	
@@ -59,7 +61,7 @@ class AlbumPlayer {
 		
 		this.sound.pause();
 		this.isPlaying = false;
-		this.playButton.textContent = '▶ Play';
+		this.playButton.textContent = '▶';
 	}
 	
 	togglePlay() {
@@ -72,6 +74,14 @@ class AlbumPlayer {
 	
 	nextTrack() {
 		this.currentTrack = (this.currentTrack + 1) % this.tracks.length;
+		this.loadTrack(this.currentTrack);
+		if (this.isPlaying) {
+			this.play();
+		}
+	}
+	
+	prevTrack() {
+		this.currentTrack = (this.currentTrack - 1 + this.tracks.length) % this.tracks.length;
 		this.loadTrack(this.currentTrack);
 		if (this.isPlaying) {
 			this.play();
@@ -156,6 +166,8 @@ class AlbumPlayer {
 	
 	bindEvents() {
 		this.playButton.addEventListener('click', () => this.togglePlay());
+		this.prevButton.addEventListener('click', () => this.prevTrack());
+		this.nextButton.addEventListener('click', () => this.nextTrack());
 		
 		this.progressBar.addEventListener('click', (e) => {
 			if (!this.sound) return;

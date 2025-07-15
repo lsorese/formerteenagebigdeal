@@ -25,27 +25,29 @@ const tracksWithLyrics = await loadTracksWithLyrics(albumData);
 	</head>
 	<body>
 		<div class="container">
-			<div class="marquee-container">
-				<div class="marquee-text">
-					Welcome to the Logan from the internet music experience! Now playing: {albumData.title} by {albumData.artist} • Welcome to the Logan from the internet music experience! Now playing: {albumData.title} by {albumData.artist} •
-				</div>
-			</div>
-			<div class="album-header">
-				<img src={albumData.artwork} alt={albumData.title} class="album-artwork" />
-				<div class="album-info">
-					<h1 class="album-title">{albumData.title}</h1>
+      <div class="album-artwork-container">
+        <img src={albumData.artwork} alt={albumData.title} class="album-artwork" />
+          <h1 class="album-title">{albumData.title}</h1>
 					<h2 class="album-artist">{albumData.artist}</h2>
-					<p class="album-release">Released {albumData.releaseDate}</p>
-					
-					<div class="player-controls">
-						<button class="play-button" id="playButton">PLAY</button>
-						<div class="progress-bar" id="progressBar">
-							<div class="progress-fill" id="progressFill"></div>
-						</div>
-						<div class="time-display" id="timeDisplay">0:00</div>
-					</div>
-				</div>
-			</div>
+					<p class="album-release">Last Updated: {albumData.releaseDate}</p>
+      </div>
+
+
+
+      <div class="player-controls">
+        <div class="controls-top">
+          <button class="control-btn prev-btn" id="prevButton">⏮</button>
+          <button class="control-btn play-btn" id="playButton">▶</button>
+          <button class="control-btn next-btn" id="nextButton">⏭</button>
+        </div>
+        <div class="controls-middle">
+          <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="time-display" id="timeDisplay">0:00</div>
+        </div>
+      </div>
+
 			
 			<div class="currently-playing" id="currentlyPlaying">
 				<div class="currently-playing-header">

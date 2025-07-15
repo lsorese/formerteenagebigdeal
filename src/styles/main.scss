@@ -12,7 +12,7 @@
 
 body {
   font-family: "Comic Neue", "Comic Sans MS", "Comic Sans", cursive;
-  background: #ffffff repeat url('../images/armorplates.gif') calc(50% - 1px) calc(50% - 10px);
+  background: #ffffff repeat url('../images/parch.gif') calc(50% - 1px) calc(50% - 10px);
   color: #000000;
   line-height: 1.2;
   margin: 0;
@@ -39,19 +39,6 @@ body {
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 8px;
-  }
-}
-
-.album-artwork {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border: 1px solid #000;
-  
-  @media (max-width: 768px) {
-    width: 100%;
-    max-width: 120px;
-    height: auto;
   }
 }
 
@@ -87,30 +74,49 @@ body {
 }
 
 .player-controls {
+  margin-bottom: 15px;
+}
+
+.controls-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.controls-middle {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 15px;
-  
-  @media (max-width: 768px) {
-    flex-wrap: wrap;
-    gap: 6px;
-  }
 }
 
-.play-button {
+.control-btn {
   background: #fff;
   border: 1px solid #000;
   color: #000;
-  padding: 8px 16px;
+  padding: 10px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: normal;
-  min-width: 80px;
+  min-width: 45px;
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
 }
 
-.play-button:hover {
+.control-btn:hover {
   background: #f0f0f0;
+}
+
+.control-btn:active {
+  background: #e0e0e0;
+}
+
+.play-btn {
+  font-size: 1.1rem;
 }
 
 .progress-bar {
@@ -120,18 +126,13 @@ body {
   border: 1px solid #000;
   overflow: hidden;
   cursor: pointer;
-  min-width: 100px;
-  
-  @media (max-width: 768px) {
-    order: 3;
-    width: 100%;
-  }
 }
 
 .progress-fill {
   height: 100%;
   background: #000;
   width: 0%;
+  transition: width 0.1s ease;
 }
 
 .time-display {
@@ -141,8 +142,7 @@ body {
   padding: 4px 8px;
   border: 1px solid #000;
   background: #fff;
-  font-weight: normal;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .currently-playing {
@@ -615,4 +615,17 @@ body {
   font-family: "Comic Neue", "Comic Sans MS", "Comic Sans", cursive;
   font-weight: 700;
   font-style: italic;
+}
+
+.album-artwork-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .album-artwork {
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 10px;
+  }
 }
