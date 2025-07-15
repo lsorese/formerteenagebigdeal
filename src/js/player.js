@@ -53,7 +53,7 @@ class AlbumPlayer {
 		
 		this.sound.play();
 		this.isPlaying = true;
-		this.playButton.textContent = '⏸';
+		this.playButton.textContent = '||';
 		this.updateProgress();
 	}
 	
@@ -62,7 +62,7 @@ class AlbumPlayer {
 		
 		this.sound.pause();
 		this.isPlaying = false;
-		this.playButton.textContent = '▶';
+		this.playButton.textContent = '>';
 	}
 	
 	togglePlay() {

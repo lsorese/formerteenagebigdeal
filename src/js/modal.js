@@ -15,7 +15,7 @@ class MediaModal {
             <div class="modal-backdrop">
                 <div class="modal-container">
                     <div class="modal-header">
-                        <button class="modal-close" aria-label="Close modal">&times;</button>
+                        <button class="modal-close" aria-label="Close modal">[X]</button>
                     </div>
                     <div class="modal-body">
                         <div class="modal-content"></div>
