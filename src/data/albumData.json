@@ -8,84 +8,84 @@
       "id": 1,
       "title": "The Future Is Stupid",
       "duration": "3:18",
-      "url": "/mp3/01_lfti_the-future-is-stupid.mp3",
+      "url": "/mp3/01-the-future-is-stupid.mp3",
       "lyricsFile": "/src/data/lyrics/01-the-future-is-stupid.md"
     },
     {
       "id": 2,
       "title": "Lisa Pell: The Tyrant of Sillytown USA",
       "duration": "1:25",
-      "url": "/mp3/02_lfti_lisa_pell.mp3",
+      "url": "/mp3/02-lisa-pell.mp3",
       "lyricsFile": "/src/data/lyrics/02-lisa-pell.md"
     },
     {
       "id": 3,
       "title": "Emergency Broadcast",
       "duration": "2:32",
-      "url": "/mp3/03_lfti_emergency_broadcast.mp3",
+      "url": "/mp3/03-emergency-broadcast.mp3",
       "lyricsFile": "/src/data/lyrics/03-emergency-broadcast.md"
     },
     {
       "id": 4,
       "title": "40oz Stanley Adventure Quencher Travel Tumbler",
       "duration": "2:39",
-      "url": "/mp3/04_lfti_40oz-stanley-adventure-quencher_travel_tumbler.mp3",
+      "url": "/mp3/04-40oz-stanley-adventure-quencher-travel-tumbler.mp3",
       "lyricsFile": "/src/data/lyrics/04-40oz-stanley-adventure-quencher-travel-tumbler.md"
     },
     {
       "id": 5,
       "title": "Heal Me (Girly Girl Productions Cover)",
       "duration": "1:29",
-      "url": "/mp3/05_lfti_heal-me.mp3",
+      "url": "/mp3/05-heal-me.mp3",
       "lyricsFile": "/src/data/lyrics/05-heal-me.md"
     },
     {
       "id": 6,
       "title": "Joey Chestnut vs. My Campaign Finance Records",
       "duration": "0:39",
-      "url": "/mp3/06_lfti-joey-chestnut-vs-my-foreign-policy-experience.mp3",
+      "url": "/mp3/06-joey-chestnut-vs-my-foreign-policy-experience.mp3",
       "lyricsFile": "/src/data/lyrics/06-joey-chestnut-vs-my-foreign-policy-experience.md"
     },
     {
       "id": 7,
       "title": "ATTN: Kmart Shoppers",
       "duration": "1:47",
-      "url": "/mp3/07_lfti_attn-kmart-shoppers.mp3",
+      "url": "/mp3/07-attn-kmart-shoppers.mp3",
       "lyricsFile": "/src/data/lyrics/07-attn-kmart-shoppers.md"
     },
     {
       "id": 8,
       "title": "From Hell with Love",
       "duration": "2:41",
-      "url": "/mp3/08_lfti_from-hell-with-love.mp3",
+      "url": "/mp3/08-from-hell-with-love.mp3",
       "lyricsFile": "/src/data/lyrics/08-from-hell-with-love.md"
     },
     {
       "id": 9,
       "title": "Former Teenage Big Deal",
       "duration": "1:16",
-      "url": "/mp3/09_lfti_former-teenage-big-deal.mp3",
+      "url": "/mp3/09-former-teenage-big-deal.mp3",
       "lyricsFile": "/src/data/lyrics/09-former-teenage-big-deal.md"
     },
     {
       "id": 10,
       "title": "Advanced Chair Techniques for the Modern Cuck",
       "duration": "4:10",
-      "url": "/mp3/10_lfti_cuck-chair.mp3",
+      "url": "/mp3/10-cuck-chair.mp3",
       "lyricsFile": "/src/data/lyrics/10-cuck-chair.md"
     },
     {
       "id": 11,
       "title": "Sleep Tight",
       "duration": "2:15",
-      "url": "/mp3/11_lfti_sleep-tight.mp3",
+      "url": "/mp3/11-sleep-tight.mp3",
       "lyricsFile": "/src/data/lyrics/11-sleep-tight.md"
     },
     {
       "id": 12,
       "title": "TEOTWAWKI",
       "duration": "3:01",
-      "url": "/mp3/12_lfti_teotwawki.mp3",
+      "url": "/mp3/12-teotwawki.mp3",
       "lyricsFile": "/src/data/lyrics/12-teotwawki.md"
     }
   ]

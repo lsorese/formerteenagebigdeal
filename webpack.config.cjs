@@ -41,6 +41,11 @@ module.exports = {
           from: 'src/images',
           to: 'images',
           noErrorOnMissing: true
+        },
+        {
+          from: 'src/mp3',
+          to: 'mp3',
+          noErrorOnMissing: true
         }
       ]
     })
