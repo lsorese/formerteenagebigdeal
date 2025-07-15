@@ -12,17 +12,19 @@
 
 body {
   font-family: "Comic Neue", "Comic Sans MS", "Comic Sans", cursive;
-  background: #ffffff repeat url('../images/bg.png') center center fixed;
+  background: #ffffff repeat url('../images/bg.png') calc(50% - 1px) calc(50% - 10px);
   color: #000000;
   line-height: 1.2;
   margin: 0;
-  padding: 20px;
+  padding: 0 20px;
   font-size: 14px;
 }
 
 .container {
-  max-width: 600px;
+  max-width: 646px;
   margin: 0 auto;
+  left: 0px;
+  position: relative;
   padding: 15px;
   border: none;
 }
