@@ -46,6 +46,14 @@ module.exports = {
           from: 'src/mp3',
           to: 'mp3',
           noErrorOnMissing: true
+        },
+        {
+          from: 'src/js',
+          to: 'js',
+          noErrorOnMissing: true,
+          globOptions: {
+            ignore: ['**/player.js'] // Exclude player.js since it's handled by webpack entry
+          }
         }
       ]
     })
