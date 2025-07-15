@@ -1,4 +1,5 @@
 import MediaModal from './modal.js';
+import { Howl } from 'howler';
 
 class AlbumPlayer {
 	constructor(tracks) {

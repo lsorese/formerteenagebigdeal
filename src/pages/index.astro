@@ -13,10 +13,9 @@ const tracksWithLyrics = await loadTracksWithLyrics(albumData);
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{albumData.title} - {albumData.artist}</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
 		<link rel="stylesheet" href="/css/styles.css">
 		{tracksWithLyrics.map((track) => (
-			<link rel="preload" href={track.url} as="audio" type="audio/wav" />
+			<link rel="preload" href={track.url} as="audio" type="audio/mp3" />
 		))}
 		<script define:vars={{ albumData: { ...albumData, tracks: tracksWithLyrics } }}>
 			window.albumData = albumData;
@@ -91,13 +90,7 @@ const tracksWithLyrics = await loadTracksWithLyrics(albumData);
 				</div>
 			</div>
 			
-			<div style="text-align: center; margin-top: 30px;">
-				<div class="marquee-container-alt">
-					<div class="marquee-text-alt">
-						Best viewed in Internet Explorer 6.0!
-					</div>
-				</div>
-			</div>
+      <div class="footer">This site is best viewed with either Microsoft Internet Explorer 3.0 or Higher or Netscape Navigator 3.0 or Higher</div>
 		</div>
 
 		<script src="/js/main.bundle.js" is:inline></script>

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "astro": "^5.11.0",
+    "howler": "^2.2.4",
     "markdown-it": "^14.1.0"
   },
   "devDependencies": {
