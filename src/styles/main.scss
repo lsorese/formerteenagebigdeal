@@ -12,7 +12,7 @@
 
 body {
   font-family: "Comic Neue", "Comic Sans MS", "Comic Sans", cursive;
-  background: #ffffff repeat url('../images/bg.png') calc(50% - 1px) calc(50% - 10px);
+  background: #ffffff repeat url('../images/armorplates.gif') calc(50% - 1px) calc(50% - 10px);
   color: #000000;
   line-height: 1.2;
   margin: 0;
@@ -35,7 +35,6 @@ body {
   margin-bottom: 20px;
   padding: 10px;
   background: #fff;
-  border: 1px dotted #000;
   
   @media (max-width: 768px) {
     flex-direction: column;
@@ -149,13 +148,11 @@ body {
 .currently-playing {
   margin-bottom: 15px;
   background: #fff;
-  border: 1px dotted #000;
 }
 
 .currently-playing-header {
   padding: 8px;
   background: #fff;
-  border-bottom: 1px dotted #ccc;
 }
 
 .currently-playing-header h3 {
@@ -187,15 +184,12 @@ body {
 
 .tracklist {
   background: #fff;
-  border: 1px dotted #000;
-
 }
 
 .track {
   display: flex;
   align-items: center;
   padding: 6px;
-  border-bottom: 1px dotted #ccc;
   cursor: pointer;
   background: #fff;
   font-size: 0.9rem;
@@ -241,7 +235,6 @@ body {
   text-decoration: none;
   margin-left: 10px;
   padding: 4px 8px;
-  border: 1px dotted #000;
   background: #fff;
   font-weight: normal;
   font-size: 0.8rem;
@@ -259,7 +252,6 @@ body {
   padding: 6px;
   margin-bottom: 15px;
   font-size: 0.8rem;
-  border: 1px dotted #000;
 }
 
 .marquee-text {
@@ -278,7 +270,6 @@ body {
 .lyrics-container {
   margin-top: 15px;
   background: #fff;
-  border: 1px dotted #000;
 }
 
 .lyrics-header {
@@ -287,7 +278,6 @@ body {
   justify-content: space-between;
   padding: 8px;
   background: #fff;
-  border-bottom: 1px dotted #ccc;
 }
 
 .lyrics-header h3 {
@@ -457,7 +447,6 @@ body {
   border: none;
   padding: 6px;
   margin: 8px 0;
-  border: 1px dotted #000;
   font-size: 0.8rem;
 }
 
