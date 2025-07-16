@@ -1,6 +1,7 @@
 ---
 import albumDataJson from '../data/albumData.json';
 import { loadTracksWithLyrics } from '../utils/lyrics-loader';
+import { Analytics } from '@vercel/analytics/astro';
 
 const albumData = albumDataJson;
 const tracksWithLyrics = await loadTracksWithLyrics(albumData);
@@ -90,5 +91,6 @@ const tracksWithLyrics = await loadTracksWithLyrics(albumData);
 		</div>
 
 		<script src="/js/main.bundle.js" is:inline></script>
+		<Analytics />
 	</body>
 </html>
