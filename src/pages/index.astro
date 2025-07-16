@@ -1,10 +1,11 @@
 ---
 import albumDataJson from '../data/albumData.json';
-import { loadTracksWithLyrics } from '../utils/lyrics-loader';
+import { loadTracksWithLyrics, loadDefaultLyrics } from '../utils/lyrics-loader';
 import Analytics from '@vercel/analytics/astro';
 
 const albumData = albumDataJson;
 const tracksWithLyrics = await loadTracksWithLyrics(albumData);
+const defaultLyricsHtml = await loadDefaultLyrics();
 ---
 
 <html lang="en">
@@ -73,11 +74,10 @@ const tracksWithLyrics = await loadTracksWithLyrics(albumData);
 			<div class="main-content">
 				<div class="lyrics__container" id="lyricsContainer">
 					<div class="lyrics__header">
-						<h3 id="lyricsTitle">Lyrics</h3>
+						<h3 id="lyricsTitle">Welcome!</h3>
 					</div>
 					<div class="lyrics__content" id="lyricsContent">
-						<div class="lyrics__text" id="lyricsText-default">
-							<p>Select a track to view lyrics</p>
+						<div class="lyrics__text" id="lyricsText-default" set:html={defaultLyricsHtml}>
 						</div>
 						{tracksWithLyrics.map((track, index) => (
 							<div 

@@ -168,7 +168,7 @@ class AlbumPlayer {
   }
 
   showDefaultLyrics() {
-    this.lyricsTitle.textContent = 'Lyrics';
+    this.lyricsTitle.textContent = 'Welcome!';
     this.lyricsContainer.style.display = 'block';
     
     // Hide all track lyrics and show default state

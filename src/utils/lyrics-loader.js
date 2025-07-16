@@ -2,6 +2,23 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { createMarkdownRenderer } from './markdown-config';
 
+export async function loadDefaultLyrics() {
+  const md = createMarkdownRenderer();
+  
+  try {
+    const lyricsPath = join(process.cwd(), 'src/data/lyrics/default.md');
+    const lyricsContent = readFileSync(lyricsPath, 'utf-8');
+    
+    // Use markdown-it to render markdown
+    const lyricsHtml = md.render(lyricsContent);
+    
+    return lyricsHtml;
+  } catch (error) {
+    console.warn('Could not load default lyrics:', error.message);
+    return '<p>Select a track to view lyrics</p>';
+  }
+}
+
 export async function loadTracksWithLyrics(albumData) {
   const md = createMarkdownRenderer();
   
