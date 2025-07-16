@@ -43,7 +43,10 @@ export function createMarkdownRenderer() {
     token.attrSet('target', '_blank');
     token.attrSet('rel', 'noopener noreferrer');
     
-    return `<a href="${href}" ${token.attrJoin('class') ? `class="${token.attrGet('class')}"` : ''} ${token.attrJoin('style') ? `style="${token.attrGet('style')}"` : ''} target="_blank" rel="noopener noreferrer">`;
+    const classAttr = token.attrGet('class') ? ` class="${token.attrGet('class')}"` : '';
+    const styleAttr = token.attrGet('style') ? ` style="${token.attrGet('style')}"` : '';
+    
+    return `<a href="${href}"${classAttr}${styleAttr} target="_blank" rel="noopener noreferrer">`;
   };
 
   return md;

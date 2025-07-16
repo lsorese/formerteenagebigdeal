@@ -312,10 +312,6 @@ body {
     }
   }
   
-  br {
-    line-height: 1.3;
-  }
-  
   .youtube-collapsible {
     margin: 1em 0;
     border: 1px solid #000;
@@ -469,7 +465,6 @@ body {
   color: #000;
 }
 
-// Modal styles
 .media-modal {
   position: fixed;
   top: 0;
@@ -582,7 +577,6 @@ body {
   width: 100%;
 }
 
-// Comic Neue font utility classes
 .comic-neue-light {
   font-family: "Comic Neue", "Comic Sans MS", "Comic Sans", cursive;
   font-weight: 300;

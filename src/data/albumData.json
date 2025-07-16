@@ -1,8 +1,6 @@
 {
   "title": "Logan, from The Internet",
   "artist": "Former Teenage Big Deal",
-  "artwork": "/public/images/cover.jpg",
-  "releaseDate": "2025",
   "tracks": [
     {
       "id": 1,
@@ -55,7 +53,7 @@
     },
     {
       "id": 8,
-      "title": "From Hell with Love",
+      "title": "ShamNOW That's What I Call Br00tal Death Metal!",
       "duration": "2:41",
       "url": "/mp3/08-from-hell-with-love.mp3",
       "lyricsFile": "/src/data/lyrics/08-from-hell-with-love.md"
@@ -69,14 +67,14 @@
     },
     {
       "id": 10,
-      "title": "Advanced Chair Techniques for the Modern Cuck",
+      "title": "That’s an outdated idea about sexuality, babygirl",
       "duration": "4:10",
       "url": "/mp3/10-cuck-chair.mp3",
       "lyricsFile": "/src/data/lyrics/10-cuck-chair.md"
     },
     {
       "id": 11,
-      "title": "Sleep Tight",
+      "title": "The Trolley Problem, but This Time All You Can Do Is Watch",
       "duration": "2:15",
       "url": "/mp3/11-sleep-tight.mp3",
       "lyricsFile": "/src/data/lyrics/11-sleep-tight.md"
