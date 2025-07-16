@@ -11,7 +11,7 @@ IRL, [boxxybabee](https://www.youtube.com/watch?v=Yavx9yxTrsw)
 [ANewHopeee](https://www.youtube.com/watch?v=dfwxitFM9p4), Livestream Fail
 [Tai Lopez](https://www.youtube.com/watch?v=Cv1RJTHf5fk), [Fail Whale](https://www.theatlantic.com/technology/archive/2015/01/the-story-behind-twitters-fail-whale/384313/)
 
-https://www.youtube.com/watch?v=Cv1RJTHf5fk
+https://www.youtube.com/watch?v=Yavx9yxTrsw
 
 [Gary Vee](https://www.youtube.com/watch?v=4wmcT-xMdzw), [Adin Ross](https://www.youtube.com/watch?v=cNIYvOpTsh8)
 David Sacks, Logan Paul
@@ -30,5 +30,5 @@ You'll find no hope in the land of capital and smoke
 
 Oatman Arizona, to Fetterman's home of Braddock, Youngstown, basically Allepo
 Won't you get hip to all this awful censor
-Come on folks, dedicate your life this
+Come on folks, dedicate your life to this
 Get your fix on Route 666

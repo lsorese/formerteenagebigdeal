@@ -19,4 +19,4 @@ This neighborhood is falling apart and your parents will hear from my lawyer.
 And don't you roll you eyes at me or the community board will hear about this.
 This generation has no respect. I demand respect as your elder.
 
-[Sample from Roderick on the Line, Episode 300 "The Airplane Doesn't Care"](https://www.merlinmann.com/roderick/ep-300-the-airplane-doesnt-care.html)
+[Video from Roderick on the Line, Episode 300 "The Airplane Doesn't Care"](https://www.merlinmann.com/roderick/ep-300-the-airplane-doesnt-care.html)

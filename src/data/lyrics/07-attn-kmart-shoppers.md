@@ -1,10 +1,22 @@
-# Attn Kmart Shoppers
+Sample from archive.org/details/attentionkmartshoppers
 
-## Verse 1
-*Lyrics coming soon...*
+https://www.youtube.com/watch?v=MZkgtgr7LhE
 
-## Chorus
-*Lyrics coming soon...*
+Ain't no party like an S Club Party
+Get down tonight, shake your human body from side to side.
 
-## Verse 2
-*Lyrics coming soon...*
+Player hater
+Push the ceiling 
+Get the feeling
+Gotta get groovin'
+
+Tina's doing her dance
+Jon's looking for romance
+Paul's down on the floor
+Hannah's screaming out for more 
+Wanna see Bradley swing? 
+Come on Rachel do her thing
+We got Jo, she's got the flow.
+Get ready, here we go
+
+https://www.youtube.com/watch?v=7WIvZu4dPQQ

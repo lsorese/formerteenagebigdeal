@@ -104,7 +104,7 @@ export function youtubePlugin(md) {
     
     return `<div class="youtube-collapsible" data-video-id="${videoId}">
       <div class="youtube-toggle" onclick="toggleYouTubeVideo('${videoId}')">
-        <span class="youtube-toggle-text">Toggle Sample</span>
+        <span class="youtube-toggle-text">Relevant Video</span>
         <span class="youtube-toggle-arrow">&gt;</span>
       </div>
       <div class="youtube-embed-container hidden" id="youtube-${videoId}">

@@ -8,7 +8,7 @@ const toggleYouTubeVideo = (videoId) => {
   if (container.classList.contains('hidden')) {
     container.classList.remove('hidden');
     arrow.classList.add('expanded');
-    text.textContent = 'Hide Sample';
+    text.textContent = 'Hide Video';
     
     if (iframe.dataset.src) {
       iframe.src = iframe.dataset.src;
@@ -16,7 +16,7 @@ const toggleYouTubeVideo = (videoId) => {
   } else {
     container.classList.add('hidden');
     arrow.classList.remove('expanded');
-    text.textContent = 'Toggle Sample';
+    text.textContent = 'Relevant Video';
     
     iframe.src = '';
   }
