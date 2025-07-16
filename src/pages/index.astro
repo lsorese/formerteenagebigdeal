@@ -76,6 +76,9 @@ const tracksWithLyrics = await loadTracksWithLyrics(albumData);
 						<h3 id="lyricsTitle">Lyrics</h3>
 					</div>
 					<div class="lyrics__content" id="lyricsContent">
+						<div class="lyrics__text" id="lyricsText-default">
+							<p>Select a track to view lyrics</p>
+						</div>
 						{tracksWithLyrics.map((track, index) => (
 							<div 
 								class="lyrics__text hidden" 

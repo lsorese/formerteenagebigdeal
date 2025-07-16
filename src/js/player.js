@@ -28,7 +28,7 @@ class AlbumPlayer {
   
   initializePlayer() {
     this.loadTrack(this.currentTrack);
-    this.updateLyrics();
+    this.showDefaultLyrics();
   }
   
   loadTrack(index) {
@@ -54,6 +54,7 @@ class AlbumPlayer {
     this.sound.play();
     this.isPlaying = true;
     this.playButton.textContent = '||';
+    this.updateLyrics();
     this.updateProgress();
   }
   
@@ -123,7 +124,6 @@ class AlbumPlayer {
     }
     
     this.updateCurrentlyPlaying();
-    this.updateLyrics();
   }
   
   updateCurrentlyPlaying() {
@@ -141,16 +141,44 @@ class AlbumPlayer {
       this.lyricsTitle.textContent = `Lyrics - ${currentTrack.title}`;
       this.lyricsContainer.style.display = 'block';
       
-      document.querySelectorAll('.lyrics-text').forEach(lyricsEl => {
+      // Hide all lyrics including default state
+      document.querySelectorAll('.lyrics__text').forEach(lyricsEl => {
         lyricsEl.classList.add('hidden');
       });
       
+      // Show only the current track's lyrics
       const currentLyricsEl = document.getElementById(`lyricsText-${currentTrack.id}`);
       if (currentLyricsEl) {
         currentLyricsEl.classList.remove('hidden');
       }
     } else {
+      this.lyricsTitle.textContent = 'Lyrics';
       this.lyricsContainer.style.display = 'block';
+      
+      // Hide all track lyrics and show default state
+      document.querySelectorAll('.lyrics__text').forEach(lyricsEl => {
+        lyricsEl.classList.add('hidden');
+      });
+      
+      const defaultLyricsEl = document.getElementById('lyricsText-default');
+      if (defaultLyricsEl) {
+        defaultLyricsEl.classList.remove('hidden');
+      }
+    }
+  }
+
+  showDefaultLyrics() {
+    this.lyricsTitle.textContent = 'Lyrics';
+    this.lyricsContainer.style.display = 'block';
+    
+    // Hide all track lyrics and show default state
+    document.querySelectorAll('.lyrics__text').forEach(lyricsEl => {
+      lyricsEl.classList.add('hidden');
+    });
+    
+    const defaultLyricsEl = document.getElementById('lyricsText-default');
+    if (defaultLyricsEl) {
+      defaultLyricsEl.classList.remove('hidden');
     }
   }
   
