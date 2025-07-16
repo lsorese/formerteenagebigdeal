@@ -1,10 +1,1 @@
-# Cuck Chair
-
-## Verse 1
-*Lyrics coming soon...*
-
-## Chorus
-*Lyrics coming soon...*
-
-## Verse 2
-*Lyrics coming soon...*
+https://www.youtube.com/watch?v=x88WXUGnWiw

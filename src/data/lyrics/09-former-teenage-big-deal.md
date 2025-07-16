@@ -1,10 +1,25 @@
-# Former Teenage Big Deal
+U mad bro? Deal with it
+We do it for the lulz
 
-## Verse 1
-*Lyrics coming soon...*
+Former teenage big deal
+but this nostalgia blows
 
-## Chorus
-*Lyrics coming soon...*
+U mad, newfag? 
+Someone has set us up the bomb.
 
-## Verse 2
-*Lyrics coming soon...*
+All your base belong to us
+go ahead and call your mom.
+
+I don't want Teddy Ruxpin, I want my dad.
+But time moves on and now it's just censor sad.
+
+U mad, newfag, I've got the epic win.
+Been here since the summer of '06, let the lulz begin.
+
+U mad, stay mad, trollface.jpeg2000
+but now I'm pushing 40 and my brain is still like this.
+
+Pool's closed forever
+Due to stingrays and censor
+
+Glorydays are over, but the cringe always stays

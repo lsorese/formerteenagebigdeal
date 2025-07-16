@@ -30,6 +30,13 @@ body {
   border: none;
 }
 
+blockquote {
+  margin: 0 0 1em 0;
+  padding: 0.5em 1em;
+  background: #f9f9f9;
+  border-left: 4px solid #ccc;
+}
+
 .album-header {
   display: flex;
   gap: 20px;
