@@ -1,7 +1,7 @@
 ---
 import albumDataJson from '../data/albumData.json';
 import { loadTracksWithLyrics } from '../utils/lyrics-loader';
-import { Analytics } from '@vercel/analytics/astro';
+import Analytics from '@vercel/analytics/astro';
 
 const albumData = albumDataJson;
 const tracksWithLyrics = await loadTracksWithLyrics(albumData);
