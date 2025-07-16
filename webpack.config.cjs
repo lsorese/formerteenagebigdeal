@@ -66,5 +66,10 @@ module.exports = {
     port: 3001,
     hot: true
   },
+  performance: {
+    hints: false,
+    maxAssetSize: 100000000,
+    maxEntrypointSize: 100000000
+  },
   mode: 'development'
 };
