@@ -13,21 +13,71 @@
 body {
   font-family: "Comic Neue", "Comic Sans MS", "Comic Sans", cursive;
   background: #ffffff repeat url('../images/stars.gif') center center;
-
   color: #000000;
   line-height: 1.2;
   margin: 0;
-  padding: 15px 20px;
+  padding: 0;
   font-size: 14px;
+  overflow-x: hidden;
+}
+
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.sidebar {
+  width: 320px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border-right: 1px solid #000;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #000;
+  }
+}
+
+.sidebar-content {
+  padding: 15px;
+  
+  @media (max-width: 480px) {
+    padding: 8px;
+  }
+}
+
+.main-content {
+  margin-left: 320px;
+  flex: 1;
+  padding: 15px;
+  
+  @media (max-width: 768px) {
+    margin-left: 0;
+    padding: 8px;
+  }
 }
 
 .container {
   max-width: 646px;
   margin: 0 auto;
   left: 0px;
-  position: relative;
   padding: 15px;
   border: none;
+  
+  @media (max-width: 480px) {
+    padding: 8px;
+  }
 }
 
 blockquote {
@@ -37,158 +87,191 @@ blockquote {
   border-left: 4px solid #ccc;
 }
 
-.album-header {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-  padding: 10px;
-  background: #fff;
+.album {
+  &__header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #fff;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    @media (max-width: 480px) {
+      gap: 8px;
+    }
+  }
   
-  @media (max-width: 768px) {
+  &__artwork-container {
+    display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #fff;
   }
-}
-
-.album-title {
-  font-size: 1.5rem;
-  margin-bottom: 8px;
-  margin-top: 10px;
-  color: #fff;
-  text-align: left;
-  font-weight: bold;
   
-  @media (max-width: 768px) {
+  &__artwork {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  &__title {
     font-size: 1.5rem;
+    margin-bottom: 8px;
+    margin-top: 10px;
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+    
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
   }
-}
-
-.album-artist {
-  font-size: 1rem;
-  color: #f0f0f0;
-  margin-bottom: 8px;
-  text-align: left;
-  font-weight: normal;
   
-  @media (max-width: 768px) {
+  &__artist {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 8px;
+    text-align: left;
+    font-weight: normal;
+    
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 0.8rem;
+    }
+  }
+  
+  &__release {
+    color: #f9f9f9;
+    margin-bottom: 15px;
+    text-align: left;
     font-size: 0.9rem;
   }
 }
 
-.album-release {
-  color: #f9f9f9;
-  margin-bottom: 15px;
-  text-align: left;
-  font-size: 0.9rem;
-}
-
-.player-controls {
-  margin-bottom: 15px;
-}
-
-.controls-top {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 10px;
-}
-
-.controls-middle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.control-btn {
-  background: #fff;
-  border: 1px solid #000;
-  color: #000;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: normal;
-  min-width: 45px;
-  min-height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s ease;
-}
-
-.control-btn:hover {
-  background: #f0f0f0;
-}
-
-.control-btn:active {
-  background: #e0e0e0;
-}
-
-.play-btn {
-  font-size: 1.1rem;
-}
-
-.progress-bar {
-  flex: 1;
-  height: 8px;
-  background: #fff;
-  border: 1px solid #000;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.progress-fill {
-  height: 100%;
-  background: #000;
-  width: 0%;
-  transition: width 0.1s ease;
-}
-
-.time-display {
-  color: #000;
-  min-width: 60px;
-  text-align: center;
-  padding: 4px 8px;
-  border: 1px solid #000;
-  background: #fff;
-  font-size: 0.8rem;
+.player {
+  &__controls {
+    margin-bottom: 15px;
+  }
+  
+  &__controls-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+  
+  &__controls-middle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  &__control-btn {
+    background: #fff;
+    border: 1px solid #000;
+    color: #000;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: normal;
+    min-width: 45px;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background: #f0f0f0;
+    }
+    
+    &:active {
+      background: #e0e0e0;
+    }
+    
+    &--play {
+      font-size: 1.1rem;
+    }
+  }
+  
+  &__progress-bar {
+    flex: 1;
+    height: 8px;
+    background: #fff;
+    border: 1px solid #000;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  &__progress-fill {
+    height: 100%;
+    background: #000;
+    width: 0%;
+    transition: width 0.1s ease;
+  }
+  
+  &__time-display {
+    color: #000;
+    min-width: 60px;
+    text-align: center;
+    padding: 4px 8px;
+    border: 1px solid #000;
+    background: #fff;
+    font-size: 0.8rem;
+  }
 }
 
 .currently-playing {
   margin-bottom: 15px;
   background: #fff;
-}
-
-.currently-playing-header {
-  padding: 8px;
-  background: #fff;
-}
-
-.currently-playing-header h3 {
-  margin: 0;
-  color: #000;
-  font-size: 0.9rem;
-  font-weight: normal;
-}
-
-.currently-playing-content {
-  padding: 8px;
-}
-
-.current-track-info {
-  text-align: center;
-}
-
-.current-track-title {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #000;
-  margin-bottom: 4px;
-}
-
-.current-track-artist {
-  font-size: 0.9rem;
-  color: #666;
+  padding: 10px;
+  
+  &__header {
+    padding: 0 8px;
+    background: #fff;
+    text-align: center;
+    
+    &__title {
+      margin: 0;
+      color: #000;
+      font-size: 0.9rem;
+      font-weight: normal;
+    }
+  }
+  
+  &__content {
+    padding: 8px;
+  }
+  
+  &__track-info {
+    text-align: center;
+  }
+  
+  &__track-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 4px;
+  }
+  
+  &__track-artist {
+    font-size: 0.9rem;
+    color: #666;
+  }
 }
 
 .tracklist {
@@ -202,55 +285,189 @@ blockquote {
   cursor: pointer;
   background: #fff;
   font-size: 0.9rem;
+  
+  &:hover {
+    background: #f0f0f0;
+  }
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &.playing {
+    background: #e0e0e0;
+  }
+  
+  &__number {
+    width: 25px;
+    color: #000;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  
+  &__info {
+    flex: 1;
+    margin-left: 10px;
+    
+    @media (max-width: 480px) {
+      margin-left: 4px;
+    }
+  }
+  
+  &__title {
+    margin-bottom: 1px;
+    color: #000;
+    font-size: 0.9rem;
+  }
+  
+  &__duration {
+    color: #000;
+    font-size: 0.8rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 4px;
+  }
 }
 
-.track:hover {
-  background: #f0f0f0;
+.lyrics {
+  &__link {
+    display: none;
+  }
+  
+  &__container {
+    margin-top: 0;
+    background: #fff;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+    
+    @media (max-width: 768px) {
+      height: auto;
+      margin-top: 15px;
+    }
+  }
+  
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    background: #fff;
+    
+    h3 {
+      margin: 0;
+      color: #000;
+      font-size: 0.9rem;
+      font-weight: normal;
+    }
+  }
+  
+  &__content {
+    padding: 8px;
+    display: block;
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+  
+  &__text {
+    line-height: 1.3;
+    color: #000;
+    background: #fff;
+    padding: 6px;
+    border: none;
+    font-size: 0.8rem;
+    
+    p {
+      margin: 0 0 1em 0;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    strong {
+      color: #000;
+    }
+    
+    em {
+      color: #000;
+      font-style: italic;
+    }
+    
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+    
+    hr {
+      margin-bottom: 1em;
+      border: none;
+      border-top: 1px solid #aaa;
+    }
+  }
 }
 
-.track.playing {
-  background: #e0e0e0;
-}
-
-.track:last-child {
-  border-bottom: none;
-}
-
-.track-number {
-  width: 25px;
-  color: #000;
-  text-align: center;
-  font-size: 0.8rem;
-}
-
-.track-info {
-  flex: 1;
-  margin-left: 10px;
-}
-
-.track-title {
-  margin-bottom: 1px;
-  color: #000;
-  font-size: 0.9rem;
-}
-
-.track-duration {
-  color: #000;
-  font-size: 0.8rem;
-}
-
-.lyrics-link {
-  color: #000;
-  text-decoration: none;
-  margin-left: 10px;
-  padding: 4px 8px;
+.youtube-collapsible {
+  margin: 1em 0;
+  border: 1px solid #000;
   background: #fff;
-  font-weight: normal;
-  font-size: 0.8rem;
 }
 
-.lyrics-link:hover {
-  background: #f0f0f0;
+.youtube-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  cursor: pointer;
+  background: #fff;
+  border: none;
+  font-size: 1em;
+  color: #000;
+  
+  &:hover {
+    background: #f0f0f0;
+  }
+}
+
+.youtube-toggle-text {
+  display: inline-block;
+  align-items: center;
+  gap: 8px;
+}
+
+.youtube-toggle-arrow {
+  transition: transform 0.2s ease;
+  font-size: 0.8rem;
+  
+  &.expanded {
+    transform: rotate(90deg);
+  }
+}
+
+.youtube-embed-container {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 16/9;
+  margin: 0;
+  border: none;
+  border-top: 1px solid #000;
+  
+  &.hidden {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+}
+
+.youtube-embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .marquee-container {
@@ -271,135 +488,27 @@ blockquote {
   font-size: 0.8rem;
 }
 
+.marquee-container-alt {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #fff;
+  border: none;
+  padding: 6px;
+  margin: 8px 0;
+  font-size: 0.8rem;
+}
+
+.marquee-text-alt {
+  display: inline-block;
+  animation: scroll-left 8s linear infinite;
+  color: #000;
+  padding-right: 100%;
+  font-size: 0.8rem;
+}
+
 @keyframes scroll-left {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
-}
-
-.lyrics-container {
-  margin-top: 15px;
-  background: #fff;
-}
-
-.lyrics-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px;
-  background: #fff;
-}
-
-.lyrics-header h3 {
-  margin: 0;
-  color: #000;
-  font-size: 0.9rem;
-  font-weight: normal;
-}
-
-.lyrics-content {
-  padding: 8px;
-  display: block;
-  font-size: 0.8rem;
-  line-height: 1.3;
-}
-
-.lyrics-text {
-  line-height: 1.3;
-  color: #000;
-  background: #fff;
-  padding: 6px;
-  border: none;
-  font-size: 0.8rem;
-  
-  p {
-    margin: 0 0 1em 0;
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  
-  .youtube-collapsible {
-    margin: 1em 0;
-    border: 1px solid #000;
-    background: #fff;
-  }
-  
-  .youtube-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4px 8px;
-    cursor: pointer;
-    background: #fff;
-    border: none;
-    font-size: 1em;
-    color: #000;
-    
-    &:hover {
-      background: #f0f0f0;
-    }
-  }
-  
-  .youtube-toggle-text {
-    display: inline-block;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .youtube-toggle-arrow {
-    transition: transform 0.2s ease;
-    font-size: 0.8rem;
-  }
-  
-  .youtube-toggle-arrow.expanded {
-    transform: rotate(90deg);
-  }
-  
-  .youtube-embed-container {
-    position: relative;
-    width: 100%;
-    max-width: 560px;
-    aspect-ratio: 16/9;
-    margin: 0;
-    border: none;
-    border-top: 1px solid #000;
-    
-    @media (max-width: 768px) {
-      max-width: 100%;
-    }
-    
-    &.hidden {
-      display: none;
-    }
-  }
-  
-  .youtube-embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  hr {
-    margin-bottom: 1em;
-    border: none;
-    border-top: 1px solid #aaa;
-  }
-}
-
-.lyrics-text strong {
-  color: #000;
-}
-
-.lyrics-text em {
-  color: #000;
-  font-style: italic;
-}
-
-.lyrics-text a {
-  color: #000;
-  text-decoration: underline;
 }
 
 .error {
@@ -419,53 +528,11 @@ blockquote {
   margin: -1px 2px 0 0;
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding: 8px;
+.blink-cursor {
+  &::after {
+    content: "_";
+    color: #000;
   }
-  
-  .album-header {
-    gap: 8px;
-  }
-  
-  .track {
-    padding: 4px;
-  }
-  
-  .track-info {
-    margin-left: 4px;
-  }
-  
-  .album-title {
-    font-size: 1rem;
-  }
-  
-  .album-artist {
-    font-size: 0.8rem;
-  }
-}
-
-.marquee-container-alt {
-  overflow: hidden;
-  white-space: nowrap;
-  background: #fff;
-  border: none;
-  padding: 6px;
-  margin: 8px 0;
-  font-size: 0.8rem;
-}
-
-.marquee-text-alt {
-  display: inline-block;
-  animation: scroll-left 8s linear infinite;
-  color: #000;
-  padding-right: 100%;
-  font-size: 0.8rem;
-}
-
-.blink-cursor::after {
-  content: "_";
-  color: #000;
 }
 
 .rainbow-text {
@@ -620,21 +687,6 @@ blockquote {
   font-style: italic;
 }
 
-.album-artwork-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-  color: #fff;
-
-  .album-artwork {
-    max-width: 400px;
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-  }
-}
-
 .footer {
   text-align: center;
   margin-top: 20px;
@@ -643,4 +695,15 @@ blockquote {
   padding: 10px;
   background: #fff;
   border-top: 1px solid #000;
+  position: fixed;
+  bottom: 0;
+  left: 320px;
+  right: 0;
+  z-index: 100;
+  
+  @media (max-width: 768px) {
+    position: static;
+    margin-top: 0;
+    left: 0;
+  }
 }
