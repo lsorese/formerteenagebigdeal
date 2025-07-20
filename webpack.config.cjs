@@ -54,6 +54,11 @@ module.exports = {
           globOptions: {
             ignore: ['**/player.js'] // Exclude player.js since it's handled by webpack entry
           }
+        },
+        {
+          from: 'src/webfonts',
+          to: 'webfonts',
+          noErrorOnMissing: true
         }
       ]
     })

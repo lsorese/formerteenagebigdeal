@@ -36,9 +36,9 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 					<div class="currently-playing" id="currentlyPlaying">
 						<div class="player__controls">
 							<div class="player__controls-top">
-							  <button class="player__control-btn" id="prevButton">|&lt;</button>
-							  <button class="player__control-btn player__control-btn--play" id="playButton">&gt;</button>
-							  <button class="player__control-btn" id="nextButton">&gt;|</button>
+							  <button class="player__control-btn" id="prevButton">PREV</button>
+							  <button class="player__control-btn player__control-btn--play" id="playButton">PLAY</button>
+							  <button class="player__control-btn" id="nextButton">NEXT</button>
 							</div>
 							<div class="player__controls-middle">
 							  <div class="player__progress-bar" id="progressBar">
@@ -77,8 +77,8 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 						<h3 id="lyricsTitle">Welcome!</h3>
 					</div>
 					<div class="lyrics__content" id="lyricsContent">
-						<div class="lyrics__text" id="lyricsText-default" set:html={defaultLyricsHtml}>
-						</div>
+						<div class="lyrics__text lyrics__text--default" id="lyricsText-default" set:html={defaultLyricsHtml}>
+						</div> 
 						{tracksWithLyrics.map((track, index) => (
 							<div 
 								class="lyrics__text hidden" 

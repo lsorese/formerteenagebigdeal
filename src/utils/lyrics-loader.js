@@ -6,13 +6,10 @@ export async function loadDefaultLyrics() {
   const md = createMarkdownRenderer();
   
   try {
-    const lyricsPath = join(process.cwd(), 'src/data/lyrics/default.md');
+    const lyricsPath = join(process.cwd(), 'src/data/lyrics/default.html');
     const lyricsContent = readFileSync(lyricsPath, 'utf-8');
-    
-    // Use markdown-it to render markdown
-    const lyricsHtml = md.render(lyricsContent);
-    
-    return lyricsHtml;
+        
+    return lyricsContent;
   } catch (error) {
     console.warn('Could not load default lyrics:', error.message);
     return '<p>Select a track to view lyrics</p>';
