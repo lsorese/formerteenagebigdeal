@@ -154,7 +154,7 @@ class AlbumPlayer {
       this.currentTrackTitle.textContent = currentTrack.title;
       document.title = `${currentTrack.title} - ${this.albumData.title}`;
     } else {
-      this.currentTrackTitle.textContent = 'Select a track to play';
+      this.currentTrackTitle.textContent = 'Select a track or press play';
       document.title = `${this.albumData.title} - ${this.albumData.artist}`;
     }
   }
