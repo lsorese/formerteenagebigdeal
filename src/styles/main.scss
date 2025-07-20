@@ -1,33 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-
 @font-face {
-  font-family: 'Comic Sans MS';
-  src: url('../webfonts/comic-sans.woff') format('woff'),
-       url('../webfonts/comic-sans.ttf') format('truetype');
+  font-family: 'pixel';
+  src: url('../webfonts/more_15-webfont.woff2') format('woff2'),
+       url('../webfonts/more_15-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
-}
 
-* {
+}
+* { 
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-size: 28px;
 }
 
 .hidden {
   display: none;
 }
 
-body {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  background: #ffffff repeat url('../images/BackStarsAni.gif') center center;
-  color: #000000;
-  line-height: 1.2;
+* {
+  font-family: 'pixel', 'Courier New', monospace;
   margin: 0;
   padding: 0;
-  font-size: 14px;
+}
+
+body {
+  background: #1a1a2e;
+  color: #00ff41;
+  line-height: 1.4;
+  font-size: 16px;
   overflow-x: hidden;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 .main-layout {
@@ -40,14 +44,14 @@ body {
 }
 
 .sidebar {
-  width: 320px;
+  width: 400px;
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   overflow-y: auto;
-  background: #ffffff;
-  border-right: 1px solid #000;
+  background: #0f0f23;
+  border-right: 2px solid #00ff41;
   
   @media (max-width: 768px) {
     width: 100%;
@@ -67,7 +71,7 @@ body {
 }
 
 .main-content {
-  margin-left: 320px;
+  margin-left: 400px;
   flex: 1;
   padding: 15px;
   
@@ -102,7 +106,8 @@ blockquote {
     gap: 20px;
     margin-bottom: 20px;
     padding: 10px;
-    background: #fff;
+    background: #16213e;
+    border: 2px solid #00ff41;
     
     @media (max-width: 768px) {
       flex-direction: column;
@@ -130,43 +135,30 @@ blockquote {
   }
   
   &__title {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     margin-bottom: 8px;
     margin-top: 10px;
-    color: #000;
-    text-align: left;
+    color: #00ff41;
+    text-align: center;
     font-weight: bold;
-    
-    @media (max-width: 768px) {
-      font-size: 1.5rem;
-    }
-    
-    @media (max-width: 480px) {
-      font-size: 1rem;
+    text-shadow: 2px 2px 0px #000;
+    span {
+      display: block;
+      font-size: .8rem
     }
   }
   
   &__artist {
-    font-size: 1rem;
-    color: #333;
+    color: #ff6b6b;
     margin-bottom: 8px;
     text-align: left;
     font-weight: normal;
-    
-    @media (max-width: 768px) {
-      font-size: 0.9rem;
-    }
-    
-    @media (max-width: 480px) {
-      font-size: 0.8rem;
-    }
   }
   
   &__release {
     color: #f9f9f9;
     margin-bottom: 15px;
     text-align: left;
-    font-size: 0.9rem;
   }
 }
 
@@ -190,77 +182,90 @@ blockquote {
   }
   
   &__control-btn {
-    background: #fff;
-    border: 1px solid #000;
-    color: #000;
+    background: #0f0f23;
+    border: 2px solid #00ff41;
+    color: #00ff41;
     padding: 10px;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: normal;
+    font-weight: bold;
     min-width: 45px;
     min-height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s ease;
-    font-weight: bold;
+    transition: all 0.1s ease;
 
     &:hover {
-      background: #f0f0f0;
+      background: #00ff41;
+      color: #0f0f23;
+      transform: scale(1.1);
     }
     
     &:active {
-      background: #e0e0e0;
+      transform: scale(0.95);
     }
     
     &--play {
       font-weight: bold;
-      font-size: 1.1rem;
+      
+      &.animate {
+        background: #00ff41;
+        color: #0f0f23;
+        animation: playButtonPulse 1.5s ease-in-out infinite;
+      }
+    }
+    
+    &.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      
+      &:hover {
+        background: #0f0f23;
+        color: #00ff41;
+        transform: none;
+      }
     }
   }
   
   &__progress-bar {
     flex: 1;
-    height: 8px;
-    background: #fff;
-    border: 1px solid #000;
+    height: 12px;
+    background: #0f0f23;
+    border: 2px solid #00ff41;
     overflow: hidden;
     cursor: pointer;
+    image-rendering: pixelated;
   }
   
   &__progress-fill {
     height: 100%;
-    background: #000;
+    background: #00ff41;
     width: 0%;
     transition: width 0.1s ease;
+    box-shadow: inset 0 0 4px #33ff66;
   }
   
   &__time-display {
-    color: #000;
+    color: #00ff41;
     min-width: 60px;
     text-align: center;
     padding: 4px 8px;
-    border: 1px solid #000;
-    background: #fff;
-    font-size: 0.8rem;
+    border: 2px solid #00ff41;
+    background: #0f0f23;
   }
 }
 
 .currently-playing {
   margin-bottom: 15px;
-  background: #fff;
-  padding: 10px;
   
   &__header {
     padding: 0 8px;
-    background: #fff;
     text-align: center;
     
     &__title {
       margin: 0;
-      color: #000;
-      font-size: 0.9rem;
-      font-weight: normal;
+      font-weight: bold;
+      text-shadow: 1px 1px 0px #000;
     }
   }
   
@@ -273,20 +278,20 @@ blockquote {
   }
   
   &__track-title {
-    font-size: 1rem;
     font-weight: bold;
-    color: #000;
+    color: #ff6b6b;
     margin-bottom: 4px;
+    text-shadow: 1px 1px 0px #000;
   }
   
   &__track-artist {
-    font-size: 0.9rem;
-    color: #666;
+    color: #ff6b6b;
   }
 }
 
 .tracklist {
-  background: #fff;
+  background: #16213e;
+  border: 2px solid #00ff41;
 }
 
 .track {
@@ -294,11 +299,12 @@ blockquote {
   align-items: center;
   padding: 6px;
   cursor: pointer;
-  background: #fff;
-  font-size: 0.9rem;
+  background: #16213e;
+  border-bottom: 1px solid #00ff41;
   
   &:hover {
-    background: #f0f0f0;
+    background: #1f2937;
+    color: #00ff41;
   }
   
   &:last-child {
@@ -306,14 +312,20 @@ blockquote {
   }
   
   &.playing {
-    background: #e0e0e0;
+    background: #00ff41;
+    color: #0f0f23;
+    animation: pixelGlow 1s ease-in-out infinite alternate;
+    .track__title,
+    .track__number {
+      color: #0f0f23;
+    }
   }
   
   &__number {
     width: 25px;
-    color: #000;
+    color: #00ff41;
     text-align: center;
-    font-size: 0.8rem;
+    font-weight: bold;
   }
   
   &__info {
@@ -327,13 +339,11 @@ blockquote {
   
   &__title {
     margin-bottom: 1px;
-    color: #000;
-    font-size: 0.9rem;
+    color: #00ff41;
   }
   
   &__duration {
-    color: #000;
-    font-size: 0.8rem;
+    color: #ff6b6b;
   }
   
   @media (max-width: 480px) {
@@ -359,7 +369,8 @@ blockquote {
   
   &__container {
     margin-top: 0;
-    background: #fff;
+    background: #16213e;
+    border: 2px solid #00ff41;
     height: calc(100vh - 70px);
     overflow-y: auto;
     max-width: 899;
@@ -374,32 +385,34 @@ blockquote {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     padding: 8px;
-    background: #fff;
+    background: #0f0f23;
+    border-bottom: 1px solid #00ff41;
     
     h3 {
       margin: 0;
-      color: #000;
-      font-size: 0.9rem;
-      font-weight: normal;
+      color: #00ff41;
+      font-weight: bold;
+      text-shadow: 1px 1px 0px #000;
     }
   }
   
   &__content {
     padding: 8px;
     display: block;
-    font-size: 0.8rem;
     line-height: 1.3;
     height: calc(100% - 2.25rem);
   }
   
   &__text {
     line-height: 1.3;
-    color: #000;
-    background: #fff;
+    color: #00ff41;
+    background: #16213e;
     padding: 6px;
     border: none;
-    font-size: 1rem;
 
     &--default {
       text-align: center;
@@ -408,7 +421,6 @@ blockquote {
         max-width: 100%;
         height: auto;
       }
-      background: url('../images/lesson3bg.jpg') center center !important;
     }
     
     p {
@@ -418,18 +430,13 @@ blockquote {
         margin-bottom: 0;
       }
     }
-    
-    strong {
-      color: #000;
-    }
-    
+
     em {
-      color: #000;
       font-style: italic;
     }
     
     a {
-      color: #000;
+      color: #fff;
       text-decoration: underline;
     }
     
@@ -457,7 +464,6 @@ blockquote {
   cursor: pointer;
   background: #fff;
   border: none;
-  font-size: 1em;
   color: #000;
   
   &:hover {
@@ -473,7 +479,6 @@ blockquote {
 
 .youtube-toggle-arrow {
   transition: transform 0.2s ease;
-  font-size: 0.8rem;
   
   &.expanded {
     transform: rotate(90deg);
@@ -513,7 +518,6 @@ blockquote {
   border: none;
   padding: 6px;
   margin-bottom: 15px;
-  font-size: 0.8rem;
 }
 
 .marquee-text {
@@ -521,7 +525,6 @@ blockquote {
   animation: scroll-left 10s linear infinite;
   color: #000;
   padding-right: 100%;
-  font-size: 0.8rem;
 }
 
 .marquee-container-alt {
@@ -531,7 +534,6 @@ blockquote {
   border: none;
   padding: 6px;
   margin: 8px 0;
-  font-size: 0.8rem;
 }
 
 .marquee-text-alt {
@@ -539,12 +541,21 @@ blockquote {
   animation: scroll-left 8s linear infinite;
   color: #000;
   padding-right: 100%;
-  font-size: 0.8rem;
 }
 
 @keyframes scroll-left {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
+}
+
+@keyframes pixelGlow {
+  0% { box-shadow: 0 0 5px #00ff41; }
+  100% { box-shadow: 0 0 20px #00ff41, 0 0 30px #00ff41; }
+}
+
+@keyframes playButtonPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 .error {
@@ -557,7 +568,7 @@ blockquote {
 
 .censor {
   display: inline-block;
-  background-color: #000;
+  background-color: #fff;
   width: 40px;
   height: 1em;
   vertical-align: middle;
@@ -598,7 +609,7 @@ blockquote {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -627,7 +638,6 @@ blockquote {
   background: #fff;
   border: 1px solid #000;
   color: #000;
-  font-size: 18px;
   font-weight: bold;
   width: 30px;
   height: 30px;
@@ -682,58 +692,21 @@ blockquote {
   background: #fff;
   color: #000;
   text-align: center;
-  font-size: 0.9rem;
   border-top: 1px solid #000;
   width: 100%;
-}
-
-.comic-neue-light {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.comic-neue-regular {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.comic-neue-bold {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.comic-neue-light-italic {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.comic-neue-regular-italic {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.comic-neue-bold-italic {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-weight: 700;
-  font-style: italic;
 }
 
 .footer {
   text-align: center;
   margin-top: 20px;
-  font-size: 0.8rem;
-  color: #666;
+  font-size: .5rem;
+  color: #00ff41;
   padding: 10px;
-  background: #fff;
-  border-top: 1px solid #000;
+  background: #0f0f23;
+  border-top: 2px solid #00ff41;
   position: fixed;
   bottom: 0;
-  left: 320px;
+  left: 400px;
   right: 0;
   z-index: 100;
   

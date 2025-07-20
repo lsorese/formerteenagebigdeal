@@ -2,9 +2,10 @@ import MediaModal from './modal.js';
 import { Howl } from 'howler';
 
 class AlbumPlayer {
-  constructor(tracks) {
+  constructor(tracks, albumData) {
     this.tracks = tracks;
-    this.currentTrack = 0;
+    this.albumData = albumData;
+    this.currentTrack = -1;
     this.isPlaying = false;
     this.sound = null;
     this.volume = 1.0;
@@ -27,8 +28,10 @@ class AlbumPlayer {
   }
   
   initializePlayer() {
-    this.loadTrack(this.currentTrack);
+    this.updateCurrentlyPlaying();
     this.showDefaultLyrics();
+    this.updateButtonStates();
+    this.updatePlayButtonAnimation();
   }
   
   loadTrack(index) {
@@ -54,6 +57,7 @@ class AlbumPlayer {
     this.sound.play();
     this.isPlaying = true;
     this.playButton.textContent = 'PAUSE';
+    this.updatePlayButtonAnimation();
     this.updateLyrics();
     this.updateProgress();
   }
@@ -64,18 +68,27 @@ class AlbumPlayer {
     this.sound.pause();
     this.isPlaying = false;
     this.playButton.textContent = 'PLAY';
+    this.updatePlayButtonAnimation();
   }
   
   togglePlay() {
     if (this.isPlaying) {
       this.pause();
     } else {
+      if (this.currentTrack < 0) {
+        this.currentTrack = 0;
+        this.loadTrack(this.currentTrack);
+      }
       this.play();
     }
   }
   
   nextTrack() {
-    this.currentTrack = (this.currentTrack + 1) % this.tracks.length;
+    if (this.currentTrack < 0) {
+      this.currentTrack = 0;
+    } else {
+      this.currentTrack = (this.currentTrack + 1) % this.tracks.length;
+    }
     this.loadTrack(this.currentTrack);
     if (this.isPlaying) {
       this.play();
@@ -83,7 +96,11 @@ class AlbumPlayer {
   }
   
   prevTrack() {
-    this.currentTrack = (this.currentTrack - 1 + this.tracks.length) % this.tracks.length;
+    if (this.currentTrack < 0) {
+      this.currentTrack = this.tracks.length - 1;
+    } else {
+      this.currentTrack = (this.currentTrack - 1 + this.tracks.length) % this.tracks.length;
+    }
     this.loadTrack(this.currentTrack);
     if (this.isPlaying) {
       this.play();
@@ -124,14 +141,35 @@ class AlbumPlayer {
     }
     
     this.updateCurrentlyPlaying();
+    this.updateButtonStates();
   }
   
   updateCurrentlyPlaying() {
     const currentTrack = this.tracks[this.currentTrack];
-    if (currentTrack) {
+    if (currentTrack && this.currentTrack >= 0) {
       this.currentTrackTitle.textContent = currentTrack.title;
+      document.title = `${currentTrack.title} - ${this.albumData.title}`;
     } else {
       this.currentTrackTitle.textContent = 'Select a track to play';
+      document.title = `${this.albumData.title} - ${this.albumData.artist}`;
+    }
+  }
+  
+  updateButtonStates() {
+    if (this.currentTrack < 0) {
+      this.prevButton.classList.add('disabled');
+      this.nextButton.classList.add('disabled');
+    } else {
+      this.prevButton.classList.remove('disabled');
+      this.nextButton.classList.remove('disabled');
+    }
+  }
+  
+  updatePlayButtonAnimation() {
+    if (this.isPlaying) {
+      this.playButton.classList.remove('animate');
+    } else {
+      this.playButton.classList.add('animate');
     }
   }
   
@@ -215,7 +253,7 @@ class AlbumPlayer {
 document.addEventListener('DOMContentLoaded', () => {
 	const albumData = window.albumData;
 	if (albumData && albumData.tracks) {
-		new AlbumPlayer(albumData.tracks);
+		new AlbumPlayer(albumData.tracks, albumData);
 	}
 	
 	// Initialize the modal component
