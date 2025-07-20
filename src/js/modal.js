@@ -142,6 +142,9 @@ class MediaModal {
         this.isOpen = true;
         document.body.style.overflow = 'hidden';
         
+        // Dispatch modal opened event
+        document.dispatchEvent(new CustomEvent('modalOpened'));
+        
         // Focus management for accessibility
         const closeBtn = this.modal.querySelector('.modal-close');
         closeBtn.focus();
@@ -152,6 +155,9 @@ class MediaModal {
         this.isOpen = false;
         document.body.style.overflow = '';
         this.modalContent.innerHTML = '';
+        
+        // Dispatch modal closed event
+        document.dispatchEvent(new CustomEvent('modalClosed'));
     }
 }
 

@@ -8,8 +8,8 @@
 
 @font-face {
   font-family: 'match';
-  src: url('../webfonts/nope_8-webfont.woff2') format('woff2'),
-       url('../webfonts/nope_8-webfont.woff') format('woff');
+  src: url('../webfonts/more_15-webfont.woff2') format('woff2'),
+       url('../webfonts/more_15-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -59,14 +59,14 @@ body {
   height: 100vh;
   overflow-y: auto;
   background: #111111;
-  border-right: 2px solid #fff;
+  border-right: 2px solid #666;
   
   @media (max-width: 768px) {
     width: 100%;
     position: static;
     height: auto;
     border-right: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #666;
   }
 }
 
@@ -104,8 +104,8 @@ body {
 blockquote {
   margin: 0 0 1em 0;
   padding: 0.5em 1em;
-  background: #2a2a3e;
-  border-left: 4px solid #fff;
+  background: #000;
+  border-left: 4px solid #666;
   color: #ffffff;
 }
 
@@ -116,7 +116,7 @@ blockquote {
     margin-bottom: 20px;
     padding: 10px;
     background: #222222;
-    border: 2px solid #ffffff;
+    border: 2px solid #666;
     
     @media (max-width: 768px) {
       flex-direction: column;
@@ -144,14 +144,14 @@ blockquote {
   }
   
   &__title {
-    font-size: 2rem;
+    font-size: 3rem;
     margin: 0;
     color: #ffffff;
     text-align: center;
     font-weight: bold;
     text-shadow: 2px 2px 0px #000;
-    line-height: 1rem;
-    letter-spacing: 0.5px;
+    line-height: 1.5rem;
+    letter-spacing: .5px;
     span {
       display: block;
       font-size: 1rem;
@@ -197,7 +197,7 @@ blockquote {
   
   &__control-btn {
     background: #111111;
-    border: 2px solid #ffffff;
+    border: 2px solid #666;
     color: #ffffff;
     padding: 12px;
     cursor: pointer;
@@ -251,7 +251,7 @@ blockquote {
     flex: 1;
     height: 12px;
     background: #111111;
-    border: 2px solid #ffffff;
+    border: 2px solid #666;
     overflow: hidden;
     cursor: pointer;
     image-rendering: pixelated;
@@ -271,7 +271,7 @@ blockquote {
     text-align: center;
     line-height: 1rem;
     padding: 0 8px;
-    border: 2px solid #ffffff;
+    border: 2px solid #666;
     background: #111111;
   }
 }
@@ -288,7 +288,8 @@ blockquote {
       font-weight: bold;
       text-shadow: 1px 1px 0px #000;
       line-height: .4rem;
-      font-size: .8rem
+      font-size: .8rem;
+      color: #999;
     }
   }
   
@@ -302,22 +303,16 @@ blockquote {
   
   &__track-title {
     font-weight: bold;
-    color: #ff8888;
+    color: #fff;
     margin-bottom: 6px;
-    text-shadow: 1px 1px 0px #000;
     font-size: 1.1rem;
     line-height: 1rem;
-  }
-  
-  &__track-artist {
-    color: #ff8888;
-    font-size: 1rem;
   }
 }
 
 .tracklist {
   background: #222222;
-  border: 2px solid #ffffff;
+  border: 2px solid #666;
 }
 
 .track {
@@ -326,7 +321,7 @@ blockquote {
   padding: 6px;
   cursor: pointer;
   background: #222222;
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid #666;
   
   &:hover {
     background: #1f2937;
@@ -340,9 +335,11 @@ blockquote {
   &.playing {
     background: #ffffff;
     color: #000000;
-    animation: pixelGlow 1s ease-in-out infinite alternate;
     .track__title,
     .track__number {
+      color: #000000;
+    }
+    .track__duration {
       color: #000000;
     }
   }
@@ -372,7 +369,7 @@ blockquote {
   }
   
   &__duration {
-    color: #ff8888;
+    color: #66ffff;
     font-size: 0.9rem;
   }
   
@@ -400,7 +397,7 @@ blockquote {
   &__container {
     margin-top: 0;
     background: #222222;
-    border: 2px solid #ffffff;
+    border: 2px solid #666;
     height: calc(100vh - 100px);
     overflow-y: auto;
     max-width: 899;
@@ -420,7 +417,7 @@ blockquote {
     z-index: 100;
     padding: 8px;
     background: #111111;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid #666;
     
     h3 {
       margin: 0;
@@ -494,14 +491,14 @@ blockquote {
     hr {
       margin-bottom: 1em;
       border: none;
-      border-top: 1px solid #aaa;
+      border-top: 1px solid #666;
     }
   }
 }
 
 .youtube-collapsible {
   margin: 1em 0;
-  border: 1px solid #000;
+  border: 1px solid #666;
   background: #fff;
   max-width: 800px;
   width: 100%;
@@ -543,7 +540,7 @@ blockquote {
   aspect-ratio: 16/9;
   margin: 0;
   border: none;
-  border-top: 1px solid #000;
+  border-top: 1px solid #666;
   
   &.hidden {
     display: none;
@@ -678,11 +675,9 @@ blockquote {
 
 .modal-header {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 5px;
+  right: 5px;
   z-index: 1001;
-  padding: 5px;
-  background: rgba(255, 255, 255, 0.9);
 }
 
 .modal-close {
@@ -693,6 +688,8 @@ blockquote {
   width: 30px;
   height: 30px;
   cursor: pointer;
+  display: block;
+    line-height: 29px;
   
   &:hover {
     background: #f0f0f0;
@@ -751,10 +748,10 @@ blockquote {
   text-align: center;
   margin-top: 20px;
   font-size: .8rem;
-  color: #ffffff;
+  color: #999;
   padding: 15px;
   background: #111111;
-  border-top: 2px solid #ffffff;
+  border-top: 2px solid #666;
   position: fixed;
   bottom: 0;
   left: 400px;

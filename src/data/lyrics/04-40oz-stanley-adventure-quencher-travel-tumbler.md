@@ -4,7 +4,7 @@ Blah blah Blah blah Blah blah
 Blah blah Blah blah Blah blah 
 
 She said "You're such a creep."
-He said "I think Chinese"
+He said "[I think Chinese](https://www.youtube.com/watch?v=PeihcfYft9w)"
 She looked astonished.
 He "What? Oh sorry, I've got an Airpod in."
 
@@ -19,7 +19,7 @@ She looked at this man. This small, insignificant man.
 And before she knew it, it had started.
 Her rage escaped and he was lying on the floor...
 
-with a rabid over-worked, under-appreciated, over his censor, aggrivated mother of two who was beating him to death with Stanley 40oz Adventure Quencher Water Bottle screaming at the top of her lungs.
+with a rabid over-worked, under-appreciated, over his censor, aggrivated mother of two who was beating him to death with [Stanley 40oz Adventure Quencher Water Bottle](https://www.youtube.com/watch?v=zJ8H77FslA4) screaming at the top of her lungs.
 
 And with every swing.
 And as the body jerked.

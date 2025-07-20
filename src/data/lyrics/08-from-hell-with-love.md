@@ -1,5 +1,5 @@
-You are decieved by satan, the father of lies.
-The last normal summer, we'll never survive.
+[You are decieved by satan, the father of lies.](https://www.youtube.com/watch?v=8vXX88YwCpA)
+[The last normal summer, we'll never survive.](/images/content/1655533836123.jpg)
 When I die, they'll say I did it for the headlines.
 When I die.
 

@@ -9,6 +9,7 @@ class AlbumPlayer {
     this.isPlaying = false;
     this.sound = null;
     this.volume = 1.0;
+    this.wasPlayingBeforeModal = false;
     
     this.playButton = document.getElementById('playButton');
     this.prevButton = document.getElementById('prevButton');
@@ -245,6 +246,21 @@ class AlbumPlayer {
     
     document.querySelectorAll('.track').forEach((track, index) => {
       track.addEventListener('click', () => this.selectTrack(index));
+    });
+    
+    // Listen for modal events to pause/resume music
+    document.addEventListener('modalOpened', () => {
+      if (this.isPlaying) {
+        this.wasPlayingBeforeModal = true;
+        this.pause();
+      }
+    });
+    
+    document.addEventListener('modalClosed', () => {
+      if (this.wasPlayingBeforeModal) {
+        this.wasPlayingBeforeModal = false;
+        this.play();
+      }
     });
   }
 }

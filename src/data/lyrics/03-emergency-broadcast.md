@@ -35,8 +35,4 @@ _Big Scary, Intense Scream_
 
 _Coughing Fit_
 
-Excuse me folks, sorry about that. 
-
-Do you ever tell, like, a funny joke and you tell it out loud with a group of people and no one thinks it's really funny, but you think it's really funny, but everyone just go "oh lord" and it's really embarrassing, but then you realize that the only winning move, the only way you can make it through this world is to root for yourself.
-
-You know what? Better luck next time.
+> Excuse me folks, sorry about that. <br /><br />Do you ever tell, like, a funny joke and you tell it out loud with a group of people and no one thinks it's really funny, but you think it's really funny, but everyone just go "oh lord" and it's really embarrassing, but then you realize that the only winning move, the only way you can make it through this world is to root for yourself. <br /><br />You know what? Better luck next time.
