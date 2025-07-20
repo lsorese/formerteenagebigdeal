@@ -305,8 +305,8 @@ blockquote {
     font-weight: bold;
     color: #fff;
     margin-bottom: 6px;
-    font-size: 1.1rem;
-    line-height: 1rem;
+    font-size: .9rem;
+    line-height: .9rem;
   }
 }
 
@@ -318,7 +318,7 @@ blockquote {
 .track {
   display: flex;
   align-items: center;
-  padding: 6px;
+  padding: 1px;
   cursor: pointer;
   background: #222222;
   border-bottom: 1px solid #666;
@@ -363,13 +363,14 @@ blockquote {
   &__title {
     margin-bottom: 2px;
     color: #ffffff;
-    font-size: 1rem;
+    font-size: .9rem;
     font-weight: 500;
-    line-height: 1rem;
+    line-height: .9rem;
   }
   
   &__duration {
     color: #66ffff;
+    margin-right: 5px;
     font-size: 0.9rem;
   }
   
