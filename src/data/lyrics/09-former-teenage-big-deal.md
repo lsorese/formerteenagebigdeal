@@ -1,10 +1,10 @@
-U mad bro? Deal with it
-We do it for the lulz
+[U mad bro?](/images/content/YouMad.jpg) Deal with it
+We do it [for the lulz](https://en.wiktionary.org/wiki/for_the_lulz)
 
 Former teenage big deal
 but this nostalgia blows
 
-U mad, newfag? 
+U mad, [newfag](/images/content/newfag.webp)? 
 Someone has set us up the bomb.
 
 All your base belong to us

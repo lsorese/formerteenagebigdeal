@@ -85,6 +85,7 @@ class AlbumPlayer {
   }
   
   nextTrack() {
+    this.pauseAllVideos();
     if (this.currentTrack < 0) {
       this.currentTrack = 0;
     } else {
@@ -97,6 +98,7 @@ class AlbumPlayer {
   }
   
   prevTrack() {
+    this.pauseAllVideos();
     if (this.currentTrack < 0) {
       this.currentTrack = this.tracks.length - 1;
     } else {
@@ -109,6 +111,7 @@ class AlbumPlayer {
   }
   
   selectTrack(index) {
+    this.pauseAllVideos();
     this.currentTrack = index;
     this.loadTrack(index);
     this.play();
@@ -227,6 +230,28 @@ class AlbumPlayer {
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   }
   
+  pauseAllVideos() {
+    // Find all YouTube iframes and pause them by removing their src
+    document.querySelectorAll('.youtube-embed-container iframe').forEach(iframe => {
+      if (iframe.src) {
+        // Clear the src to stop the video
+        iframe.src = '';
+        
+        // Also hide the container and reset the toggle
+        const container = iframe.closest('.youtube-embed-container');
+        const toggle = container?.parentElement?.querySelector('.youtube-toggle');
+        const arrow = toggle?.querySelector('.youtube-toggle-arrow');
+        const text = toggle?.querySelector('.youtube-toggle-text');
+        
+        if (container && !container.classList.contains('hidden')) {
+          container.classList.add('hidden');
+          arrow?.classList.remove('expanded');
+          if (text) text.textContent = 'Relevant Video';
+        }
+      }
+    });
+  }
+  
   bindEvents() {
     this.playButton.addEventListener('click', () => this.togglePlay());
     this.prevButton.addEventListener('click', () => this.prevTrack());
@@ -260,6 +285,13 @@ class AlbumPlayer {
       if (this.wasPlayingBeforeModal) {
         this.wasPlayingBeforeModal = false;
         this.play();
+      }
+    });
+    
+    // Listen for video events to pause music when video plays
+    document.addEventListener('videoPlayed', () => {
+      if (this.isPlaying) {
+        this.pause();
       }
     });
   }

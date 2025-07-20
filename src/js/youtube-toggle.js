@@ -12,6 +12,10 @@ const toggleYouTubeVideo = (videoId) => {
     
     if (iframe.dataset.src) {
       iframe.src = iframe.dataset.src;
+      
+      // Dispatch event to pause music when video starts loading
+      const videoPlayEvent = new CustomEvent('videoPlayed');
+      document.dispatchEvent(videoPlayEvent);
     }
   } else {
     container.classList.add('hidden');
@@ -19,6 +23,10 @@ const toggleYouTubeVideo = (videoId) => {
     text.textContent = 'Relevant Video';
     
     iframe.src = '';
+    
+    // Dispatch event when video is hidden/stopped
+    const videoStoppedEvent = new CustomEvent('videoStopped');
+    document.dispatchEvent(videoStoppedEvent);
   }
 };
 
