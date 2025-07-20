@@ -1,11 +1,19 @@
 @font-face {
-  font-family: 'pixel';
+  font-family: 'more';
   src: url('../webfonts/more_15-webfont.woff2') format('woff2'),
        url('../webfonts/more_15-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
 }
+
+@font-face {
+  font-family: 'match';
+  src: url('../webfonts/nope_8-webfont.woff2') format('woff2'),
+       url('../webfonts/nope_8-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * { 
   margin: 0;
   padding: 0;
@@ -18,7 +26,7 @@
 }
 
 * {
-  font-family: 'pixel', 'Courier New', monospace;
+  font-family: 'more', 'Courier New', monospace;
   margin: 0;
   padding: 0;
 }
@@ -261,7 +269,8 @@ blockquote {
     color: #ffffff;
     min-width: 60px;
     text-align: center;
-    padding: 4px 8px;
+    line-height: 1rem;
+    padding: 0 8px;
     border: 2px solid #ffffff;
     background: #111111;
   }
@@ -392,7 +401,7 @@ blockquote {
     margin-top: 0;
     background: #222222;
     border: 2px solid #ffffff;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 100px);
     overflow-y: auto;
     max-width: 899;
     
@@ -417,6 +426,9 @@ blockquote {
       margin: 0;
       color: #ffffff;
       font-weight: bold;
+      line-height: .8rem;
+      font-size: .8rem;
+      font-family: 'match', 'Courier New', monospace;
       text-shadow: 1px 1px 0px #000;
     }
   }
@@ -426,6 +438,9 @@ blockquote {
     display: block;
     line-height: 1.3;
     height: calc(100% - 2.25rem);
+    * {
+      font-family: 'match', 'Courier New', monospace;
+    }
   }
   
   &__text {
@@ -449,7 +464,8 @@ blockquote {
     p {
       margin: 0 0 1.2em 0;
       line-height: 1;
-      
+      font-family: 'match', 'Courier New', monospace;
+
       &:last-child {
         margin-bottom: 0;
       }
@@ -487,7 +503,7 @@ blockquote {
   margin: 1em 0;
   border: 1px solid #000;
   background: #fff;
-  max-width: 400px;
+  max-width: 800px;
   width: 100%;
 }
 
@@ -523,7 +539,7 @@ blockquote {
 .youtube-embed-container {
   position: relative;
   width: 100%;
-  max-width: 560px;
+  max-width: 800px;
   aspect-ratio: 16/9;
   margin: 0;
   border: none;
@@ -644,7 +660,7 @@ blockquote {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 1);
+  background: rgba(255,255,255,.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -703,8 +719,8 @@ blockquote {
 .modal-video-container {
   position: relative;
   width: 80vw;
-  min-width: 600px;
-  max-width: 1200px;
+  min-width: 800px;
+  max-width: 1700px;
   aspect-ratio: 16/9;
   
   @media (max-width: 768px) {
