@@ -18,7 +18,7 @@ function getYouTubeEmbedUrl(url) {
       videoId = urlObj.searchParams.get('v');
     }
     
-    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1` : null;
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1` : null;
   } catch {
     return null;
   }

@@ -15,6 +15,64 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{albumData.title} - {albumData.artist}</title>
+		<meta name="description" content={albumData.description} />
+		<meta name="keywords" content={albumData.keywords.join(', ')} />
+		<link rel="canonical" href={albumData.url} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="music.album" />
+		<meta property="og:url" content={albumData.url} />
+		<meta property="og:title" content={`${albumData.title} - ${albumData.artist}`} />
+		<meta property="og:description" content={albumData.description} />
+		<meta property="og:image" content={`${albumData.url}${albumData.coverImage}`} />
+		<meta property="music:album" content={albumData.title} />
+		<meta property="music:musician" content={albumData.artist} />
+		<meta property="music:release_date" content={albumData.releaseDate} />
+		
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={albumData.url} />
+		<meta name="twitter:title" content={`${albumData.title} - ${albumData.artist}`} />
+		<meta name="twitter:description" content={albumData.description} />
+		<meta name="twitter:image" content={`${albumData.url}${albumData.coverImage}`} />
+		
+		<!-- JSON-LD Structured Data -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "MusicAlbum",
+			"name": albumData.title,
+			"byArtist": {
+				"@type": "MusicGroup",
+				"name": albumData.artist
+			},
+			"datePublished": albumData.releaseDate,
+			"genre": albumData.genre,
+			"description": albumData.description,
+			"image": `${albumData.url}${albumData.coverImage}`,
+			"url": albumData.url,
+			"recordLabel": albumData.label,
+			"duration": `PT${albumData.duration.replace(':', 'M')}S`,
+			"track": tracksWithLyrics.map((track, index) => ({
+				"@type": "MusicRecording",
+				"@id": `${albumData.url}#track-${track.id}`,
+				"name": track.title,
+				"byArtist": {
+					"@type": "MusicGroup",
+					"name": albumData.artist
+				},
+				"duration": `PT${track.duration.replace(':', 'M')}S`,
+				"trackNumber": track.id,
+				"inAlbum": {
+					"@type": "MusicAlbum",
+					"name": albumData.title
+				},
+				"audio": {
+					"@type": "AudioObject",
+					"contentUrl": `${albumData.url}${track.url}`,
+					"encodingFormat": "audio/mpeg"
+				}
+			}))
+		})} />
 		<link rel="stylesheet" href="/css/styles.css">
 		{tracksWithLyrics.map((track) => (
 			<link rel="preload" href={track.url} as="audio" type="audio/mp3" />
@@ -94,7 +152,12 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 				</div>
 			</div>
 			
-			<div class="footer">This site is best viewed with either Microsoft Internet Explorer 3.0 or Higher or Netscape Navigator 3.0 or Higher</div>
+			<div class="footer">
+				<!--<button class="footer__accessibility-btn" id="accessibilityToggle" aria-label="Toggle accessibility mode hidden">
+					Accessibility Mode
+				</button> -->
+				<div class="footer__text">This site is best viewed with either Microsoft Internet Explorer 3.0 or Higher or Netscape Navigator 3.0 or Higher</div>
+			</div>
 		</div>
 
 		<script src="/js/main.bundle.js" is:inline></script>

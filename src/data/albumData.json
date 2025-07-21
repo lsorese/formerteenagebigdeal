@@ -1,6 +1,14 @@
 {
   "title": "Logan, from The Internet",
   "artist": "Former Teenage Big Deal",
+  "description": "A satirical album exploring internet culture and modern digital life through 12 tracks of commentary on social media, consumerism, and online behavior",
+  "releaseDate": "2024",
+  "genre": ["Electronic", "Experimental", "Comedy", "Internet Culture"],
+  "duration": "26:31",
+  "coverImage": "/images/cover.jpg",
+  "url": "https://formerteenagebigdeal.com",
+  "label": "Independent",
+  "keywords": ["internet culture", "digital satire", "experimental music", "social commentary", "comedy album"],
   "tracks": [
     {
       "id": 1,

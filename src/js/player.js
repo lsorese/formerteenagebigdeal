@@ -297,6 +297,58 @@ class AlbumPlayer {
   }
 }
 
+// Accessibility Mode Manager
+class AccessibilityMode {
+  constructor() {
+    this.isEnabled = false;
+    this.storageKey = 'accessibility-mode';
+    this.toggleButton = document.getElementById('accessibilityToggle');
+    
+    this.init();
+  }
+  
+  init() {
+    // Load saved state from localStorage
+    const savedState = localStorage.getItem(this.storageKey);
+    if (savedState === 'true') {
+      this.enable();
+    }
+    
+    // Bind toggle button event
+    if (this.toggleButton) {
+      this.toggleButton.addEventListener('click', () => this.toggle());
+    }
+  }
+  
+  enable() {
+    this.isEnabled = true;
+    document.body.classList.add('accessibility-mode');
+    localStorage.setItem(this.storageKey, 'true');
+    this.updateButtonText();
+  }
+  
+  disable() {
+    this.isEnabled = false;
+    document.body.classList.remove('accessibility-mode');
+    localStorage.setItem(this.storageKey, 'false');
+    this.updateButtonText();
+  }
+  
+  toggle() {
+    if (this.isEnabled) {
+      this.disable();
+    } else {
+      this.enable();
+    }
+  }
+  
+  updateButtonText() {
+    if (this.toggleButton) {
+      this.toggleButton.textContent = this.isEnabled ? 'Disable Accessibility' : 'Accessibility Mode';
+    }
+  }
+}
+
 // Initialize the player when the page loads
 document.addEventListener('DOMContentLoaded', () => {
 	const albumData = window.albumData;
@@ -306,4 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	// Initialize the modal component
 	new MediaModal();
+	
+	// Initialize accessibility mode
+	new AccessibilityMode();
 });
