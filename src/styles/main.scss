@@ -218,7 +218,7 @@ blockquote {
     }
     
     &:focus {
-      outline: 3px solid #66ffff;
+      outline: 3px solid#ff8888;
       outline-offset: 2px;
     }
     
@@ -370,7 +370,7 @@ blockquote {
   }
   
   &__duration {
-    color: #66ffff;
+    color:#ff8888;
     margin-right: 5px;
     font-size: 0.9rem;
   }
@@ -475,13 +475,13 @@ blockquote {
     }
     
     a {
-      color: #66ffff;
+      color:#ff8888;
       text-decoration: underline;
       font-weight: 500;
       
       &:hover {
         color: #ffffff;
-        text-shadow: 0 0 2px #66ffff;
+        text-shadow: 0 0 2px#ff8888;
       }
       
       &:focus {
