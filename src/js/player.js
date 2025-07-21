@@ -14,6 +14,7 @@ class AlbumPlayer {
     this.playButton = document.getElementById('playButton');
     this.prevButton = document.getElementById('prevButton');
     this.nextButton = document.getElementById('nextButton');
+    this.downloadButton = document.getElementById('downloadButton');
     this.progressBar = document.getElementById('progressBar');
     this.progressFill = document.getElementById('progressFill');
     this.timeDisplay = document.getElementById('timeDisplay');
@@ -115,6 +116,25 @@ class AlbumPlayer {
     this.currentTrack = index;
     this.loadTrack(index);
     this.play();
+  }
+  
+  showDownloadOptions() {
+    // Pause music if playing
+    if (this.isPlaying) {
+      this.pause();
+    }
+    
+    // Show default lyrics screen
+    this.showDefaultLyrics();
+    
+    // Scroll to lyrics section if not visible (mobile)
+    const lyricsContainer = document.getElementById('lyricsContainer');
+    if (lyricsContainer) {
+      lyricsContainer.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
   }
   
   updateProgress() {
@@ -256,6 +276,7 @@ class AlbumPlayer {
     this.playButton.addEventListener('click', () => this.togglePlay());
     this.prevButton.addEventListener('click', () => this.prevTrack());
     this.nextButton.addEventListener('click', () => this.nextTrack());
+    this.downloadButton.addEventListener('click', () => this.showDownloadOptions());
     
     this.progressBar.addEventListener('click', (e) => {
       if (!this.sound) return;
