@@ -349,7 +349,6 @@ blockquote {
 }
 
 .tracklist {
-  background: #222222;
   border: 2px solid #666;
 }
 
@@ -358,7 +357,7 @@ blockquote {
   align-items: center;
   padding: 1px;
   cursor: pointer;
-  background: #222222;
+  background: rgba(0,0,0,0.8);
   border-bottom: 1px solid #666;
   
   &:hover {
@@ -448,7 +447,7 @@ blockquote {
   
   &__container {
     margin-top: 0;
-    background: #222222;
+    background: rgba(0,0,0,0.8);
     border: 2px solid #666;
     height: calc(100vh - 100px);
     overflow-y: auto;
@@ -468,7 +467,7 @@ blockquote {
     top: 0;
     z-index: 100;
     padding: 8px;
-    background: #111111;
+    background: rgba(0,0,0,0.5);
     border-bottom: 1px solid #666;
     
     h3 {
@@ -495,11 +494,16 @@ blockquote {
   &__text {
     line-height: 1.6;
     color: #ffffff;
-    background: #222222;
     padding: 12px;
     border: none;
     font-size: 1rem;
     line-height: 1;
+
+    * {
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      line-height: 1.2;
+      font-size: .75rem;
+    }
 
     &--default {
       text-align: center;
@@ -512,9 +516,7 @@ blockquote {
     
     p {
       margin: 0 0 1.2em 0;
-      line-height: 1;
-      font-family: 'Courier Prime', 'Courier New', monospace;
-      font-size: .8rem;
+
 
       &:last-child {
         margin-bottom: 0;
@@ -523,20 +525,16 @@ blockquote {
 
     ol {
       margin-left: 40px;
-      font-size: .8rem;
-
     }
 
     em {
       font-style: italic;
-      font-size: .8rem;
     }
     
     a {
       color:#33cccc;
       text-decoration: underline;
       font-weight: 500;
-      font-size: .8rem;
 
       &:hover {
         color: #ffffff;
@@ -584,6 +582,7 @@ blockquote {
   display: inline-block;
   align-items: center;
   gap: 8px;
+  font-size: .8rem;
 }
 
 .youtube-toggle-arrow {
