@@ -186,6 +186,46 @@ blockquote {
     span:nth-child(21) { color: #aa2299; } // e - magenta-red
     span:nth-child(22) { color: #bb4477; } // a - red-magenta
     span:nth-child(23) { color: #cc6655; } // l - red
+
+    span {
+      animation: colorCycle 4s infinite linear;
+    }
+
+    // F-o-r-m-e-r (positions 1-6)
+    span:nth-child(1) { animation-delay: 0s; }
+    span:nth-child(2) { animation-delay: 0.1s; }
+    span:nth-child(3) { animation-delay: 0.2s; }
+    span:nth-child(4) { animation-delay: 0.3s; }
+    span:nth-child(5) { animation-delay: 0.4s; }
+    span:nth-child(6) { animation-delay: 0.5s; }
+    // Skip space at position 7
+    // T-e-e-n-a-g-e (positions 8-14)
+    span:nth-child(8) { animation-delay: 0.6s; }
+    span:nth-child(9) { animation-delay: 0.7s; }
+    span:nth-child(10) { animation-delay: 0.8s; }
+    span:nth-child(11) { animation-delay: 0.9s; }
+    span:nth-child(12) { animation-delay: 1.0s; }
+    span:nth-child(13) { animation-delay: 1.1s; }
+    span:nth-child(14) { animation-delay: 1.2s; }
+    // Skip space at position 15
+    // B-i-g (positions 16-18)
+    span:nth-child(16) { animation-delay: 1.3s; }
+    span:nth-child(17) { animation-delay: 1.4s; }
+    span:nth-child(18) { animation-delay: 1.5s; }
+    // Skip space at position 19
+    // D-e-a-l (positions 20-23)
+    span:nth-child(20) { animation-delay: 1.6s; }
+    span:nth-child(21) { animation-delay: 1.7s; }
+    span:nth-child(22) { animation-delay: 1.8s; }
+    span:nth-child(23) { animation-delay: 1.9s; }
+
+    // Keep spaces white and don't animate them
+    span:nth-child(7),
+    span:nth-child(15),
+    span:nth-child(19) {
+      animation: none;
+      color: #ffffff !important;
+    }
   }
   
   &__release {
@@ -651,6 +691,24 @@ blockquote {
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
+}
+
+@keyframes colorCycle {
+  0% { color: #ff0000; }    // Red
+  7.14% { color: #ff4000; } // Red-Orange
+  14.29% { color: #ff8000; } // Orange
+  21.43% { color: #ffbf00; } // Orange-Yellow
+  28.57% { color: #ffff00; } // Yellow
+  35.71% { color: #bfff00; } // Yellow-Green
+  42.86% { color: #80ff00; } // Green-Yellow
+  50% { color: #40ff00; }   // Green
+  57.14% { color: #00ff00; } // Pure Green
+  64.29% { color: #00ff80; } // Green-Cyan
+  71.43% { color: #00ffff; } // Cyan
+  78.57% { color: #0080ff; } // Cyan-Blue
+  85.71% { color: #0040ff; } // Blue
+  92.86% { color: #8000ff; } // Blue-Purple
+  100% { color: #ff0000; }  // Back to Red
 }
 
 .error {
