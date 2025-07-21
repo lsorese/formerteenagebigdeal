@@ -75,7 +75,7 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 		})} />
 		<link rel="stylesheet" href="/css/styles.css">
 		{tracksWithLyrics.map((track) => (
-			<link rel="preload" href={track.url} as="audio" type="audio/mp3" />
+			<link rel="preload" href={track.url} as="fetch" type="audio/mpeg" crossorigin />
 		))}
 		<script define:vars={{ albumData: { ...albumData, tracks: tracksWithLyrics } }}>
 			window.albumData = albumData;
@@ -128,7 +128,7 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 								<div class="track__info">
 									<div class="track__title">{track.title}</div>
 								</div>
-								<div class="track__duration">{track.duration}</div>
+								<div class="track__duration" style={`color: ${track.color}`}>{track.duration}</div>
 							</div>
 						))}
 					</div>

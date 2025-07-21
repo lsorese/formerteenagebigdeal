@@ -15,105 +15,120 @@
       "title": "The Future Is Stupid",
       "duration": "3:18",
       "url": "/mp3/01-the-future-is-stupid.mp3",
-      "lyricsFile": "/src/data/lyrics/01-the-future-is-stupid.md"
+      "lyricsFile": "/src/data/lyrics/01-the-future-is-stupid.md",
+      "color": "#ff8888"
     },
     {
       "id": 2,
       "title": "Route 666",
       "duration": "0:57",
       "url": "/mp3/02-route-666.mp3",
-      "lyricsFile": "/src/data/lyrics/02-route-666.md"
+      "lyricsFile": "/src/data/lyrics/02-route-666.md",
+      "color": "#ffaa44"
     },
     {
       "id": 3,
       "title": "Lisa Pell: The Tyrant of Sillytown USA",
       "duration": "1:25",
       "url": "/mp3/03-lisa-pell-the-tyrant-of-sillytown-usa.mp3",
-      "lyricsFile": "/src/data/lyrics/03-lisa-pell-the-tyrant-of-sillytown-usa.md"
+      "lyricsFile": "/src/data/lyrics/03-lisa-pell-the-tyrant-of-sillytown-usa.md",
+      "color": "#ffcc00"
     },
     {
       "id": 4,
       "title": "Emergency Broadcast",
       "duration": "2:32",
       "url": "/mp3/04-emergency-broadcast.mp3",
-      "lyricsFile": "/src/data/lyrics/04-emergency-broadcast.md"
+      "lyricsFile": "/src/data/lyrics/04-emergency-broadcast.md",
+      "color": "#bbcc44"
     },
     {
       "id": 5,
       "title": "40oz Stanley Adventure Quencher Travel Tumbler",
       "duration": "2:39",
       "url": "/mp3/05-40oz-stanley-adventure-quencher-travel-tumbler.mp3",
-      "lyricsFile": "/src/data/lyrics/05-40oz-stanley-adventure-quencher-travel-tumbler.md"
+      "lyricsFile": "/src/data/lyrics/05-40oz-stanley-adventure-quencher-travel-tumbler.md",
+      "color": "#99cc66"
     },
     {
       "id": 6,
       "title": "666 Secret Steps",
       "duration": "0:41",
       "url": "/mp3/06-666-secret-steps.mp3",
-      "lyricsFile": "/src/data/lyrics/06-666-secret-steps.md"
+      "lyricsFile": "/src/data/lyrics/06-666-secret-steps.md",
+      "color": "#77cc88"
     },
     {
       "id": 7,
       "title": "Heal Me (Girly Girl Productions Cover)",
       "duration": "1:29",
       "url": "/mp3/07-heal-me-girly-girl-productions-cover.mp3",
-      "lyricsFile": "/src/data/lyrics/07-heal-me-girly-girl-productions-cover.md"
+      "lyricsFile": "/src/data/lyrics/07-heal-me-girly-girl-productions-cover.md",
+      "color": "#55ccaa"
     },
     {
       "id": 8,
       "title": "Joey Chestnut vs. My Foreign Campaign Finance Records",
       "duration": "0:39",
       "url": "/mp3/08-joey-chestnut-vs-my-foreign-campaign-finance-records.mp3",
-      "lyricsFile": "/src/data/lyrics/08-joey-chestnut-vs-my-foreign-campaign-finance-records.md"
+      "lyricsFile": "/src/data/lyrics/08-joey-chestnut-vs-my-foreign-campaign-finance-records.md",
+      "color": "#33cccc"
     },
     {
       "id": 9,
       "title": "Attn: K-mart Shoppers",
       "duration": "1:47",
       "url": "/mp3/09-attn-k-mart-shoppers.mp3",
-      "lyricsFile": "/src/data/lyrics/09-attn-k-mart-shoppers.md"
+      "lyricsFile": "/src/data/lyrics/09-attn-k-mart-shoppers.md",
+      "color": "#5588cc"
     },
     {
       "id": 10,
       "title": "ShamNOW That's What I Call Br00tal Death Metal!",
       "duration": "2:41",
       "url": "/mp3/10-shamnow-thats-what-i-call-br00tal-death-metal.mp3",
-      "lyricsFile": "/src/data/lyrics/10-shamnow-thats-what-i-call-br00tal-death-metal.md"
+      "lyricsFile": "/src/data/lyrics/10-shamnow-thats-what-i-call-br00tal-death-metal.md",
+      "color": "#6666cc"
     },
     {
       "id": 11,
       "title": "This Is Not Financial Advice",
       "duration": "1:08",
       "url": "/mp3/11-this-is-not-financial-advice.mp3",
-      "lyricsFile": "/src/data/lyrics/11-this-is-not-financial-advice.md"
+      "lyricsFile": "/src/data/lyrics/11-this-is-not-financial-advice.md",
+      "color": "#7744cc"
     },
     {
       "id": 12,
       "title": "Former Teenage Big Deal",
       "duration": "1:16",
       "url": "/mp3/12-former-teenage-big-deal.mp3",
-      "lyricsFile": "/src/data/lyrics/12-former-teenage-big-deal.md"
+      "lyricsFile": "/src/data/lyrics/12-former-teenage-big-deal.md",
+      "color": "#9900cc"
     },
     {
       "id": 13,
       "title": "That’s an outdated idea about sexuality, babygirl",
       "duration": "4:10",
       "url": "/mp3/13-thats-an-outdated-idea-about-sexuality-babygirl.mp3",
-      "lyricsFile": "/src/data/lyrics/13-thats-an-outdated-idea-about-sexuality-babygirl.md"
+      "lyricsFile": "/src/data/lyrics/13-thats-an-outdated-idea-about-sexuality-babygirl.md",
+      "color": "#aa2299"
     },
     {
       "id": 14,
       "title": "The Trolley Problem, but All You Can Do Is Watch",
       "duration": "2:15",
       "url": "/mp3/14-the-trolley-problem-but-all-you-can-do-is-watch.mp3",
-      "lyricsFile": "/src/data/lyrics/14-the-trolley-problem-but-all-you-can-do-is-watch.md"
+      "lyricsFile": "/src/data/lyrics/14-the-trolley-problem-but-all-you-can-do-is-watch.md",
+      "color": "#bb4477"
     },
     {
       "id": 15,
       "title": "The Cult of TEOTWAWKI",
       "duration": "3:01",
       "url": "/mp3/15-the-cult-of-teotwawki.mp3",
-      "lyricsFile": "/src/data/lyrics/15-the-cult-of-teotwawki.md"
+      "lyricsFile": "/src/data/lyrics/15-the-cult-of-teotwawki.md",
+      "color": "#cc6655"
     }
   ]
 }

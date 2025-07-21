@@ -445,18 +445,6 @@ blockquote {
     font-size: 0.9rem;
   }
   
-  &:nth-of-type(1) .track__duration { color: #ff8888; } // red
-  &:nth-of-type(2) .track__duration { color: #ffaa44; } // orange
-  &:nth-of-type(3) .track__duration { color: #ffcc00; } // yellow
-  &:nth-of-type(4) .track__duration { color: #bbcc44; } // yellow-green
-  &:nth-of-type(5) .track__duration { color: #99cc66; } // green-yellow
-  &:nth-of-type(6) .track__duration { color: #77cc88; } // green
-  &:nth-of-type(7) .track__duration { color: #55ccaa; } // green-cyan
-  &:nth-of-type(8) .track__duration { color: #33cccc; } // cyan
-  &:nth-of-type(9) .track__duration { color: #5588cc; } // blue
-  &:nth-of-type(10) .track__duration { color: #6666cc; } // blue-purple
-  &:nth-of-type(11) .track__duration { color: #7744cc; } // purple
-  &:nth-of-type(12) .track__duration { color: #9900cc; } // magenta
   
   @media (max-width: 480px) {
     padding: 4px;
@@ -572,7 +560,7 @@ blockquote {
 
       &:hover {
         color: #ffffff;
-        text-shadow: 0 0 2px#33cccc;
+        text-shadow: 0 0 2px var(--hover-color, #33cccc);
       }
       
       &:focus {

@@ -212,6 +212,7 @@ class AlbumPlayer {
       const currentLyricsEl = document.getElementById(`lyricsText-${currentTrack.id}`);
       if (currentLyricsEl) {
         currentLyricsEl.classList.remove('hidden');
+        this.applyTrackColorToLinks(currentTrack);
       }
     } else {
       this.lyricsTitle.textContent = 'Lyrics';
@@ -241,6 +242,19 @@ class AlbumPlayer {
     const defaultLyricsEl = document.getElementById('lyricsText-default');
     if (defaultLyricsEl) {
       defaultLyricsEl.classList.remove('hidden');
+    }
+  }
+  
+  applyTrackColorToLinks(track) {
+    // Apply the track's color to all <a> tags in the current lyrics
+    const currentLyricsEl = document.getElementById(`lyricsText-${track.id}`);
+    if (currentLyricsEl && track.color) {
+      const links = currentLyricsEl.querySelectorAll('a');
+      links.forEach(link => {
+        link.style.color = track.color;
+        // Also update the text-shadow hover effect to use the track color
+        link.style.setProperty('--hover-color', track.color);
+      });
     }
   }
   
