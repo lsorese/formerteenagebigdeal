@@ -24,7 +24,6 @@ export async function loadTracksWithLyrics(albumData) {
       const lyricsPath = join(process.cwd(), track.lyricsFile);
       const lyricsContent = readFileSync(lyricsPath, 'utf-8');
       
-      // Use markdown-it to render markdown
       const lyricsHtml = md.render(lyricsContent);
       
       return {

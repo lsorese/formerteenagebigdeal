@@ -25,7 +25,6 @@ function getYouTubeEmbedUrl(url) {
 }
 
 export function youtubePlugin(md) {
-  // Rule for ;;youtube-url;; syntax
   md.inline.ruler.before('link', 'youtube_custom', function(state, silent) {
     const start = state.pos;
     const marker = ';;';
@@ -41,7 +40,6 @@ export function youtubePlugin(md) {
     
     const url = state.src.slice(start + marker.length, end);
     
-    // Check if it's a YouTube URL
     if (!isYouTubeUrl(url)) {
       return false;
     }
@@ -56,25 +54,21 @@ export function youtubePlugin(md) {
     return true;
   });
   
-  // Rule for standalone YouTube URLs on their own line
   md.block.ruler.before('paragraph', 'youtube_standalone', function(state, start, end, silent) {
     const pos = state.bMarks[start] + state.tShift[start];
     const max = state.eMarks[start];
     const line = state.src.slice(pos, max).trim();
     
-    // Check if line is just a YouTube URL
     if (!isYouTubeUrl(line)) {
       return false;
     }
     
-    // Check if it's on its own line (not part of a paragraph)
     const nextLine = start + 1;
     if (nextLine < end) {
       const nextPos = state.bMarks[nextLine] + state.tShift[nextLine];
       const nextMax = state.eMarks[nextLine];
       const nextLineContent = state.src.slice(nextPos, nextMax).trim();
       
-      // If next line has content and isn't empty, treat as regular paragraph
       if (nextLineContent && !isYouTubeUrl(nextLineContent)) {
         return false;
       }
@@ -90,7 +84,6 @@ export function youtubePlugin(md) {
     return true;
   });
   
-  // Renderer for YouTube embeds
   md.renderer.rules.youtube_embed = function(tokens, idx) {
     const token = tokens[idx];
     const url = token.content;
@@ -130,27 +123,23 @@ export function censorPlugin(md) {
         for (let j = 0; j < children.length; j++) {
           let child = children[j];
           if (child.type === 'text' && child.content.includes('censor')) {
-            // Split the text around 'censor' and create new tokens
             let parts = child.content.split(/\b(censor)\b/);
             let newTokens = [];
             
             for (let k = 0; k < parts.length; k++) {
               if (parts[k] === 'censor') {
-                // Create HTML inline token for the span
                 let htmlToken = new state.Token('html_inline', '', 0);
                 htmlToken.content = '<span class="censor"></span>';
                 newTokens.push(htmlToken);
               } else if (parts[k]) {
-                // Create text token for non-censor parts
                 let textToken = new state.Token('text', '', 0);
                 textToken.content = parts[k];
                 newTokens.push(textToken);
               }
             }
             
-            // Replace the original child with new tokens
             children.splice(j, 1, ...newTokens);
-            j += newTokens.length - 1; // Adjust index for added tokens
+            j += newTokens.length - 1;
           }
         }
       }

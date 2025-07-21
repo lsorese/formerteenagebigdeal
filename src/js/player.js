@@ -50,6 +50,10 @@ class AlbumPlayer {
       onend: () => this.nextTrack()
     });
     
+    if (track?.color) {
+      this.progressFill.style.boxShadow = `inset 0 0 10px ${track.color}`;
+    }
+    
     this.updateTrackDisplay();
   }
   
@@ -119,22 +123,17 @@ class AlbumPlayer {
   }
   
   showDownloadOptions() {
-    // Pause music if playing
     if (this.isPlaying) {
       this.pause();
     }
     
-    // Show default lyrics screen
     this.showDefaultLyrics();
     
-    // Scroll to lyrics section if not visible (mobile)
     const lyricsContainer = document.getElementById('lyricsContainer');
-    if (lyricsContainer) {
-      lyricsContainer.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-      });
-    }
+    lyricsContainer?.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'start' 
+    });
   }
   
   updateProgress() {
@@ -147,6 +146,11 @@ class AlbumPlayer {
       const progress = (seek / duration) * 100;
       this.progressFill.style.width = `${progress}%`;
       this.timeDisplay.textContent = this.formatTime(seek);
+      
+      const currentTrack = this.tracks[this.currentTrack];
+      if (currentTrack?.color) {
+        this.progressFill.style.boxShadow = `inset 0 0 10px ${currentTrack.color}`;
+      }
     }
     
     if (this.isPlaying) {
@@ -203,12 +207,10 @@ class AlbumPlayer {
       this.lyricsTitle.textContent = `Lyrics - ${currentTrack.title}`;
       this.lyricsContainer.style.display = 'block';
       
-      // Hide all lyrics including default state
       document.querySelectorAll('.lyrics__text').forEach(lyricsEl => {
         lyricsEl.classList.add('hidden');
       });
       
-      // Show only the current track's lyrics
       const currentLyricsEl = document.getElementById(`lyricsText-${currentTrack.id}`);
       if (currentLyricsEl) {
         currentLyricsEl.classList.remove('hidden');
@@ -218,15 +220,12 @@ class AlbumPlayer {
       this.lyricsTitle.textContent = 'Lyrics';
       this.lyricsContainer.style.display = 'block';
       
-      // Hide all track lyrics and show default state
       document.querySelectorAll('.lyrics__text').forEach(lyricsEl => {
         lyricsEl.classList.add('hidden');
       });
       
       const defaultLyricsEl = document.getElementById('lyricsText-default');
-      if (defaultLyricsEl) {
-        defaultLyricsEl.classList.remove('hidden');
-      }
+      defaultLyricsEl?.classList.remove('hidden');
     }
   }
 
@@ -234,25 +233,20 @@ class AlbumPlayer {
     this.lyricsTitle.textContent = 'Welcome!';
     this.lyricsContainer.style.display = 'block';
     
-    // Hide all track lyrics and show default state
     document.querySelectorAll('.lyrics__text').forEach(lyricsEl => {
       lyricsEl.classList.add('hidden');
     });
     
     const defaultLyricsEl = document.getElementById('lyricsText-default');
-    if (defaultLyricsEl) {
-      defaultLyricsEl.classList.remove('hidden');
-    }
+    defaultLyricsEl?.classList.remove('hidden');
   }
   
   applyTrackColorToLinks(track) {
-    // Apply the track's color to all <a> tags in the current lyrics
     const currentLyricsEl = document.getElementById(`lyricsText-${track.id}`);
     if (currentLyricsEl && track.color) {
       const links = currentLyricsEl.querySelectorAll('a');
       links.forEach(link => {
         link.style.color = track.color;
-        // Also update the text-shadow hover effect to use the track color
         link.style.setProperty('--hover-color', track.color);
       });
     }
@@ -265,13 +259,10 @@ class AlbumPlayer {
   }
   
   pauseAllVideos() {
-    // Find all YouTube iframes and pause them by removing their src
     document.querySelectorAll('.youtube-embed-container iframe').forEach(iframe => {
       if (iframe.src) {
-        // Clear the src to stop the video
         iframe.src = '';
         
-        // Also hide the container and reset the toggle
         const container = iframe.closest('.youtube-embed-container');
         const toggle = container?.parentElement?.querySelector('.youtube-toggle');
         const arrow = toggle?.querySelector('.youtube-toggle-arrow');
@@ -308,7 +299,6 @@ class AlbumPlayer {
       track.addEventListener('click', () => this.selectTrack(index));
     });
     
-    // Listen for modal events to pause/resume music
     document.addEventListener('modalOpened', () => {
       if (this.isPlaying) {
         this.wasPlayingBeforeModal = true;
@@ -323,7 +313,6 @@ class AlbumPlayer {
       }
     });
     
-    // Listen for video events to pause music when video plays
     document.addEventListener('videoPlayed', () => {
       if (this.isPlaying) {
         this.pause();
@@ -332,7 +321,6 @@ class AlbumPlayer {
   }
 }
 
-// Accessibility Mode Manager
 class AccessibilityMode {
   constructor() {
     this.isEnabled = false;
@@ -343,16 +331,12 @@ class AccessibilityMode {
   }
   
   init() {
-    // Load saved state from localStorage
     const savedState = localStorage.getItem(this.storageKey);
     if (savedState === 'true') {
       this.enable();
     }
     
-    // Bind toggle button event
-    if (this.toggleButton) {
-      this.toggleButton.addEventListener('click', () => this.toggle());
-    }
+    this.toggleButton?.addEventListener('click', () => this.toggle());
   }
   
   enable() {
@@ -384,16 +368,12 @@ class AccessibilityMode {
   }
 }
 
-// Initialize the player when the page loads
 document.addEventListener('DOMContentLoaded', () => {
 	const albumData = window.albumData;
-	if (albumData && albumData.tracks) {
+	if (albumData?.tracks) {
 		new AlbumPlayer(albumData.tracks, albumData);
 	}
 	
-	// Initialize the modal component
 	new MediaModal();
-	
-	// Initialize accessibility mode
 	new AccessibilityMode();
 });

@@ -8,7 +8,6 @@ class MediaModal {
     }
 
     createModal() {
-        // Create modal structure
         this.modal = document.createElement('div');
         this.modal.className = 'media-modal';
         this.modal.innerHTML = `
@@ -29,7 +28,6 @@ class MediaModal {
     }
 
     bindEvents() {
-        // Close modal events
         const closeBtn = this.modal.querySelector('.modal-close');
         const backdrop = this.modal.querySelector('.modal-backdrop');
         
@@ -38,33 +36,27 @@ class MediaModal {
             if (e.target === backdrop) this.close();
         });
         
-        // Keyboard events
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) this.close();
         });
 
-        // Auto-detect and bind media links
         this.bindMediaLinks();
     }
 
     bindMediaLinks() {
-        // Find all images and YouTube links in the document
         document.addEventListener('click', (e) => {
             const target = e.target;
             
-            // Handle image clicks
             if (target.tagName === 'IMG' && this.isLocalImage(target.src)) {
                 e.preventDefault();
                 this.openImage(target.src, target.alt || 'Image');
             }
             
-            // Handle links to local images
             if (target.tagName === 'A' && this.isLocalImage(target.href)) {
                 e.preventDefault();
                 this.openImage(target.href, target.textContent || 'Image');
             }
             
-            // Handle YouTube links
             if (target.tagName === 'A' && this.isYouTubeLink(target.href)) {
                 e.preventDefault();
                 this.openYouTube(target.href, target.textContent);
@@ -73,7 +65,6 @@ class MediaModal {
     }
 
     isLocalImage(src) {
-        // Check if image is from same server (relative or same domain)
         try {
             const url = new URL(src, window.location.href);
             return url.hostname === window.location.hostname && 
@@ -142,10 +133,8 @@ class MediaModal {
         this.isOpen = true;
         document.body.style.overflow = 'hidden';
         
-        // Dispatch modal opened event
         document.dispatchEvent(new CustomEvent('modalOpened'));
         
-        // Focus management for accessibility
         const closeBtn = this.modal.querySelector('.modal-close');
         closeBtn.focus();
     }
@@ -156,7 +145,6 @@ class MediaModal {
         document.body.style.overflow = '';
         this.modalContent.innerHTML = '';
         
-        // Dispatch modal closed event
         document.dispatchEvent(new CustomEvent('modalClosed'));
     }
 }

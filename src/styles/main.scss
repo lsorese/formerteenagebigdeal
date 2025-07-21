@@ -8,14 +8,6 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'match';
-  src: url('../webfonts/more_15-webfont.woff2') format('woff2'),
-       url('../webfonts/more_15-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
 .hidden {
   display: none;
 }
@@ -25,16 +17,7 @@
   padding: 0;
   box-sizing: border-box;
   font-size: 28px;
-}
-
-.hidden {
-  display: none;
-}
-
-* {
   font-family: 'more', 'Courier New', monospace;
-  margin: 0;
-  padding: 0;
 }
 
 body {
@@ -261,7 +244,7 @@ blockquote {
     }
     
     &:focus {
-      outline: 3px solid#33cccc;
+      outline: 3px solid #33cccc;
       outline-offset: 2px;
     }
     
@@ -331,7 +314,6 @@ blockquote {
     background: #ffffff;
     width: 0%;
     transition: width 0.1s ease;
-    box-shadow: inset 0 0 4px #33ff66;
   }
   
   &__time-display {
@@ -440,11 +422,10 @@ blockquote {
   }
   
   &__duration {
-    color:#33cccc;
+    color: #33cccc;
     margin-right: 5px;
     font-size: 0.9rem;
   }
-  
   
   @media (max-width: 480px) {
     padding: 4px;
@@ -524,7 +505,7 @@ blockquote {
     * {
       font-family: 'Courier Prime', 'Courier New', monospace;
       line-height: 1.2;
-      font-size: .75rem;
+      font-size: .666rem;
     }
 
     &--default {
@@ -538,7 +519,6 @@ blockquote {
     
     p {
       margin: 0 0 1.2em 0;
-
 
       &:last-child {
         margin-bottom: 0;
@@ -554,7 +534,7 @@ blockquote {
     }
     
     a {
-      color:#33cccc;
+      color: #33cccc;
       text-decoration: underline;
       font-weight: 500;
 
@@ -657,30 +637,9 @@ blockquote {
   padding-right: 100%;
 }
 
-.marquee-container-alt {
-  overflow: hidden;
-  white-space: nowrap;
-  background: #fff;
-  border: none;
-  padding: 6px;
-  margin: 8px 0;
-}
-
-.marquee-text-alt {
-  display: inline-block;
-  animation: scroll-left 8s linear infinite;
-  color: #000;
-  padding-right: 100%;
-}
-
 @keyframes scroll-left {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
-}
-
-@keyframes pixelGlow {
-  0% { box-shadow: 0 0 5px #ffffff; }
-  100% { box-shadow: 0 0 20px #ffffff, 0 0 30px #ffffff; }
 }
 
 @keyframes playButtonPulse {
@@ -703,17 +662,6 @@ blockquote {
   height: 1em;
   vertical-align: middle;
   margin: -1px 2px 0 0;
-}
-
-.blink-cursor {
-  &::after {
-    content: "_";
-    color: #000;
-  }
-}
-
-.rainbow-text {
-  color: #000;
 }
 
 .media-modal {
@@ -771,7 +719,7 @@ blockquote {
   height: 30px;
   cursor: pointer;
   display: block;
-    line-height: 29px;
+  line-height: 29px;
   
   &:hover {
     background: #f0f0f0;
