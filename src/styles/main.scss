@@ -286,10 +286,11 @@ blockquote {
       margin: 0 auto;
       padding: 0;
       height: 10px;
+      color: #000;
       font-size: 22px;
       min-height: 33px;
-      background: rgba(0,0,0,.5);
-      border: 2px solid #333;
+      background: linear-gradient(to right, #ff8888, #ff9966, #ffaa44, #ffbb22, #ffcc00, #ddcc22, #bbcc44, #99cc66, #77cc88, #55ccaa, #33cccc, #44aacc, #5588cc, #6666cc, #7744cc, #8822cc, #9900cc, #aa2299, #bb4477, #cc6655);
+      border: 0;
 
       s {
         font-size: 22px;
