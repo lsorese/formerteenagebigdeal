@@ -16,7 +16,7 @@ But time moves on and now it's just censor sad.
 U mad, newfag, I've got the epic win.
 Been here since the summer of '06, let the lulz begin.
 
-U mad, stay mad, trollface.jpeg2000
+U mad, stay mad, [trollface](https://en.wikipedia.org/wiki/Trollface).[jpeg2000](https://en.wikipedia.org/wiki/JPEG_2000)
 but now I'm pushing 40 and my brain is still like this.
 
 [Pool's closed forever](https://www.youtube.com/watch?v=SMeJZWBQwqM)
