@@ -149,6 +149,7 @@ blockquote {
     line-height: 1.5rem;
     letter-spacing: .5px;
     margin-top: 30px;
+    animation: float 3s ease-in-out infinite;
     span {
       display: block;
       font-size: 1rem;
@@ -645,6 +646,11 @@ blockquote {
 @keyframes playButtonPulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
 .error {
