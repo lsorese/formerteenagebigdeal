@@ -1,9 +1,9 @@
 {
   "title": "Logan, from The Internet",
   "artist": "Former Teenage Big Deal",
-  "description": "A satirical album exploring internet culture and modern digital life through 12 tracks of commentary on social media, consumerism, and online behavior",
-  "releaseDate": "2024",
-  "genre": ["Electronic", "Experimental", "Comedy", "Internet Culture"],
+  "description": "A satirical album exploring internet culture and modern digital life through 15 tracks of commentary on social media, consumerism, and online behavior",
+  "releaseDate": "2025",
+  "genre": ["Hardcore", "Metalcore", "Heavy Heavy", "Low Low"],
   "duration": "26:31",
   "coverImage": "/images/cover.jpg",
   "url": "https://formerteenagebigdeal.com",
@@ -19,80 +19,101 @@
     },
     {
       "id": 2,
-      "title": "Lisa Pell: The Tyrant of Sillytown USA",
-      "duration": "1:25",
-      "url": "/mp3/02-lisa-pell.mp3",
-      "lyricsFile": "/src/data/lyrics/02-lisa-pell.md"
+      "title": "Route 666",
+      "duration": "0:57",
+      "url": "/mp3/02-route-666.mp3",
+      "lyricsFile": "/src/data/lyrics/02-route-666.md"
     },
     {
       "id": 3,
-      "title": "Emergency Broadcast",
-      "duration": "2:32",
-      "url": "/mp3/03-emergency-broadcast.mp3",
-      "lyricsFile": "/src/data/lyrics/03-emergency-broadcast.md"
+      "title": "Lisa Pell: The Tyrant of Sillytown USA",
+      "duration": "1:25",
+      "url": "/mp3/03-lisa-pell-the-tyrant-of-sillytown-usa.mp3",
+      "lyricsFile": "/src/data/lyrics/03-lisa-pell-the-tyrant-of-sillytown-usa.md"
     },
     {
       "id": 4,
-      "title": "40oz Stanley Adventure Quencher Travel Tumbler",
-      "duration": "2:39",
-      "url": "/mp3/04-40oz-stanley-adventure-quencher-travel-tumbler.mp3",
-      "lyricsFile": "/src/data/lyrics/04-40oz-stanley-adventure-quencher-travel-tumbler.md"
+      "title": "Emergency Broadcast",
+      "duration": "2:32",
+      "url": "/mp3/04-emergency-broadcast.mp3",
+      "lyricsFile": "/src/data/lyrics/04-emergency-broadcast.md"
     },
     {
       "id": 5,
-      "title": "Heal Me (Girly Girl Productions Cover)",
-      "duration": "1:29",
-      "url": "/mp3/05-heal-me.mp3",
-      "lyricsFile": "/src/data/lyrics/05-heal-me.md"
+      "title": "40oz Stanley Adventure Quencher Travel Tumbler",
+      "duration": "2:39",
+      "url": "/mp3/05-40oz-stanley-adventure-quencher-travel-tumbler.mp3",
+      "lyricsFile": "/src/data/lyrics/05-40oz-stanley-adventure-quencher-travel-tumbler.md"
     },
     {
       "id": 6,
-      "title": "Joey Chestnut vs. My Campaign Finance Records",
-      "duration": "0:39",
-      "url": "/mp3/06-joey-chestnut-vs-my-foreign-policy-experience.mp3",
-      "lyricsFile": "/src/data/lyrics/06-joey-chestnut-vs-my-foreign-policy-experience.md"
+      "title": "666 Secret Steps",
+      "duration": "0:41",
+      "url": "/mp3/06-666-secret-steps.mp3",
+      "lyricsFile": "/src/data/lyrics/06-666-secret-steps.md"
     },
     {
       "id": 7,
-      "title": "Attention K-Mart Shoppers",
-      "duration": "1:47",
-      "url": "/mp3/07-attn-kmart-shoppers.mp3",
-      "lyricsFile": "/src/data/lyrics/07-attn-kmart-shoppers.md"
+      "title": "Heal Me (Girly Girl Productions Cover)",
+      "duration": "1:29",
+      "url": "/mp3/07-heal-me-girly-girl-productions-cover.mp3",
+      "lyricsFile": "/src/data/lyrics/07-heal-me-girly-girl-productions-cover.md"
     },
     {
       "id": 8,
-      "title": "ShamNOW That's What I Call Br00tal Death Metal!",
-      "duration": "2:41",
-      "url": "/mp3/08-from-hell-with-love.mp3",
-      "lyricsFile": "/src/data/lyrics/08-from-hell-with-love.md"
+      "title": "Joey Chestnut vs. My Foreign Campaign Finance Records",
+      "duration": "0:39",
+      "url": "/mp3/08-joey-chestnut-vs-my-foreign-campaign-finance-records.mp3",
+      "lyricsFile": "/src/data/lyrics/08-joey-chestnut-vs-my-foreign-campaign-finance-records.md"
     },
     {
       "id": 9,
-      "title": "Former Teenage Big Deal",
-      "duration": "1:16",
-      "url": "/mp3/09-former-teenage-big-deal.mp3",
-      "lyricsFile": "/src/data/lyrics/09-former-teenage-big-deal.md"
+      "title": "Attn: K-mart Shoppers",
+      "duration": "1:47",
+      "url": "/mp3/09-attn-k-mart-shoppers.mp3",
+      "lyricsFile": "/src/data/lyrics/09-attn-k-mart-shoppers.md"
     },
     {
       "id": 10,
-      "title": "That’s an outdated idea about sexuality, babygirl",
-      "duration": "4:10",
-      "url": "/mp3/10-cuck-chair.mp3",
-      "lyricsFile": "/src/data/lyrics/10-cuck-chair.md"
+      "title": "ShamNOW That's What I Call Br00tal Death Metal!",
+      "duration": "2:41",
+      "url": "/mp3/10-shamnow-thats-what-i-call-br00tal-death-metal.mp3",
+      "lyricsFile": "/src/data/lyrics/10-shamnow-thats-what-i-call-br00tal-death-metal.md"
     },
     {
       "id": 11,
-      "title": "The Trolley Problem, but This Time All You Can Do Is Watch",
-      "duration": "2:15",
-      "url": "/mp3/11-sleep-tight.mp3",
-      "lyricsFile": "/src/data/lyrics/11-sleep-tight.md"
+      "title": "This Is Not Financial Advice",
+      "duration": "1:08",
+      "url": "/mp3/11-this-is-not-financial-advice.mp3",
+      "lyricsFile": "/src/data/lyrics/11-this-is-not-financial-advice.md"
     },
     {
       "id": 12,
+      "title": "Former Teenage Big Deal",
+      "duration": "1:16",
+      "url": "/mp3/12-former-teenage-big-deal.mp3",
+      "lyricsFile": "/src/data/lyrics/12-former-teenage-big-deal.md"
+    },
+    {
+      "id": 13,
+      "title": "That’s an outdated idea about sexuality, babygirl",
+      "duration": "4:10",
+      "url": "/mp3/13-thats-an-outdated-idea-about-sexuality-babygirl.mp3",
+      "lyricsFile": "/src/data/lyrics/13-thats-an-outdated-idea-about-sexuality-babygirl.md"
+    },
+    {
+      "id": 14,
+      "title": "The Trolley Problem, but All You Can Do Is Watch",
+      "duration": "2:15",
+      "url": "/mp3/14-the-trolley-problem-but-all-you-can-do-is-watch.mp3",
+      "lyricsFile": "/src/data/lyrics/14-the-trolley-problem-but-all-you-can-do-is-watch.md"
+    },
+    {
+      "id": 15,
       "title": "The Cult of TEOTWAWKI",
       "duration": "3:01",
-      "url": "/mp3/12-teotwawki.mp3",
-      "lyricsFile": "/src/data/lyrics/12-teotwawki.md"
+      "url": "/mp3/15-the-cult-of-teotwawki.mp3",
+      "lyricsFile": "/src/data/lyrics/15-the-cult-of-teotwawki.md"
     }
   ]
 }
