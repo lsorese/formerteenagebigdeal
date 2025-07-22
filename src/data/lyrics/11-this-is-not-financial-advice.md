@@ -11,7 +11,7 @@ Everything happens for a reason bestie.
 
 [We believe in Web3, DeFi, and everything is going to 0 except our bags.](https://www.web3isgoinggreat.com/)
 
-[This is not financial advice.](https://www.youtube.com/watch?v=cimoNqiulUE)
+[This is not financial advice.](https://www.youtube.com/watch?v=5pYeoZaoWrA)
 This is not financial advice.
 This is not financial advice.
 This is not financial advice.
