@@ -165,7 +165,9 @@ blockquote {
     text-align: left;
     font-weight: normal;
     font-size: 1.2rem;
-    
+    line-height: 1rem;
+    margin-bottom: 1em;
+  
     span:nth-child(1) { color: #ff8888; } // F - red
     span:nth-child(2) { color: #ff9966; } // o - red-orange
     span:nth-child(3) { color: #ffaa44; } // r - orange
