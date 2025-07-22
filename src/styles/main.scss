@@ -498,10 +498,11 @@ blockquote {
     margin-top: 0;
     background: rgba(0,0,0,0.8);
     border: 2px solid #666;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 66px);
     overflow-y: auto;
-    max-width: 899;
-    
+    display: block;
+    max-width: 1200px;
+
     @media (max-width: 768px) {
       height: auto;
       margin-top: 15px;
@@ -555,7 +556,6 @@ blockquote {
     }
 
     &--default {
-      height: 100%;
       img {
         max-width: 100%;
         height: auto;
@@ -566,7 +566,7 @@ blockquote {
       margin: 0 0 1.2em 0;
 
       &:last-child {
-        margin-bottom: 60px;
+        margin-bottom: 20px;
       }
     }
 
@@ -868,9 +868,7 @@ blockquote {
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
-  font-size: .8rem;
   color: #fff;
-  opacity: .5;
   padding: 15px;
   position: fixed;
   bottom: 0;
@@ -891,7 +889,9 @@ blockquote {
   &__text {
     flex: 1;
     text-align: center;
-    
+    max-width: 1200px;
+    font-size: .75rem;
+
     @media (max-width: 768px) {
       order: 2;
     }
