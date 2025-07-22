@@ -8,6 +8,9 @@
   font-style: normal;
 }
 
+$gradient: linear-gradient(to right, #ff8888, #ff9966, #ffaa44, #ffbb22, #ffcc00, #ddcc22, #bbcc44, #99cc66, #77cc88, #55ccaa, #33cccc, #44aacc, #5588cc, #6666cc, #7744cc, #8822cc, #9900cc, #aa2299, #bb4477, #cc6655);
+
+
 .hidden {
   display: none;
 }
@@ -312,7 +315,7 @@ blockquote {
       color: #000;
       font-size: 22px;
       min-height: 33px;
-      background: linear-gradient(to right, #ff8888, #ff9966, #ffaa44, #ffbb22, #ffcc00, #ddcc22, #bbcc44, #99cc66, #77cc88, #55ccaa, #33cccc, #44aacc, #5588cc, #6666cc, #7744cc, #8822cc, #9900cc, #aa2299, #bb4477, #cc6655);
+      background: $gradient;
       border: 0;
 
       s {
@@ -550,7 +553,6 @@ blockquote {
     }
 
     &--default {
-      text-align: center;
       height: 100%;
       img {
         max-width: 100%;
@@ -562,8 +564,28 @@ blockquote {
       margin: 0 0 1.2em 0;
 
       &:last-child {
-        margin-bottom: 0;
+        margin-bottom: 60px;
       }
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      margin-bottom: .5rem;
+    }
+
+    h3 {
+      font-size: .75rem;
+      text-align: left;
+      margin-bottom: .15rem;
+    }
+
+    h4 {
+      font-size: .9rem;
+      margin-bottom: .5rem;
+    }
+    h5 {
+      font-size: .8rem;
+      margin-bottom: .5rem;
     }
 
     ol {
@@ -593,7 +615,8 @@ blockquote {
     hr {
       margin-bottom: 1em;
       border: none;
-      border-top: 1px solid #666;
+      height: 4px;
+      background: $gradient;
     }
   }
 }
