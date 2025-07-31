@@ -145,26 +145,22 @@ class MediaModal {
                 <div class="instructions-content">
                     <p><strong>Movement:</strong></p>
                     <ul>
-                        <li>Use <strong>WASD</strong> or <strong>Arrow Keys</strong> to move</li>
-                        <li>On mobile, use the <strong>directional pad</strong></li>
+                        <li>Use <strong>WASD</strong> or <strong>Arrow Keys</strong> to move on desktop.</li>
+                        <li>On mobile, use the <strong>directional pad</strong>.</li>
                     </ul>
                     
                     <p><strong>Gameplay:</strong></p>
                     <ul>
-                        <li>Move around the colorful grid to explore</li>
-                        <li>Step on rainbow-colored tiles to discover content</li>
-                        <li>Some tiles give points, others take them away</li>
-                        <li>Try to maintain a positive score!</li>
-                    </ul>
-                    
-                    <p><strong>Controls:</strong></p>
-                    <ul>
-                        <li>Press <strong>ESC</strong> to close modals</li>
-                        <li>Move to any direction to close this instructions modal</li>
+                        <li>Move around the colorful grid to explore.</li>
+                        <li>Read each block's name and decide if this content is something you want to watch.</li>
+                        <li>Just like the internet at large, some content make you happy and laugh, or haunt and traumatize you.</li>
+                        <li>Viewing some content give points, others will take them away.</li>
+                        <li>If you run out of points, you crash out.</li>
+                        <li>There's no limit on positive points you can gain.</li>
                     </ul>
                 </div>
                 <div class="instructions-footer">
-                    <p><em>Start moving to begin your adventure!</em></p>
+                    <p><em>It's up to you what you want to fill your brain with. Good or bad, you decide.</em></p>
                 </div>
             </div>
         `;

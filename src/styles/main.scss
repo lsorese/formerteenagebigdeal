@@ -907,10 +907,10 @@ blockquote {
   
   .instructions-content {
     text-align: left;
-    line-height: 1.6;
+    line-height: 0.75;
     
     p {
-      margin-bottom: 15px;
+      margin-bottom: 5px;
       font-weight: bold;
       color: #000;
     }
@@ -1038,7 +1038,7 @@ blockquote {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: transparent;
+  background: rgba(0,0,0,.5);
   z-index: 9999;
   display: flex;
   flex-direction: column;
