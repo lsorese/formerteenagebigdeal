@@ -5,7 +5,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: {
     main: './src/js/player.js',
-    styles: './src/styles/main.scss'
+    styles: './src/styles/main.scss',
+    game: './src/game/game.ts'
   },
   output: {
     filename: 'js/[name].bundle.js',
@@ -23,6 +24,19 @@ module.exports = {
         ]
       },
       {
+        test: /\.tsx?$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: 'defaults' }],
+              ['@babel/preset-typescript', { allowDeclareFields: true }]
+            ]
+          }
+        },
+        exclude: /node_modules/,
+      },
+      {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
@@ -30,6 +44,9 @@ module.exports = {
         }
       },
     ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -68,6 +85,11 @@ module.exports = {
         {
           from: 'src/webfonts',
           to: 'webfonts',
+          noErrorOnMissing: true
+        },
+        {
+          from: 'src/game/content',
+          to: 'src/game/content',
           noErrorOnMissing: true
         }
       ]

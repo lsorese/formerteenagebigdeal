@@ -384,6 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		new AlbumPlayer(albumData.tracks, albumData);
 	}
 	
-	new MediaModal();
+	// Create MediaModal and make it globally accessible for the game
+	window.mediaModal = new MediaModal();
 	new AccessibilityMode();
 });

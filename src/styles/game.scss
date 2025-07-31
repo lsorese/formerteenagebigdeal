@@ -1,0 +1,228 @@
+// Game-specific styles
+// Inherits fonts and variables from main.scss
+
+#game-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+// Mobile Controls - positioned in bottom 25% of screen
+#mobile-controls {
+  position: fixed;
+  bottom: 5vh; // Use viewport height for better responsive positioning
+  left: 50%;
+  transform: translateX(-50%); // Center horizontally
+  z-index: 10001;
+  background: rgba(17, 17, 17, 0.95);
+  border: 3px solid #666;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+  .dpad {
+    display: grid;
+    grid-template-columns: 70px 70px 70px; // 10% larger buttons
+    grid-template-rows: 70px 70px 70px;
+    gap: 8px; // Slightly larger gaps
+  }
+
+  .control-btn {
+    background: #111111;
+    border: 3px solid #666; // Thicker border
+    color: #ffffff;
+    font-family: 'more', 'Courier Prime', 'Courier New', monospace;
+    font-size: 24px; // Larger font
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+
+    &:hover {
+      background: #ffffff;
+      color: #000000;
+      transform: scale(1.05);
+      border-color: #33cccc;
+    }
+
+    &:active,
+    &.pressed {
+      background: #ffffff;
+      color: #000000;
+      transform: scale(0.95);
+      border-color: #33cccc;
+    }
+  }
+}
+
+// Coordinates Display (10% larger)
+#coordinates-display {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #33cccc;
+  padding: 11px 17px; // 10% larger padding
+  border-radius: 9px; // 10% larger border radius
+  font-family: 'more', 'Courier Prime', 'Courier New', monospace;
+  font-size: 15px; // 10% larger font
+  z-index: 10001;
+  border: 2px solid #33cccc;
+}
+
+// Game Over Screen (10% larger)
+.game-over-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  color: #e74c3c;
+  font-family: 'more', 'Courier Prime', 'Courier New', monospace;
+  font-size: 79px; // 10% larger
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+// Fallback Modal Styles
+.game-fallback-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10002;
+
+  .modal-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+
+    &:hover {
+      color: #000;
+    }
+  }
+
+  .modal-title {
+    margin-top: 0;
+    font-family: 'more', 'Courier Prime', 'Courier New', monospace;
+  }
+
+  .modal-content {
+    iframe {
+      border: none;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  #mobile-controls {
+    bottom: 8vh; // More space from bottom on tablets
+    padding: 12px;
+
+    .dpad {
+      grid-template-columns: 65px 65px 65px; // Slightly smaller for tablets
+      grid-template-rows: 65px 65px 65px;
+      gap: 6px;
+    }
+
+    .control-btn {
+      font-size: 22px;
+    }
+  }
+
+  #coordinates-display {
+    top: 10px;
+    left: 10px;
+    padding: 9px 14px; // Adjusted for 10% increase
+    font-size: 13px; // Adjusted for 10% increase
+  }
+
+  .game-over-overlay {
+    font-size: 53px; // 10% larger than original mobile size
+    padding: 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  #mobile-controls {
+    bottom: 10vh; // More space from bottom on phones
+    padding: 10px;
+
+    .dpad {
+      grid-template-columns: 60px 60px 60px; // Smaller for phones
+      grid-template-rows: 60px 60px 60px;
+      gap: 5px;
+    }
+
+    .control-btn {
+      font-size: 20px;
+      border-radius: 6px;
+    }
+  }
+
+  .game-over-overlay {
+    font-size: 40px; // 10% larger than original
+  }
+
+  #coordinates-display {
+    font-size: 12px; // 10% larger than original
+    padding: 7px 11px; // 10% larger than original
+  }
+}
+
+// Landscape phone orientation
+@media (max-width: 768px) and (orientation: landscape) {
+  #mobile-controls {
+    bottom: 3vh; // Less space needed in landscape
+    padding: 8px;
+    
+    .dpad {
+      grid-template-columns: 55px 55px 55px; // Smaller in landscape
+      grid-template-rows: 55px 55px 55px;
+      gap: 4px;
+    }
+
+    .control-btn {
+      font-size: 18px;
+    }
+  }
+}

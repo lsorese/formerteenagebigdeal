@@ -1,0 +1,353 @@
+[
+  {
+    "position": { "x": 1, "y": 1 },
+    "type": "interactive",
+    "contentUrl": "https://picsum.photos/800/600?random=1",
+    "contentType": "image",
+    "scoreChange": 5,
+    "tooltip": "Random Nature Photo",
+    "viewed": false
+  },
+  {
+    "position": { "x": 2, "y": 1 },
+    "type": "interactive",
+    "contentUrl": "https://picsum.photos/800/600?random=2",
+    "contentType": "image",
+    "scoreChange": -3,
+    "tooltip": "Abstract Art",
+    "viewed": false
+  },
+  {
+    "position": { "x": 3, "y": 1 },
+    "type": "interactive",
+    "contentUrl": "/src/game/content/sample-guide.md",
+    "contentType": "markdown",
+    "scoreChange": 8,
+    "tooltip": "Game Development Guide",
+    "viewed": false
+  },
+  {
+    "position": { "x": 1, "y": 2 },
+    "type": "interactive",
+    "contentUrl": "https://raw.githubusercontent.com/torvalds/linux/master/README",
+    "contentType": "text",
+    "scoreChange": 12,
+    "tooltip": "Linux Kernel README",
+    "viewed": false
+  },
+  {
+    "position": { "x": 2, "y": 2 },
+    "type": "interactive",
+    "contentUrl": "https://picsum.photos/800/600?random=3",
+    "contentType": "image",
+    "scoreChange": -2,
+    "tooltip": "Landscape Photo",
+    "viewed": false
+  },
+  {
+    "position": { "x": 3, "y": 2 },
+    "type": "interactive",
+    "contentUrl": "/src/game/content/tech-overview.md",
+    "contentType": "markdown",
+    "scoreChange": 10,
+    "tooltip": "Technical Overview",
+    "viewed": false
+  },
+  {
+    "position": { "x": 1, "y": 3 },
+    "type": "interactive",
+    "contentUrl": "https://www.gutenberg.org/files/74/74-0.txt",
+    "contentType": "text",
+    "scoreChange": 15,
+    "tooltip": "Adventures of Tom Sawyer",
+    "viewed": false
+  },
+  {
+    "position": { "x": 2, "y": 3 },
+    "type": "interactive",
+    "contentUrl": "https://picsum.photos/800/600?random=4",
+    "contentType": "image",
+    "scoreChange": 7,
+    "tooltip": "Urban Architecture",
+    "viewed": false
+  },
+  {
+    "position": { "x": 3, "y": 3 },
+    "type": "interactive",
+    "contentUrl": "/src/game/content/markdown-features.md",
+    "contentType": "markdown",
+    "scoreChange": 12,
+    "tooltip": "Markdown Features Demo",
+    "viewed": false
+  },
+  {
+    "position": { "x": 4, "y": 3 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "contentType": "video",
+    "scoreChange": -15,
+    "tooltip": "ISIS Beheading Video",
+    "viewed": false
+  },
+  {
+    "position": { "x": 12, "y": 8 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/9bZkp7q19f0",
+    "contentType": "video",
+    "scoreChange": -10,
+    "tooltip": "Gangnam Style Dance",
+    "viewed": false
+  },
+  {
+    "position": { "x": 7, "y": 15 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/L_jWHffIx5E",
+    "contentType": "video",
+    "scoreChange": 12,
+    "tooltip": "Smash Mouth Classic",
+    "viewed": false
+  },
+  {
+    "position": { "x": 23, "y": 6 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/kffacxfA7G4",
+    "contentType": "video",
+    "scoreChange": -8,
+    "tooltip": "Baby Shark Dance",
+    "viewed": false
+  },
+  {
+    "position": { "x": 18, "y": 22 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/fJ9rUzIMcZQ",
+    "contentType": "video",
+    "scoreChange": 15,
+    "tooltip": "Bohemian Rhapsody",
+    "viewed": false
+  },
+  {
+    "position": { "x": 35, "y": 12 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/ZZ5LpwO-An4",
+    "contentType": "video",
+    "scoreChange": -12,
+    "tooltip": "HEYYEYAAEYAAAEYAEYAA",
+    "viewed": false
+  },
+  {
+    "position": { "x": 8, "y": 35 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/y6120QOlsfU",
+    "contentType": "video",
+    "scoreChange": 18,
+    "tooltip": "Darude Sandstorm",
+    "viewed": false
+  },
+  {
+    "position": { "x": 45, "y": 28 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/QH2-TGUlwu4",
+    "contentType": "video",
+    "scoreChange": -15,
+    "tooltip": "Nyan Cat",
+    "viewed": false
+  },
+  {
+    "position": { "x": 31, "y": 41 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/hFcLyDb6niA",
+    "contentType": "video",
+    "scoreChange": 8,
+    "tooltip": "Cat Vibing",
+    "viewed": false
+  },
+  {
+    "position": { "x": 52, "y": 18 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/MtN1YnoL46Q",
+    "contentType": "video",
+    "scoreChange": -20,
+    "tooltip": "Dramatic Chipmunk",
+    "viewed": false
+  },
+  {
+    "position": { "x": 14, "y": 48 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/djV11Xbc914",
+    "contentType": "video",
+    "scoreChange": 25,
+    "tooltip": "Take On Me",
+    "viewed": false
+  },
+  {
+    "position": { "x": 38, "y": 55 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/EwTZ2xpQwpA",
+    "contentType": "video",
+    "scoreChange": -7,
+    "tooltip": "Rickroll Remix",
+    "viewed": false
+  },
+  {
+    "position": { "x": 25, "y": 33 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/Sagg08DrO5U",
+    "contentType": "video",
+    "scoreChange": 10,
+    "tooltip": "Shooting Stars",
+    "viewed": false
+  },
+  {
+    "position": { "x": 58, "y": 42 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/dGeEuyG_DIc",
+    "contentType": "video",
+    "scoreChange": -18,
+    "tooltip": "Doge Meme Song",
+    "viewed": false
+  },
+  {
+    "position": { "x": 11, "y": 59 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/mxzgwJ8tSE0",
+    "contentType": "video",
+    "scoreChange": 22,
+    "tooltip": "Caramelldansen",
+    "viewed": false
+  },
+  {
+    "position": { "x": 42, "y": 8 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/BROWqjuTM0g",
+    "contentType": "video",
+    "scoreChange": -13,
+    "tooltip": "Chocolate Rain",
+    "viewed": false
+  },
+  {
+    "position": { "x": 29, "y": 62 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/wbby9coDRCk",
+    "contentType": "video",
+    "scoreChange": 16,
+    "tooltip": "Numa Numa",
+    "viewed": false
+  },
+  {
+    "position": { "x": 61, "y": 25 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/iq_d8VSM0nw",
+    "contentType": "video",
+    "scoreChange": -9,
+    "tooltip": "Badger Badger",
+    "viewed": false
+  },
+  {
+    "position": { "x": 16, "y": 11 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/NL6CDFn2i3I",
+    "contentType": "video",
+    "scoreChange": 14,
+    "tooltip": "What What In The Butt",
+    "viewed": false
+  },
+  {
+    "position": { "x": 48, "y": 51 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/NHO84rOp8FQ",
+    "contentType": "video",
+    "scoreChange": -11,
+    "tooltip": "Double Rainbow",
+    "viewed": false
+  },
+  {
+    "position": { "x": 21, "y": 37 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/lAIGb1lfpBw",
+    "contentType": "video",
+    "scoreChange": 9,
+    "tooltip": "Leonard Nimoy Bilbo",
+    "viewed": false
+  },
+  {
+    "position": { "x": 55, "y": 14 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/eh7lp9umG2I",
+    "contentType": "video",
+    "scoreChange": -16,
+    "tooltip": "Keyboard Cat",
+    "viewed": false
+  },
+  {
+    "position": { "x": 33, "y": 19 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/Yb6dZ1IFlKc",
+    "contentType": "video",
+    "scoreChange": 13,
+    "tooltip": "All Your Base",
+    "viewed": false
+  },
+  {
+    "position": { "x": 5, "y": 44 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/0tdyU_gW6WE",
+    "contentType": "video",
+    "scoreChange": -14,
+    "tooltip": "Dancing Baby",
+    "viewed": false
+  },
+  {
+    "position": { "x": 49, "y": 36 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/KmtzQCSh6xk",
+    "contentType": "video",
+    "scoreChange": 11,
+    "tooltip": "Leek Spin",
+    "viewed": false
+  },
+  {
+    "position": { "x": 27, "y": 9 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/cU8HrO7XuiE",
+    "contentType": "video",
+    "scoreChange": -6,
+    "tooltip": "Charlie Bit My Finger",
+    "viewed": false
+  },
+  {
+    "position": { "x": 40, "y": 47 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/oAhvQoLpvsM",
+    "contentType": "video",
+    "scoreChange": 19,
+    "tooltip": "Trololo Song",
+    "viewed": false
+  },
+  {
+    "position": { "x": 9, "y": 26 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/jScuYd3_xdQ",
+    "contentType": "video",
+    "scoreChange": -17,
+    "tooltip": "Llama Song",
+    "viewed": false
+  },
+  {
+    "position": { "x": 63, "y": 52 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/llyiQ4I-mcQ",
+    "contentType": "video",
+    "scoreChange": 21,
+    "tooltip": "Hamster Dance",
+    "viewed": false
+  },
+  {
+    "position": { "x": 36, "y": 4 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/rLHU-_OhT8g",
+    "contentType": "video",
+    "scoreChange": -22,
+    "tooltip": "Epic Sax Guy",
+    "viewed": false
+  }
+]

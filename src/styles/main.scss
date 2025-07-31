@@ -8,6 +8,9 @@
   font-style: normal;
 }
 
+// Import game styles
+@import 'game';
+
 $gradient: linear-gradient(to right, #ff8888, #ff9966, #ffaa44, #ffbb22, #ffcc00, #ddcc22, #bbcc44, #99cc66, #77cc88, #55ccaa, #33cccc, #44aacc, #5588cc, #6666cc, #7744cc, #8822cc, #9900cc, #aa2299, #bb4477, #cc6655);
 
 
@@ -774,7 +777,7 @@ blockquote {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1000;
+  z-index: 10001;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -936,3 +939,32 @@ blockquote {
     }
   }
 }
+
+// Game Controls
+.game-controls {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.game__control-btn {
+  background: transparent;
+  border: 2px solid #33cccc;
+  color: #33cccc;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+  font-family: 'more', 'Courier New', monospace;
+  
+  &:hover {
+    background: #33cccc;
+    color: #000000;
+  }
+  
+  &:focus {
+    outline: 2px solid #33cccc;
+    outline-offset: 2px;
+  }
+}
+
+
