@@ -43,9 +43,6 @@ class AlbumPlayer {
     }
     
     const track = this.tracks[index];
-    
-    // Generate multiple format URLs from the base URL
-    // Priority order: webm, aac, mp3
     const baseUrl = track.url.replace('/mp3/', '');
     const formats = [
       `/webm/${baseUrl}.webm`,
@@ -101,28 +98,20 @@ class AlbumPlayer {
   
   nextTrack() {
     this.pauseAllVideos();
-    if (this.currentTrack < 0) {
-      this.currentTrack = 0;
-    } else {
-      this.currentTrack = (this.currentTrack + 1) % this.tracks.length;
-    }
+    this.currentTrack = this.currentTrack < 0 
+      ? 0 
+      : (this.currentTrack + 1) % this.tracks.length;
     this.loadTrack(this.currentTrack);
-    if (this.isPlaying) {
-      this.play();
-    }
+    if (this.isPlaying) this.play();
   }
   
   prevTrack() {
     this.pauseAllVideos();
-    if (this.currentTrack < 0) {
-      this.currentTrack = this.tracks.length - 1;
-    } else {
-      this.currentTrack = (this.currentTrack - 1 + this.tracks.length) % this.tracks.length;
-    }
+    this.currentTrack = this.currentTrack < 0 
+      ? this.tracks.length - 1 
+      : (this.currentTrack - 1 + this.tracks.length) % this.tracks.length;
     this.loadTrack(this.currentTrack);
-    if (this.isPlaying) {
-      this.play();
-    }
+    if (this.isPlaying) this.play();
   }
   
   selectTrack(index) {
@@ -133,14 +122,10 @@ class AlbumPlayer {
   }
   
   showDownloadOptions() {
-    if (this.isPlaying) {
-      this.pause();
-    }
-    
+    if (this.isPlaying) this.pause();
     this.showDefaultLyrics();
     
-    const lyricsContainer = document.getElementById('lyricsContainer');
-    lyricsContainer?.scrollIntoView({ 
+    document.getElementById('lyricsContainer')?.scrollIntoView({ 
       behavior: 'smooth', 
       block: 'start' 
     });
@@ -194,21 +179,13 @@ class AlbumPlayer {
   }
   
   updateButtonStates() {
-    if (this.currentTrack < 0) {
-      this.prevButton.classList.add('disabled');
-      this.nextButton.classList.add('disabled');
-    } else {
-      this.prevButton.classList.remove('disabled');
-      this.nextButton.classList.remove('disabled');
-    }
+    const disabled = this.currentTrack < 0;
+    this.prevButton.classList.toggle('disabled', disabled);
+    this.nextButton.classList.toggle('disabled', disabled);
   }
   
   updatePlayButtonAnimation() {
-    if (this.isPlaying) {
-      this.playButton.classList.remove('animate');
-    } else {
-      this.playButton.classList.add('animate');
-    }
+    this.playButton.classList.toggle('animate', !this.isPlaying);
   }
   
   updateLyrics() {
@@ -364,11 +341,7 @@ class AccessibilityMode {
   }
   
   toggle() {
-    if (this.isEnabled) {
-      this.disable();
-    } else {
-      this.enable();
-    }
+    this.isEnabled ? this.disable() : this.enable();
   }
   
   updateButtonText() {
@@ -379,12 +352,11 @@ class AccessibilityMode {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	const albumData = window.albumData;
-	if (albumData?.tracks) {
-		new AlbumPlayer(albumData.tracks, albumData);
-	}
-	
-	// Create MediaModal and make it globally accessible for the game
-	window.mediaModal = new MediaModal();
-	new AccessibilityMode();
+  const albumData = window.albumData;
+  if (albumData?.tracks) {
+    new AlbumPlayer(albumData.tracks, albumData);
+  }
+  
+  window.mediaModal = new MediaModal();
+  new AccessibilityMode();
 });

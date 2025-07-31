@@ -8,7 +8,6 @@
   font-style: normal;
 }
 
-// Import game styles
 @import 'game';
 
 $gradient: linear-gradient(to right, #ff8888, #ff9966, #ffaa44, #ffbb22, #ffcc00, #ddcc22, #bbcc44, #99cc66, #77cc88, #55ccaa, #33cccc, #44aacc, #5588cc, #6666cc, #7744cc, #8822cc, #9900cc, #aa2299, #bb4477, #cc6655);
@@ -171,43 +170,40 @@ blockquote {
     line-height: 1rem;
     margin-bottom: 1em;
   
-    span:nth-child(1) { color: #ff8888; } // F - red
-    span:nth-child(2) { color: #ff9966; } // o - red-orange
-    span:nth-child(3) { color: #ffaa44; } // r - orange
-    span:nth-child(4) { color: #ffbb22; } // m - orange-yellow
-    span:nth-child(5) { color: #ffcc00; } // e - yellow
-    span:nth-child(6) { color: #ddcc22; } // r - yellow-green
-    span:nth-child(7) { color: #ffffff; } // space - white
-    span:nth-child(8) { color: #bbcc44; } // T - yellow-green
-    span:nth-child(9) { color: #99cc66; } // e - green-yellow
-    span:nth-child(10) { color: #77cc88; } // e - green
-    span:nth-child(11) { color: #55ccaa; } // n - green-cyan
-    span:nth-child(12) { color: #33cccc; } // a - cyan
-    span:nth-child(13) { color: #44aacc; } // g - cyan-blue
-    span:nth-child(14) { color: #5588cc; } // e - blue
-    span:nth-child(15) { color: #ffffff; } // space - white
-    span:nth-child(16) { color: #6666cc; } // B - blue-purple
-    span:nth-child(17) { color: #7744cc; } // i - purple
-    span:nth-child(18) { color: #8822cc; } // g - purple-magenta
-    span:nth-child(19) { color: #ffffff; } // space - white
-    span:nth-child(20) { color: #9900cc; } // D - magenta
-    span:nth-child(21) { color: #aa2299; } // e - magenta-red
-    span:nth-child(22) { color: #bb4477; } // a - red-magenta
-    span:nth-child(23) { color: #cc6655; } // l - red
+    span:nth-child(1) { color: #ff8888; }
+    span:nth-child(2) { color: #ff9966; }
+    span:nth-child(3) { color: #ffaa44; }
+    span:nth-child(4) { color: #ffbb22; }
+    span:nth-child(5) { color: #ffcc00; }
+    span:nth-child(6) { color: #ddcc22; }
+    span:nth-child(7) { color: #ffffff; }
+    span:nth-child(8) { color: #bbcc44; }
+    span:nth-child(9) { color: #99cc66; }
+    span:nth-child(10) { color: #77cc88; }
+    span:nth-child(11) { color: #55ccaa; }
+    span:nth-child(12) { color: #33cccc; }
+    span:nth-child(13) { color: #44aacc; }
+    span:nth-child(14) { color: #5588cc; }
+    span:nth-child(15) { color: #ffffff; }
+    span:nth-child(16) { color: #6666cc; }
+    span:nth-child(17) { color: #7744cc; }
+    span:nth-child(18) { color: #8822cc; }
+    span:nth-child(19) { color: #ffffff; }
+    span:nth-child(20) { color: #9900cc; }
+    span:nth-child(21) { color: #aa2299; }
+    span:nth-child(22) { color: #bb4477; }
+    span:nth-child(23) { color: #cc6655; }
 
     span {
       animation: colorCycle 4s infinite linear;
     }
 
-    // F-o-r-m-e-r (positions 1-6)
     span:nth-child(1) { animation-delay: 0s; }
     span:nth-child(2) { animation-delay: 0.1s; }
     span:nth-child(3) { animation-delay: 0.2s; }
     span:nth-child(4) { animation-delay: 0.3s; }
     span:nth-child(5) { animation-delay: 0.4s; }
     span:nth-child(6) { animation-delay: 0.5s; }
-    // Skip space at position 7
-    // T-e-e-n-a-g-e (positions 8-14)
     span:nth-child(8) { animation-delay: 0.6s; }
     span:nth-child(9) { animation-delay: 0.7s; }
     span:nth-child(10) { animation-delay: 0.8s; }
@@ -215,19 +211,14 @@ blockquote {
     span:nth-child(12) { animation-delay: 1.0s; }
     span:nth-child(13) { animation-delay: 1.1s; }
     span:nth-child(14) { animation-delay: 1.2s; }
-    // Skip space at position 15
-    // B-i-g (positions 16-18)
     span:nth-child(16) { animation-delay: 1.3s; }
     span:nth-child(17) { animation-delay: 1.4s; }
     span:nth-child(18) { animation-delay: 1.5s; }
-    // Skip space at position 19
-    // D-e-a-l (positions 20-23)
     span:nth-child(20) { animation-delay: 1.6s; }
     span:nth-child(21) { animation-delay: 1.7s; }
     span:nth-child(22) { animation-delay: 1.8s; }
     span:nth-child(23) { animation-delay: 1.9s; }
 
-    // Keep spaces white and don't animate them
     span:nth-child(7),
     span:nth-child(15),
     span:nth-child(19) {
@@ -475,7 +466,6 @@ blockquote {
     margin-right: 5px;
     font-size: 0.9rem;
     
-    // Dynamic track colors based on data attribute
     &[data-track-color="#ff8888"] { color: #ff8888; }
     &[data-track-color="#ff9966"] { color: #ff9966; }
     &[data-track-color="#ffaa44"] { color: #ffaa44; }
@@ -638,7 +628,6 @@ blockquote {
         outline-offset: 2px;
       }
       
-      // External link icon for links that open in new window/tab (but not YouTube links)
       &[target="_blank"]:not([href*="youtube.com"]):not([href*="youtu.be"]):not([class*="modal-trigger"]):not([href*="/images/"])::after {
         content: "";
         display: inline-block;
@@ -759,21 +748,21 @@ blockquote {
 }
 
 @keyframes colorCycle {
-  0% { color: #ff0000; }    // Red
-  7.14% { color: #ff4000; } // Red-Orange
-  14.29% { color: #ff8000; } // Orange
-  21.43% { color: #ffbf00; } // Orange-Yellow
-  28.57% { color: #ffff00; } // Yellow
-  35.71% { color: #bfff00; } // Yellow-Green
-  42.86% { color: #80ff00; } // Green-Yellow
-  50% { color: #40ff00; }   // Green
-  57.14% { color: #00ff00; } // Pure Green
-  64.29% { color: #00ff80; } // Green-Cyan
-  71.43% { color: #00ffff; } // Cyan
-  78.57% { color: #0080ff; } // Cyan-Blue
-  85.71% { color: #0040ff; } // Blue
-  92.86% { color: #8000ff; } // Blue-Purple
-  100% { color: #ff0000; }  // Back to Red
+  0% { color: #ff0000; }
+  7.14% { color: #ff4000; }
+  14.29% { color: #ff8000; }
+  21.43% { color: #ffbf00; }
+  28.57% { color: #ffff00; }
+  35.71% { color: #bfff00; }
+  42.86% { color: #80ff00; }
+  50% { color: #40ff00; }
+  57.14% { color: #00ff00; }
+  64.29% { color: #00ff80; }
+  71.43% { color: #00ffff; }
+  78.57% { color: #0080ff; }
+  85.71% { color: #0040ff; }
+  92.86% { color: #8000ff; }
+  100% { color: #ff0000; }
 }
 
 .error {
@@ -962,7 +951,6 @@ blockquote {
   }
 }
 
-// Game Controls
 .game-controls {
   margin-top: 1rem;
   text-align: center;
@@ -989,7 +977,6 @@ blockquote {
   }
 }
 
-// Game Overlay
 #gameOverlay {
   position: fixed;
   top: 0;

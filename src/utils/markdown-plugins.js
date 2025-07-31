@@ -2,9 +2,7 @@ function isYouTubeUrl(url) {
   try {
     const urlObj = new URL(url);
     return urlObj.hostname.includes('youtube.com') || urlObj.hostname.includes('youtu.be');
-  } catch {
-    return false;
-  }
+  } catch { return false; }
 }
 
 function getYouTubeEmbedUrl(url) {
@@ -19,9 +17,7 @@ function getYouTubeEmbedUrl(url) {
     }
     
     return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1` : null;
-  } catch {
-    return null;
-  }
+  } catch { return null; }
 }
 
 export function youtubePlugin(md) {
@@ -40,9 +36,7 @@ export function youtubePlugin(md) {
     
     const url = state.src.slice(start + marker.length, end);
     
-    if (!isYouTubeUrl(url)) {
-      return false;
-    }
+    if (!isYouTubeUrl(url)) return false;
     
     if (!silent) {
       const token = state.push('youtube_embed', 'div', 0);
@@ -59,9 +53,7 @@ export function youtubePlugin(md) {
     const max = state.eMarks[start];
     const line = state.src.slice(pos, max).trim();
     
-    if (!isYouTubeUrl(line)) {
-      return false;
-    }
+    if (!isYouTubeUrl(line)) return false;
     
     const nextLine = start + 1;
     if (nextLine < end) {
@@ -69,9 +61,7 @@ export function youtubePlugin(md) {
       const nextMax = state.eMarks[nextLine];
       const nextLineContent = state.src.slice(nextPos, nextMax).trim();
       
-      if (nextLineContent && !isYouTubeUrl(nextLineContent)) {
-        return false;
-      }
+      if (nextLineContent && !isYouTubeUrl(nextLineContent)) return false;
     }
     
     if (!silent) {

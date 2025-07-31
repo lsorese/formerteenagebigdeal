@@ -69,35 +69,25 @@ class MediaModal {
             const url = new URL(src, window.location.href);
             return url.hostname === window.location.hostname && 
                    /\.(png|jpg|jpeg|gif|webp)$/i.test(url.pathname);
-        } catch {
-            return false;
-        }
+        } catch { return false; }
     }
 
     isYouTubeLink(href) {
         try {
             const url = new URL(href);
             return url.hostname.includes('youtube.com') || url.hostname.includes('youtu.be');
-        } catch {
-            return false;
-        }
+        } catch { return false; }
     }
 
     getYouTubeEmbedUrl(url) {
         try {
             const urlObj = new URL(url);
-            let videoId = '';
-            
-            if (urlObj.hostname.includes('youtu.be')) {
-                videoId = urlObj.pathname.slice(1);
-            } else if (urlObj.hostname.includes('youtube.com')) {
-                videoId = urlObj.searchParams.get('v');
-            }
+            let videoId = urlObj.hostname.includes('youtu.be') 
+                ? urlObj.pathname.slice(1)
+                : urlObj.searchParams.get('v');
             
             return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-        } catch {
-            return null;
-        }
+        } catch { return null; }
     }
 
     openImage(src, alt = 'Image') {
@@ -168,13 +158,9 @@ class MediaModal {
 
     async openText(url, title = 'Text') {
         try {
-            let content;
-            if (typeof url === 'string' && url.startsWith('http')) {
-                const response = await fetch(url);
-                content = await response.text();
-            } else {
-                content = url; // Direct text content
-            }
+            const content = (typeof url === 'string' && url.startsWith('http'))
+                ? await (await fetch(url)).text()
+                : url;
             
             this.modalContent.innerHTML = `
                 <div class="modal-text-content">
