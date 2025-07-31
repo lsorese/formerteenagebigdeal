@@ -612,6 +612,21 @@ blockquote {
         outline: 2px solid #fff;
         outline-offset: 2px;
       }
+      
+      // External link icon for links that open in new window/tab (but not YouTube links)
+      &[target="_blank"]:not([href*="youtube.com"]):not([href*="youtu.be"])::after {
+        content: "";
+        display: inline-block;
+        width: 0.8em;
+        height: 0.8em;
+        margin-left: 0.25em;
+        background-image: url('../images/external-link.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        vertical-align: middle;
+        opacity: 0.8;
+      }
     }
     
     hr {
