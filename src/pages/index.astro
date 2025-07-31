@@ -74,42 +74,7 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 			}))
 		})} />
 		<link rel="stylesheet" href="/css/styles.css">
-		<script is:inline>
-			// Smart preloading: detect browser support and preload only the best format
-			function preloadAudio() {
-				const audio = document.createElement('audio');
-				const tracks = window.albumData?.tracks || [];
-				
-				tracks.forEach(track => {
-					const baseUrl = track.url.replace('/mp3/', '');
-					let formatUrl;
-					
-					// Test format support in priority order
-					if (audio.canPlayType('audio/webm; codecs="vorbis"')) {
-						formatUrl = `/webm/${baseUrl}.webm`;
-					} else if (audio.canPlayType('audio/aac') || audio.canPlayType('audio/mp4')) {
-						formatUrl = `/aac/${baseUrl}.aac`;
-					} else {
-						formatUrl = `/mp3/${baseUrl}.mp3`;
-					}
-					
-					// Create preload link
-					const link = document.createElement('link');
-					link.rel = 'preload';
-					link.href = formatUrl;
-					link.as = 'audio';
-					link.crossOrigin = 'anonymous';
-					document.head.appendChild(link);
-				});
-			}
-			
-			// Preload after DOM is ready and albumData is available
-			if (document.readyState === 'loading') {
-				document.addEventListener('DOMContentLoaded', preloadAudio);
-			} else {
-				preloadAudio();
-			}
-		</script>
+		<script src="/src/js/audio-preloader.js" is:inline></script>
 		<script define:vars={{ albumData: { ...albumData, tracks: tracksWithLyrics } }}>
 			window.albumData = albumData;
 		</script>
@@ -161,7 +126,7 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 								<div class="track__info">
 									<div class="track__title">{track.title}</div>
 								</div>
-								<div class="track__duration" style={`color: ${track.color}`}>{track.duration}</div>
+								<div class="track__duration" data-track-color={track.color}>{track.duration}</div>
 							</div>
 						))}
 					</div>
@@ -202,98 +167,7 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 		</div>
 
 		<script src="/js/main.bundle.js" is:inline></script>
-		<script is:inline>
-			// Game integration logic
-			let gameLoaded = false;
-			let gameOverlay = null;
-			
-			document.addEventListener('DOMContentLoaded', function() {
-				const gameButton = document.getElementById('gameButton');
-				
-				gameButton.addEventListener('click', function() {
-					// Create full-screen game overlay if it doesn't exist
-					if (!gameOverlay) {
-						gameOverlay = document.createElement('div');
-						gameOverlay.id = 'gameOverlay';
-						gameOverlay.style.cssText = `
-							position: fixed;
-							top: 0;
-							left: 0;
-							width: 100vw;
-							height: 100vh;
-							height: 100dvh;
-							background: #000 url('/images/BackStarsAni.gif') repeat;
-							z-index: 9999;
-							display: flex;
-							flex-direction: column;
-						`;
-						
-						// Create close button
-						const closeButton = document.createElement('button');
-						closeButton.id = 'gameCloseButton';
-						closeButton.textContent = '×';
-						closeButton.style.cssText = `
-							position: absolute;
-							top: 20px;
-							right: 20px;
-							background: #fff;
-							border: 1px solid #000;
-							color: #000;
-							font-weight: bold;
-							width: 30px;
-							height: 30px;
-							cursor: pointer;
-							z-index: 10000;
-							display: block;
-							line-height: 29px;
-							text-align: center;
-						`;
-						
-						closeButton.addEventListener('mouseenter', function() {
-							this.style.backgroundColor = '#f0f0f0';
-						});
-						
-						closeButton.addEventListener('mouseleave', function() {
-							this.style.backgroundColor = '#fff';
-						});
-						
-						closeButton.addEventListener('click', function() {
-							gameOverlay.style.display = 'none';
-							// Restore page scroll
-							document.body.style.overflow = '';
-						});
-						
-						// Create canvas
-						const canvas = document.createElement('canvas');
-						canvas.id = 'game-canvas';
-						canvas.style.cssText = `
-							width: 100%;
-							height: 100%;
-							display: block;
-						`;
-						
-						gameOverlay.appendChild(closeButton);
-						gameOverlay.appendChild(canvas);
-						document.body.appendChild(gameOverlay);
-					}
-					
-					// Show game overlay
-					gameOverlay.style.display = 'flex';
-					// Lock page scroll
-					document.body.style.overflow = 'hidden';
-					
-					// Load game script if not already loaded
-					if (!gameLoaded) {
-						const gameScript = document.createElement('script');
-						gameScript.src = '/js/game.bundle.js';
-						gameScript.onload = function() {
-							gameLoaded = true;
-						};
-						document.head.appendChild(gameScript);
-					}
-				});
-			});
-		</script>
+		<script src="/src/js/game-integration.js" is:inline></script>
 		<Analytics />
 	</body>
 </html>

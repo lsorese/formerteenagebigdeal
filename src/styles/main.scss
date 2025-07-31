@@ -474,6 +474,28 @@ blockquote {
     color: #33cccc;
     margin-right: 5px;
     font-size: 0.9rem;
+    
+    // Dynamic track colors based on data attribute
+    &[data-track-color="#ff8888"] { color: #ff8888; }
+    &[data-track-color="#ff9966"] { color: #ff9966; }
+    &[data-track-color="#ffaa44"] { color: #ffaa44; }
+    &[data-track-color="#ffbb22"] { color: #ffbb22; }
+    &[data-track-color="#ffcc00"] { color: #ffcc00; }
+    &[data-track-color="#ddcc22"] { color: #ddcc22; }
+    &[data-track-color="#bbcc44"] { color: #bbcc44; }
+    &[data-track-color="#99cc66"] { color: #99cc66; }
+    &[data-track-color="#77cc88"] { color: #77cc88; }
+    &[data-track-color="#55ccaa"] { color: #55ccaa; }
+    &[data-track-color="#33cccc"] { color: #33cccc; }
+    &[data-track-color="#44aacc"] { color: #44aacc; }
+    &[data-track-color="#5588cc"] { color: #5588cc; }
+    &[data-track-color="#6666cc"] { color: #6666cc; }
+    &[data-track-color="#7744cc"] { color: #7744cc; }
+    &[data-track-color="#8822cc"] { color: #8822cc; }
+    &[data-track-color="#9900cc"] { color: #9900cc; }
+    &[data-track-color="#aa2299"] { color: #aa2299; }
+    &[data-track-color="#bb4477"] { color: #bb4477; }
+    &[data-track-color="#cc6655"] { color: #cc6655; }
   }
   
   @media (max-width: 480px) {
@@ -965,6 +987,51 @@ blockquote {
     outline: 2px solid #33cccc;
     outline-offset: 2px;
   }
+}
+
+// Game Overlay
+#gameOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: transparent;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#gameCloseButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 10000;
+  display: block;
+  line-height: 29px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background-color: rgba(240, 240, 240, 0.9);
+  }
+}
+
+#game-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: transparent;
 }
 
 

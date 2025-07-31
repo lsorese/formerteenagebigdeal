@@ -53,6 +53,9 @@ class RPGGame {
     this.canvas = document.getElementById('game-canvas') as HTMLCanvasElement;
     this.ctx = this.canvas.getContext('2d')!;
     
+    // Lock page scrolling when game is active
+    this.lockPageScroll();
+    
     // Get reference to the existing MediaModal instance with fallback
     this.mediaModal = (window as any).mediaModal;
     
@@ -69,6 +72,7 @@ class RPGGame {
       this.setupEventListeners();
       this.setupMobileControls();
       this.setupCoordinatesDisplay();
+      this.setupCleanupHandlers();
       this.gameLoop();
     });
   }
@@ -85,15 +89,41 @@ class RPGGame {
     checkForModal();
   }
 
+  private lockPageScroll(): void {
+    // Prevent scrolling on the body element
+    document.body.style.overflow = 'hidden';
+    // Also prevent scrolling on the html element for better browser compatibility
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  private unlockPageScroll(): void {
+    // Restore scrolling
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  }
+
+  private setupCleanupHandlers(): void {
+    // Unlock scroll when page is about to unload
+    window.addEventListener('beforeunload', () => {
+      this.unlockPageScroll();
+    });
+
+    // Also unlock scroll on visibility change (when tab becomes hidden)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        this.unlockPageScroll();
+      } else {
+        this.lockPageScroll();
+      }
+    });
+  }
+
   private setupCanvas(): void {
     // Set canvas to full viewport size
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
     
-    // Set canvas style to fill the container completely
-    this.canvas.style.width = '100%';
-    this.canvas.style.height = '100%';
-    this.canvas.style.display = 'block';
+    // Canvas styles are now handled by CSS
     
     window.addEventListener('resize', () => {
       this.canvas.width = window.innerWidth;
@@ -202,33 +232,28 @@ class RPGGame {
     buttons.forEach(button => {
       const direction = button.getAttribute('data-direction');
       
-      // Add visited class on first interaction
-      const markAsVisited = () => {
-        if (!button.classList.contains('visited')) {
-          button.classList.add('visited');
-        }
+      // Brief flash effect on interaction
+      const flashButton = () => {
+        button.classList.add('pressed');
+        setTimeout(() => {
+          button.classList.remove('pressed');
+        }, 150);
       };
-      
-      button.addEventListener('mouseenter', () => {
-        markAsVisited();
-      });
       
       button.addEventListener('touchstart', (e) => {
         e.preventDefault();
-        markAsVisited();
         this.handleMobileInput(direction!);
-        button.classList.add('pressed');
+        flashButton();
       });
       
       button.addEventListener('touchend', (e) => {
         e.preventDefault();
-        button.classList.remove('pressed');
       });
       
       button.addEventListener('click', (e) => {
         e.preventDefault();
-        markAsVisited();
         this.handleMobileInput(direction!);
+        flashButton();
       });
     });
   }
@@ -260,6 +285,7 @@ class RPGGame {
 
   private triggerGameOver(): void {
     this.gameOver = true;
+    this.unlockPageScroll();
     this.showGameOverScreen();
   }
 
@@ -696,33 +722,11 @@ class RPGGame {
   }
 
   private drawStarfield(): void {
-    // Clear canvas with black background first
-    this.ctx.fillStyle = '#000000';
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    // Clear canvas with transparent background
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     
-    // Draw animated stars
-    this.ctx.fillStyle = '#ffffff';
-    const starCount = 200;
-    const time = this.animationTime * 0.001; // Slow animation
-    
-    for (let i = 0; i < starCount; i++) {
-      // Use deterministic positions based on index for consistent star field
-      const baseX = (i * 37) % this.canvas.width;
-      const baseY = (i * 73) % this.canvas.height;
-      
-      // Add slight movement/twinkling
-      const offsetX = Math.sin(time * 0.5 + i * 0.1) * 2;
-      const offsetY = Math.cos(time * 0.3 + i * 0.15) * 1;
-      const twinkle = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(time * 2 + i * 0.2));
-      
-      this.ctx.globalAlpha = twinkle;
-      
-      // Vary star sizes
-      const size = i % 3 === 0 ? 2 : 1;
-      this.ctx.fillRect(baseX + offsetX, baseY + offsetY, size, size);
-    }
-    
-    this.ctx.globalAlpha = 1; // Reset alpha
+    // Don't draw the starfield - let the body background show through
+    // The game now has a transparent background
   }
 
   private draw(): void {
