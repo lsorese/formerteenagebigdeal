@@ -22,9 +22,10 @@
 
   .dpad {
     display: grid;
-    grid-template-columns: 70px 70px 70px; // 10% larger buttons
-    grid-template-rows: 70px 70px 70px;
+    grid-template-columns: 59.5px 59.5px 59.5px; // 15% smaller buttons
+    grid-template-rows: 59.5px 59.5px 59.5px;
     gap: 8px; // Slightly larger gaps
+    transform: rotate(45deg);
   }
 
   .control-btn {
@@ -32,7 +33,7 @@
     border: 3px solid #666; // Thicker border
     color: #ffffff;
     font-family: 'more', 'Courier Prime', 'Courier New', monospace;
-    font-size: 24px; // Larger font
+    font-size: 26.4px; // 10% larger font
     cursor: pointer;
     transition: all 0.2s ease;
     font-weight: bold;
@@ -57,6 +58,18 @@
       color: #000000;
       transform: scale(0.95);
       border-color: #33cccc;
+    }
+
+    &.visited {
+      background: #ffffff;
+      color: #000000;
+      border-color: #666;
+      
+      &:hover {
+        background: #f0f0f0;
+        color: #000000;
+        border-color: #33cccc;
+      }
     }
   }
 }
@@ -158,13 +171,13 @@
     padding: 12px;
 
     .dpad {
-      grid-template-columns: 65px 65px 65px; // Slightly smaller for tablets
-      grid-template-rows: 65px 65px 65px;
+      grid-template-columns: 55.25px 55.25px 55.25px; // 15% smaller for tablets
+      grid-template-rows: 55.25px 55.25px 55.25px;
       gap: 6px;
     }
 
     .control-btn {
-      font-size: 22px;
+      font-size: 24.2px; // 10% larger
     }
   }
 
@@ -184,17 +197,17 @@
 
 @media (max-width: 480px) {
   #mobile-controls {
-    bottom: 10vh; // More space from bottom on phones
+    bottom: 5vh; // More space from bottom on phones
     padding: 10px;
 
     .dpad {
-      grid-template-columns: 60px 60px 60px; // Smaller for phones
-      grid-template-rows: 60px 60px 60px;
+      grid-template-columns: 51px 51px 51px; // 15% smaller for phones
+      grid-template-rows: 51px 51px 51px;
       gap: 5px;
     }
 
     .control-btn {
-      font-size: 20px;
+      font-size: 22px; // 10% larger
       border-radius: 6px;
     }
   }
@@ -216,13 +229,13 @@
     padding: 8px;
     
     .dpad {
-      grid-template-columns: 55px 55px 55px; // Smaller in landscape
-      grid-template-rows: 55px 55px 55px;
+      grid-template-columns: 46.75px 46.75px 46.75px; // 15% smaller in landscape
+      grid-template-rows: 46.75px 46.75px 46.75px;
       gap: 4px;
     }
 
     .control-btn {
-      font-size: 18px;
+      font-size: 19.8px; // 10% larger
     }
   }
 }

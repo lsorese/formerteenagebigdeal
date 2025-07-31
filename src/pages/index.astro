@@ -221,7 +221,8 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 							left: 0;
 							width: 100vw;
 							height: 100vh;
-							background-color: #2c3e50;
+							height: 100dvh;
+							background: #000 url('/images/BackStarsAni.gif') repeat;
 							z-index: 9999;
 							display: flex;
 							flex-direction: column;
@@ -230,38 +231,36 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 						// Create close button
 						const closeButton = document.createElement('button');
 						closeButton.id = 'gameCloseButton';
-						closeButton.textContent = '✕';
+						closeButton.textContent = '×';
 						closeButton.style.cssText = `
 							position: absolute;
 							top: 20px;
 							right: 20px;
-							background: rgba(0, 0, 0, 0.8);
-							border: 2px solid #ff6b6b;
-							color: #ff6b6b;
-							width: 50px;
-							height: 50px;
-							border-radius: 50%;
-							font-size: 24px;
+							background: #fff;
+							border: 1px solid #000;
+							color: #000;
+							font-weight: bold;
+							width: 30px;
+							height: 30px;
 							cursor: pointer;
 							z-index: 10000;
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							transition: all 0.3s ease;
+							display: block;
+							line-height: 29px;
+							text-align: center;
 						`;
 						
 						closeButton.addEventListener('mouseenter', function() {
-							this.style.backgroundColor = '#ff6b6b';
-							this.style.color = 'white';
+							this.style.backgroundColor = '#f0f0f0';
 						});
 						
 						closeButton.addEventListener('mouseleave', function() {
-							this.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-							this.style.color = '#ff6b6b';
+							this.style.backgroundColor = '#fff';
 						});
 						
 						closeButton.addEventListener('click', function() {
 							gameOverlay.style.display = 'none';
+							// Restore page scroll
+							document.body.style.overflow = '';
 						});
 						
 						// Create canvas
@@ -280,6 +279,8 @@ const defaultLyricsHtml = await loadDefaultLyrics();
 					
 					// Show game overlay
 					gameOverlay.style.display = 'flex';
+					// Lock page scroll
+					document.body.style.overflow = 'hidden';
 					
 					// Load game script if not already loaded
 					if (!gameLoaded) {

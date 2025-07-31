@@ -202,8 +202,20 @@ class RPGGame {
     buttons.forEach(button => {
       const direction = button.getAttribute('data-direction');
       
+      // Add visited class on first interaction
+      const markAsVisited = () => {
+        if (!button.classList.contains('visited')) {
+          button.classList.add('visited');
+        }
+      };
+      
+      button.addEventListener('mouseenter', () => {
+        markAsVisited();
+      });
+      
       button.addEventListener('touchstart', (e) => {
         e.preventDefault();
+        markAsVisited();
         this.handleMobileInput(direction!);
         button.classList.add('pressed');
       });
@@ -215,6 +227,7 @@ class RPGGame {
       
       button.addEventListener('click', (e) => {
         e.preventDefault();
+        markAsVisited();
         this.handleMobileInput(direction!);
       });
     });
@@ -816,3 +829,85 @@ if (document.readyState === 'loading') {
   // DOM is already loaded, initialize immediately
   new RPGGame();
 }
+
+// {
+//   "position": { "x": 1, "y": 1 },
+//   "type": "interactive",
+//   "contentUrl": "https://picsum.photos/800/600?random=1",
+//   "contentType": "image",
+//   "scoreChange": 5,
+//   "tooltip": "Random Nature Photo",
+//   "viewed": false
+// },
+// {
+//   "position": { "x": 2, "y": 1 },
+//   "type": "interactive",
+//   "contentUrl": "https://picsum.photos/800/600?random=2",
+//   "contentType": "image",
+//   "scoreChange": -3,
+//   "tooltip": "Abstract Art",
+//   "viewed": false
+// },
+// {
+//   "position": { "x": 3, "y": 1 },
+//   "type": "interactive",
+//   "contentUrl": "/src/game/content/sample-guide.md",
+//   "contentType": "markdown",
+//   "scoreChange": 8,
+//   "tooltip": "Game Development Guide",
+//   "viewed": false
+// },
+// {
+//   "position": { "x": 1, "y": 2 },
+//   "type": "interactive",
+//   "contentUrl": "https://raw.githubusercontent.com/torvalds/linux/master/README",
+//   "contentType": "text",
+//   "scoreChange": 12,
+//   "tooltip": "Linux Kernel README",
+//   "viewed": false
+// },
+// {
+//   "position": { "x": 2, "y": 2 },
+//   "type": "interactive",
+//   "contentUrl": "https://picsum.photos/800/600?random=3",
+//   "contentType": "image",
+//   "scoreChange": -2,
+//   "tooltip": "Landscape Photo",
+//   "viewed": false
+// },
+// {
+//   "position": { "x": 3, "y": 2 },
+//   "type": "interactive",
+//   "contentUrl": "/src/game/content/tech-overview.md",
+//   "contentType": "markdown",
+//   "scoreChange": 10,
+//   "tooltip": "Technical Overview",
+//   "viewed": false
+// },
+// {
+//   "position": { "x": 1, "y": 3 },
+//   "type": "interactive",
+//   "contentUrl": "https://www.gutenberg.org/files/74/74-0.txt",
+//   "contentType": "text",
+//   "scoreChange": 15,
+//   "tooltip": "Adventures of Tom Sawyer",
+//   "viewed": false
+// },
+// {
+//   "position": { "x": 2, "y": 3 },
+//   "type": "interactive",
+//   "contentUrl": "https://picsum.photos/800/600?random=4",
+//   "contentType": "image",
+//   "scoreChange": 7,
+//   "tooltip": "Urban Architecture",
+//   "viewed": false
+// },
+// {
+//   "position": { "x": 3, "y": 3 },
+//   "type": "interactive",
+//   "contentUrl": "/src/game/content/markdown-features.md",
+//   "contentType": "markdown",
+//   "scoreChange": 12,
+//   "tooltip": "Markdown Features Demo",
+//   "viewed": false
+// },
