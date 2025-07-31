@@ -614,7 +614,7 @@ blockquote {
       }
       
       // External link icon for links that open in new window/tab (but not YouTube links)
-      &[target="_blank"]:not([href*="youtube.com"]):not([href*="youtu.be"])::after {
+      &[target="_blank"]:not([href*="youtube.com"]):not([href*="youtu.be"]):not([class*="modal-trigger"]):not([href*="/images/"])::after {
         content: "";
         display: inline-block;
         width: 0.8em;

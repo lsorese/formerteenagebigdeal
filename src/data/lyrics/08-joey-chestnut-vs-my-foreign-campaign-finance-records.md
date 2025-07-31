@@ -8,7 +8,7 @@ and punch Joey Chestnut, the reigning champion in his stomach.
 Hotdog chunks, once nestled in his gorged tummy will erupt like shrapnel from a wound.
 Spraying the audience with viscera, the ensuing chaos will be the birth of new era.
 Nations will crumble under the weigh of this spectacle.
-The streets will once again be filled with the laughter of childre
+The streets will once again be filled with the laughter of children
 as they join youth leagues by the thousands seeking to emulate the man who dared to dream.
 
 And at the heart of it all, 
