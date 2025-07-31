@@ -48,6 +48,16 @@ module.exports = {
           noErrorOnMissing: true
         },
         {
+          from: 'src/webm',
+          to: 'webm',
+          noErrorOnMissing: true
+        },
+        {
+          from: 'src/aac',
+          to: 'aac',
+          noErrorOnMissing: true
+        },
+        {
           from: 'src/js',
           to: 'js',
           noErrorOnMissing: true,

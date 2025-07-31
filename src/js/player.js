@@ -43,8 +43,18 @@ class AlbumPlayer {
     }
     
     const track = this.tracks[index];
+    
+    // Generate multiple format URLs from the base URL
+    // Priority order: webm, aac, mp3
+    const baseUrl = track.url.replace('/mp3/', '');
+    const formats = [
+      `/webm/${baseUrl}.webm`,
+      `/aac/${baseUrl}.aac`,
+      `/mp3/${baseUrl}.mp3`
+    ];
+    
     this.sound = new Howl({
-      src: [track.url],
+      src: formats,
       html5: true,
       volume: this.volume,
       onend: () => this.nextTrack()
