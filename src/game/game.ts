@@ -42,6 +42,8 @@ class RPGGame {
   private gameOver: boolean = false;
   private gameOverOverlay: HTMLDivElement | null = null;
   private animationTime: number = 0;
+  private currentBackgroundX: number = 0;
+  private currentBackgroundY: number = 0;
   private rainbowColors: string[] = [
     '#ff8888', '#ff9966', '#ffaa44', '#ffbb22', '#ffcc00', '#ddcc22', 
     '#bbcc44', '#99cc66', '#77cc88', '#55ccaa', '#33cccc', '#44aacc', 
@@ -408,6 +410,27 @@ class RPGGame {
     const playerIso = this.worldToIsometric(this.player.position);
     this.camera.x = playerIso.x;
     this.camera.y = playerIso.y;
+    
+    // Update background position for parallax effect
+    this.updateBackgroundPosition();
+  }
+
+  private updateBackgroundPosition(): void {
+    const gameOverlay = document.getElementById('gameOverlay');
+    if (gameOverlay) {
+      // Calculate target parallax offset based on player position
+      // Use an even smaller multiplier for very subtle effect
+      const targetX = this.player.position.x * 0.05;
+      const targetY = this.player.position.y * 0.05;
+      
+      // Smoothly interpolate towards target position
+      const lerpFactor = 0.1; // Lower = smoother/slower, higher = more responsive
+      this.currentBackgroundX += (targetX - this.currentBackgroundX) * lerpFactor;
+      this.currentBackgroundY += (targetY - this.currentBackgroundY) * lerpFactor;
+      
+      // Update background position with smooth interpolated values
+      gameOverlay.style.backgroundPosition = `${-this.currentBackgroundX}px ${-this.currentBackgroundY}px`;
+    }
   }
 
   private checkCollisions(): void {
@@ -845,6 +868,9 @@ class RPGGame {
   private gameLoop(): void {
     // Update animation time
     this.animationTime++;
+    
+    // Update background position every frame for smooth parallax
+    this.updateBackgroundPosition();
     
     // Only draw game if not game over
     if (!this.gameOver) {

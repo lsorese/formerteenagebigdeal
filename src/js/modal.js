@@ -160,7 +160,7 @@ class MediaModal {
                     </ul>
                 </div>
                 <div class="instructions-footer">
-                    <p><em>It's up to you what you want to fill your brain with. Good or bad, you decide.</em></p>
+                    <p><em>Only you decide what you want inside of your mind.</em></p>
                 </div>
             </div>
         `;

@@ -942,6 +942,8 @@ blockquote {
       color: #666;
       font-style: italic;
       margin: 0;
+      font-size: 18px;
+      line-height: .75;
     }
   }
 }
@@ -1038,7 +1040,7 @@ blockquote {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: rgba(0,0,0,.5);
+  background: #000 url('../images/BackStarsAni.gif') repeat;
   z-index: 9999;
   display: flex;
   flex-direction: column;
