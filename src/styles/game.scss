@@ -60,15 +60,15 @@
 
 #coordinates-display {
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 10px;
+  left: 10px;
   background: #fff;
   color: #000;
-  padding: 11px 5px;
   font-family: 'more', 'Courier Prime', 'Courier New', monospace;
-  font-size: 15px;
   line-height: 17px;
   z-index: 10001;
+  font-size: 18px;
+  padding: 7px 11px;
 }
 
 .game-over-overlay {
@@ -160,13 +160,6 @@
     }
   }
 
-  #coordinates-display {
-    top: 10px;
-    left: 10px;
-    padding: 9px 14px;
-    font-size: 13px;
-  }
-
   .game-over-overlay {
     font-size: 53px;
     padding: 20px;
@@ -193,11 +186,6 @@
 
   .game-over-overlay {
     font-size: 40px;
-  }
-
-  #coordinates-display {
-    font-size: 18px;
-    padding: 7px 11px;
   }
 }
 

@@ -3,6 +3,7 @@ class MediaModal {
         this.modal = null;
         this.modalContent = null;
         this.isOpen = false;
+        this.instructionsOpen = false;
         this.createModal();
         this.bindEvents();
     }
@@ -137,6 +138,40 @@ class MediaModal {
         this.open();
     }
 
+    openInstructions() {
+        this.modalContent.innerHTML = `
+            <div class="modal-text-content instructions-modal">
+                <h2>How to Play</h2>
+                <div class="instructions-content">
+                    <p><strong>Movement:</strong></p>
+                    <ul>
+                        <li>Use <strong>WASD</strong> or <strong>Arrow Keys</strong> to move</li>
+                        <li>On mobile, use the <strong>directional pad</strong></li>
+                    </ul>
+                    
+                    <p><strong>Gameplay:</strong></p>
+                    <ul>
+                        <li>Move around the colorful grid to explore</li>
+                        <li>Step on rainbow-colored tiles to discover content</li>
+                        <li>Some tiles give points, others take them away</li>
+                        <li>Try to maintain a positive score!</li>
+                    </ul>
+                    
+                    <p><strong>Controls:</strong></p>
+                    <ul>
+                        <li>Press <strong>ESC</strong> to close modals</li>
+                        <li>Move to any direction to close this instructions modal</li>
+                    </ul>
+                </div>
+                <div class="instructions-footer">
+                    <p><em>Start moving to begin your adventure!</em></p>
+                </div>
+            </div>
+        `;
+        this.instructionsOpen = true;
+        this.open();
+    }
+
     async openMarkdown(url, title = 'Content') {
         try {
             const response = await fetch(url);
@@ -255,6 +290,7 @@ class MediaModal {
     close() {
         this.modal.classList.remove('active');
         this.isOpen = false;
+        this.instructionsOpen = false;
         document.body.style.overflow = '';
         this.modalContent.innerHTML = '';
         

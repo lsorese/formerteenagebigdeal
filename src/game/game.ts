@@ -74,6 +74,7 @@ class RPGGame {
       this.setupCoordinatesDisplay();
       this.setupCleanupHandlers();
       this.gameLoop();
+      this.showInstructionsModal();
     });
   }
 
@@ -87,6 +88,26 @@ class RPGGame {
       }
     };
     checkForModal();
+  }
+
+  private showInstructionsModal(): void {
+    // Wait a bit for the game to fully load before showing instructions
+    setTimeout(() => {
+      if (this.mediaModal && typeof this.mediaModal.openInstructions === 'function') {
+        this.mediaModal.openInstructions();
+      } else {
+        // If MediaModal isn't ready yet, wait for it
+        const checkForModal = () => {
+          this.mediaModal = (window as any).mediaModal;
+          if (this.mediaModal && typeof this.mediaModal.openInstructions === 'function') {
+            this.mediaModal.openInstructions();
+          } else {
+            setTimeout(checkForModal, 100);
+          }
+        };
+        checkForModal();
+      }
+    }, 500);
   }
 
   private lockPageScroll(): void {
@@ -312,6 +333,11 @@ class RPGGame {
   }
 
   private handleMobileInput(direction: string): void {
+    // Close instructions modal on any mobile movement input
+    if (this.mediaModal && this.mediaModal.instructionsOpen) {
+      this.mediaModal.close();
+    }
+    
     switch (direction) {
       case 'up':
         this.handleKeyPress('w');
@@ -331,6 +357,14 @@ class RPGGame {
   private handleKeyPress(key: string): void {
     // Prevent movement if game is over
     if (this.gameOver) return;
+    
+    // Check if this is a movement key
+    const isMovementKey = ['arrowup', 'w', 'arrowdown', 's', 'arrowleft', 'a', 'arrowright', 'd'].includes(key.toLowerCase());
+    
+    // Close instructions modal on any movement input
+    if (isMovementKey && this.mediaModal && this.mediaModal.instructionsOpen) {
+      this.mediaModal.close();
+    }
     
     const oldPosition = { ...this.player.position };
     let newPosition = { ...this.player.position };

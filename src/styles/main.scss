@@ -892,6 +892,60 @@ blockquote {
   width: 100%;
 }
 
+.instructions-modal {
+  max-width: 600px;
+  padding: 20px;
+  color: #000;
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .instructions-content {
+    text-align: left;
+    line-height: 1.6;
+    
+    p {
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #000;
+    }
+    
+    ul {
+      margin-bottom: 20px;
+      margin-left: 20px;
+      
+      li {
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: normal;
+      }
+    }
+    
+    strong {
+      color: #000;
+      font-weight: bold;
+    }
+  }
+  
+  .instructions-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    
+    p {
+      color: #666;
+      font-style: italic;
+      margin: 0;
+    }
+  }
+}
+
 .footer {
   display: flex;
   align-items: center;
