@@ -54,7 +54,6 @@ class AlbumPlayer {
       src: formats,
       html5: false,
       volume: this.volume,
-      preload: false,
       onend: () => this.nextTrack()
     });
     
