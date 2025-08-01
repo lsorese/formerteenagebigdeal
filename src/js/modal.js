@@ -91,6 +91,30 @@ class MediaModal {
         } catch { return null; }
     }
 
+    extractVideoId(url) {
+        try {
+            const urlObj = new URL(url);
+            return urlObj.hostname.includes('youtu.be') 
+                ? urlObj.pathname.slice(1)
+                : urlObj.searchParams.get('v');
+        } catch { return null; }
+    }
+
+    loadYouTubeIframe(embedUrl, title) {
+        const container = this.modalContent.querySelector('.modal-video-container');
+        container.innerHTML = `
+            <iframe 
+                src="${embedUrl}?autoplay=1&rel=0&modestbranding=1" 
+                title="${title}"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                class="modal-video"
+                loading="lazy">
+            </iframe>
+        `;
+    }
+
     openImage(src, alt = 'Image') {
         this.modalContent.innerHTML = `
             <img src="${src}" alt="${alt}" class="modal-image">
@@ -103,19 +127,51 @@ class MediaModal {
         const embedUrl = this.getYouTubeEmbedUrl(url);
         if (!embedUrl) return;
         
-        this.modalContent.innerHTML = `
-            <div class="modal-video-container">
-                <iframe 
-                    src="${embedUrl}" 
-                    title="${title}"
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen
-                    class="modal-video">
-                </iframe>
-            </div>
-            <div class="modal-caption">${title}</div>
-        `;
+        // Add mobile-optimized loading with thumbnail preview
+        const isMobile = window.innerWidth <= 768;
+        const videoId = this.extractVideoId(url);
+        const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        
+        if (isMobile) {
+            // On mobile, show thumbnail first with play button overlay
+            this.modalContent.innerHTML = `
+                <div class="modal-video-container">
+                    <div class="video-thumbnail-container" data-embed-url="${embedUrl}" data-title="${title}">
+                        <img src="${thumbnailUrl}" alt="${title} thumbnail" class="video-thumbnail">
+                        <div class="video-play-overlay">
+                            <svg class="play-button-icon" viewBox="0 0 68 48">
+                                <path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path>
+                                <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-caption">${title}</div>
+            `;
+            
+            // Add click handler to load iframe when user taps
+            const thumbnailContainer = this.modalContent.querySelector('.video-thumbnail-container');
+            thumbnailContainer.addEventListener('click', () => {
+                this.loadYouTubeIframe(embedUrl, title);
+            });
+        } else {
+            // Desktop: load iframe immediately but with optimizations
+            this.modalContent.innerHTML = `
+                <div class="modal-video-container">
+                    <iframe 
+                        src="${embedUrl}?autoplay=0&rel=0&modestbranding=1" 
+                        title="${title}"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        class="modal-video"
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="modal-caption">${title}</div>
+            `;
+        }
+        
         this.open();
     }
 
@@ -154,9 +210,10 @@ class MediaModal {
                         <li>Move around the colorful grid to explore.</li>
                         <li>Read each block's name and decide if this is content you want to watch.</li>
                         <li>Just like the big internet, some content will make you happy and laugh, or haunt and traumatize you.</li>
-                        <li>Viewing some content give points, others will take them away.</li>
+                        <li>Viewing some content will give you points, others will take them away from you.</li>
+                        <li>These points are a metaphor, but I'll leave the specifics up to you.</li>
                         <li>If you run out of points, you crash out.</li>
-                        <li>There's no limit on positive points you can gain.</li>
+                        <li>There's no limit on positive points, but there's no trophy either.</li>
                     </ul>
                 </div>
                 <div class="instructions-footer">
