@@ -6,7 +6,25 @@ class MediaModal {
         this.instructionsOpen = false;
         this.createModal();
         this.bindEvents();
+        this.preconnectYouTube();
     }
+
+    preconnectYouTube() {
+        const preconnectLinks = [
+            'https://www.youtube.com',
+            'https://i.ytimg.com',
+            'https://img.youtube.com'
+        ];
+        
+        preconnectLinks.forEach(url => {
+            const link = document.createElement('link');
+            link.rel = 'preconnect';
+            link.href = url;
+            link.crossOrigin = 'anonymous';
+            document.head.appendChild(link);
+        });
+    }
+
 
     createModal() {
         this.modal = document.createElement('div');
@@ -100,19 +118,24 @@ class MediaModal {
         } catch { return null; }
     }
 
+    createOptimizedIframe(embedUrl, title, autoplay = false) {
+        const iframe = document.createElement('iframe');
+        iframe.src = `${embedUrl}?autoplay=${autoplay ? 1 : 0}&rel=0&modestbranding=1`;
+        iframe.title = title;
+        iframe.frameBorder = '0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.className = 'modal-video';
+        
+        // Remove loading="lazy" for immediate load
+        return iframe;
+    }
+
     loadYouTubeIframe(embedUrl, title) {
         const container = this.modalContent.querySelector('.modal-video-container');
-        container.innerHTML = `
-            <iframe 
-                src="${embedUrl}?autoplay=1&rel=0&modestbranding=1" 
-                title="${title}"
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
-                class="modal-video"
-                loading="lazy">
-            </iframe>
-        `;
+        const iframe = this.createOptimizedIframe(embedUrl, title, true);
+        container.innerHTML = '';
+        container.appendChild(iframe);
     }
 
     openImage(src, alt = 'Image') {
@@ -155,21 +178,15 @@ class MediaModal {
                 this.loadYouTubeIframe(embedUrl, title);
             });
         } else {
-            // Desktop: load iframe immediately but with optimizations
-            this.modalContent.innerHTML = `
-                <div class="modal-video-container">
-                    <iframe 
-                        src="${embedUrl}?autoplay=0&rel=0&modestbranding=1" 
-                        title="${title}"
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen
-                        class="modal-video"
-                        loading="lazy">
-                    </iframe>
-                </div>
-                <div class="modal-caption">${title}</div>
-            `;
+            // Desktop: load iframe immediately with optimizations
+            const container = document.createElement('div');
+            container.className = 'modal-video-container';
+            
+            const iframe = this.createOptimizedIframe(embedUrl, title, false);
+            container.appendChild(iframe);
+            
+            this.modalContent.innerHTML = `<div class="modal-caption">${title}</div>`;
+            this.modalContent.insertBefore(container, this.modalContent.firstChild);
         }
         
         this.open();
@@ -339,6 +356,7 @@ class MediaModal {
         const closeBtn = this.modal.querySelector('.modal-close');
         closeBtn.focus();
     }
+
 
     close() {
         this.modal.classList.remove('active');
