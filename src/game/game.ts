@@ -44,6 +44,13 @@ class RPGGame {
   private animationTime: number = 0;
   private currentBackgroundX: number = 0;
   private currentBackgroundY: number = 0;
+  private pointsNotifications: Array<{
+    amount: number;
+    x: number;
+    y: number;
+    startTime: number;
+    duration: number;
+  }> = [];
   private rainbowColors: string[] = [
     '#ff8888', '#ff9966', '#ffaa44', '#ffbb22', '#ffcc00', '#ddcc22', 
     '#bbcc44', '#99cc66', '#77cc88', '#55ccaa', '#33cccc', '#44aacc', 
@@ -296,6 +303,93 @@ class RPGGame {
     this.updateCoordinatesDisplay();
   }
 
+  private showPointsNotification(amount: number): void {
+    // Create DOM-based notification for better z-index control
+    this.createDOMPointsNotification(amount);
+    
+    // Also add canvas-based notification as backup
+    const playerScreenPos = this.worldToScreen(this.player.position);
+    this.pointsNotifications.push({
+      amount: amount,
+      x: playerScreenPos.x,
+      y: playerScreenPos.y,
+      startTime: this.animationTime,
+      duration: 180 // 3 seconds at 60fps
+    });
+  }
+
+  private createDOMPointsNotification(amount: number): void {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'points-notification';
+    
+    // Format text
+    const text = amount > 0 ? `+${amount}` : `${amount}`;
+    notification.textContent = text;
+    
+    // Add positive/negative class for styling
+    notification.classList.add(amount > 0 ? 'positive' : 'negative');
+    
+    // Get player position on screen
+    const playerScreenPos = this.worldToScreen(this.player.position);
+    
+    // Position the notification
+    notification.style.left = `${playerScreenPos.x}px`;
+    notification.style.top = `${playerScreenPos.y - 30}px`;
+    
+    // Add to game overlay
+    const gameOverlay = document.getElementById('gameOverlay');
+    if (gameOverlay) {
+      gameOverlay.appendChild(notification);
+    } else {
+      document.body.appendChild(notification);
+    }
+    
+    // Trigger animation
+    requestAnimationFrame(() => {
+      notification.classList.add('animate');
+    });
+    
+    // Remove after animation completes
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 3000);
+  }
+
+  private showModalPointsNotification(amount: number): void {
+    // Create notification element for modal overlay
+    const notification = document.createElement('div');
+    notification.className = 'modal-points-notification';
+    
+    // Format text
+    const text = amount > 0 ? `+${amount}` : `${amount}`;
+    notification.textContent = text;
+    
+    // Add positive/negative class for styling
+    notification.classList.add(amount > 0 ? 'positive' : 'negative');
+    
+    // Position in center-top of screen
+    notification.style.left = '50%';
+    notification.style.top = '20%';
+    
+    // Add to body with highest z-index
+    document.body.appendChild(notification);
+    
+    // Trigger animation
+    requestAnimationFrame(() => {
+      notification.classList.add('animate');
+    });
+    
+    // Remove after animation completes
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 4000); // Slightly longer duration for modal notifications
+  }
+
   private updateScoreDisplay(): void {
     // Update coordinates display which now includes score
     this.updateCoordinatesDisplay();
@@ -481,6 +575,8 @@ class RPGGame {
     // Apply score change when content is viewed
     if (box.scoreChange !== undefined) {
       this.score += box.scoreChange;
+      this.showPointsNotification(box.scoreChange);
+      this.showModalPointsNotification(box.scoreChange); // Show over modal
       this.updateScoreDisplay();
       console.log('Score updated:', this.score, 'change:', box.scoreChange);
     }
@@ -725,6 +821,62 @@ class RPGGame {
     this.ctx.textAlign = 'left';
   }
 
+  private drawPointsNotifications(): void {
+    const currentTime = this.animationTime;
+    
+    // Remove expired notifications and draw active ones
+    this.pointsNotifications = this.pointsNotifications.filter(notification => {
+      const elapsed = currentTime - notification.startTime;
+      const progress = elapsed / notification.duration;
+      
+      if (progress >= 1) {
+        return false; // Remove expired notification
+      }
+      
+      // Calculate animation properties
+      const easeOut = 1 - Math.pow(1 - progress, 3); // Smooth ease-out curve
+      const floatUp = easeOut * 80; // Float up 80 pixels
+      const fadeOut = Math.max(0, 1 - (progress * 2)); // Start fading at 50%
+      const scale = Math.min(1, progress * 4); // Quick scale-in at start
+      
+      // Calculate position
+      const y = notification.y - floatUp;
+      const x = notification.x;
+      
+      // Set font and styles
+      this.ctx.save();
+      this.ctx.globalAlpha = fadeOut;
+      this.ctx.font = `bold ${Math.floor(28 * scale)}px "more", "Courier Prime", "Courier New", monospace`;
+      this.ctx.textAlign = 'center';
+      
+      // Format text
+      const text = notification.amount > 0 ? `+${notification.amount}` : `${notification.amount}`;
+      
+      // Choose colors based on positive/negative
+      const isPositive = notification.amount > 0;
+      const textColor = isPositive ? '#27ae60' : '#e74c3c'; // Green for positive, red for negative
+      const glowColor = isPositive ? '#2ecc71' : '#c0392b';
+      
+      // Draw glow effect
+      this.ctx.shadowColor = glowColor;
+      this.ctx.shadowBlur = 8;
+      this.ctx.fillStyle = textColor;
+      this.ctx.fillText(text, x, y);
+      
+      // Draw main text (slightly offset for depth)
+      this.ctx.shadowBlur = 0;
+      this.ctx.fillStyle = '#ffffff';
+      this.ctx.strokeStyle = textColor;
+      this.ctx.lineWidth = 2;
+      this.ctx.strokeText(text, x, y);
+      this.ctx.fillText(text, x, y);
+      
+      this.ctx.restore();
+      
+      return true; // Keep notification
+    });
+  }
+
   private drawScoreChange(screenPos: Position, scoreChange: number): void {
     // Set font properties (10% larger)
     this.ctx.font = 'bold 15px "more", "Courier Prime", "Courier New", monospace';
@@ -829,6 +981,9 @@ class RPGGame {
     // Draw player (red) - always visible as camera follows player
     const playerScreenPos = this.worldToScreen(this.player.position);
     this.drawIsometricTile(playerScreenPos, this.gridSize, '#e74c3c');
+
+    // Draw floating points notifications
+    this.drawPointsNotifications();
   }
 
   private drawGrid(): void {
