@@ -408,8 +408,16 @@ class MediaModal {
         this.isOpen = false;
         this.instructionsOpen = false;
         
-        // Instructions modal NEVER touches scroll styles - game overlay handles all scroll locking
-        if (!wasInstructionsOpen) {
+        // Check if game overlay is active before clearing overflow styles
+        const gameOverlay = document.getElementById('gameOverlay');
+        const isGameActive = gameOverlay && gameOverlay.style.display !== 'none';
+        
+        // Only clear overflow styles if:
+        // 1. This wasn't an instructions modal (instructions modal never manages scroll)
+        // 2. AND the game overlay is not currently active
+        if (!wasInstructionsOpen && !isGameActive) {
+            alert("DOING IT")
+            console.log("DOING IT")
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
         }

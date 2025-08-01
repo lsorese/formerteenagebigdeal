@@ -28,7 +28,7 @@ interface GameBox {
 class RPGGame {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private gridSize: number = 64;
+  private gridSize: number = 62.5;
   private mapWidth: number = 69;
   private mapHeight: number = 69;
   private player!: GameBox;
@@ -133,54 +133,15 @@ class RPGGame {
   }
 
   private setupCleanupHandlers(): void {
-    // Unlock scroll when page is about to unload
-    window.addEventListener('beforeunload', () => {
-      this.cleanup();
-    });
 
     // Also unlock scroll on visibility change (when tab becomes hidden)
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         this.unlockPageScroll();
-      } else if (!this.gameOver) {
+      } else {
         this.lockPageScroll();
       }
     });
-
-    // Handle page navigation/history changes
-    window.addEventListener('popstate', () => {
-      this.cleanup();
-    });
-
-    // Handle when the game element is removed from DOM
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'childList') {
-          mutation.removedNodes.forEach((node) => {
-            if (node === this.canvas || (node instanceof Element && node.contains(this.canvas))) {
-              this.cleanup();
-            }
-          });
-        }
-      });
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-  }
-
-  public cleanup(): void {
-    this.unlockPageScroll();
-    this.gameOver = true;
-    
-    // Clean up any DOM elements we created
-    if (this.mobileControls && this.mobileControls.parentNode) {
-      this.mobileControls.parentNode.removeChild(this.mobileControls);
-    }
-    if (this.coordinatesDisplay && this.coordinatesDisplay.parentNode) {
-      this.coordinatesDisplay.parentNode.removeChild(this.coordinatesDisplay);
-    }
-    if (this.gameOverOverlay && this.gameOverOverlay.parentNode) {
-      this.gameOverOverlay.parentNode.removeChild(this.gameOverOverlay);
-    }
   }
 
   private setupCanvas(): void {
@@ -370,7 +331,7 @@ class RPGGame {
     
     // Position the notification
     notification.style.left = `${playerScreenPos.x}px`;
-    notification.style.top = `${playerScreenPos.y - 30}px`;
+    notification.style.top = `${playerScreenPos.y - 38}px`;
     
     // Add to game overlay
     const gameOverlay = document.getElementById('gameOverlay');
@@ -826,17 +787,17 @@ class RPGGame {
     this.ctx.lineWidth = 2;
     this.ctx.stroke();
     
-    // Add "YOU" text inside the player box
+    // Add "THIS IS YOU" text inside the player box
     this.ctx.save();
-    this.ctx.font = 'bold 18px "more", "Courier Prime", "Courier New", monospace';
+    this.ctx.font = 'bold 10px "more", "Courier Prime", "Courier New", monospace';
     this.ctx.textAlign = 'center';
     this.ctx.fillStyle = '#000';
     
     // Draw text with stroke for better visibility
     this.ctx.strokeStyle = '#fff';
-    this.ctx.lineWidth = 3;
-    this.ctx.strokeText('YOU', screenPos.x, screenPos.y + 4);
-    this.ctx.fillText('YOU', screenPos.x, screenPos.y + 4);
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeText('YOU', screenPos.x, screenPos.y);
+    this.ctx.fillText('YOU', screenPos.x, screenPos.y);
     
     this.ctx.restore();
   }
@@ -854,44 +815,39 @@ class RPGGame {
     return this.rainbowColors[colorIndex];
   }
 
-  private drawTooltip(screenPos: Position, text: string, time: number): void {
+  private drawTooltip(screenPos: Position, text: string, time: number, colorIndex: number): void {
     // Calculate bounce animation
-    const bounceOffset = Math.abs(Math.sin(time * 0.008)) * 11; // Bouncing animation (26.5% larger)
-    const tooltipY = screenPos.y - 84 - bounceOffset; // Position higher above the tile (26.5% larger)
+    const bounceOffset = Math.abs(Math.sin(time * 0.008)) * 11; // Bouncing animation (25% larger)
+    const tooltipY = screenPos.y - 52 - bounceOffset; // Position 20% closer to the tile
     
-    // Set font properties - larger and more readable (10% increase)
-    this.ctx.font = 'bold 25px "more", "Courier Prime", "Courier New", monospace';
+    // Set font properties - increased by 5%
+    this.ctx.font = 'bold 23px "more", "Courier Prime", "Courier New", monospace';
     this.ctx.textAlign = 'center';
     
     // Measure text width for background
     const textWidth = this.ctx.measureText(text).width;
-    const padding = 23; // Increased padding (26.5% larger)
+    const padding = 23; // Increased padding (25% larger)
     const bgWidth = textWidth + padding * 2;
-    const bgHeight = 44; // Increased height (26.5% larger)
+    const bgHeight = 44; // Increased height (25% larger)
     
     // Draw tooltip background
     this.ctx.fillStyle = 'rgba(17, 17, 17, 0.95)';
     this.ctx.fillRect(screenPos.x - bgWidth / 2, tooltipY - bgHeight / 2, bgWidth, bgHeight);
     
     // Draw tooltip border with rainbow effect
-    const rainbowColor = this.getRainbowColor(Math.floor(screenPos.x / 50), time);
+    const rainbowColor = this.getRainbowColor(colorIndex);
     this.ctx.strokeStyle = rainbowColor;
     this.ctx.lineWidth = 3; // Thicker border
     this.ctx.strokeRect(screenPos.x - bgWidth / 2, tooltipY - bgHeight / 2, bgWidth, bgHeight);
     
-    // Draw arrow pointing to the tile (upside down) - 10% larger
-    this.ctx.fillStyle = 'rgba(17, 17, 17, 0.95)';
+    // Draw arrow pointing to the tile (upside down) - filled with rainbow color
+    this.ctx.fillStyle = rainbowColor;
     this.ctx.beginPath();
-    this.ctx.moveTo(screenPos.x, tooltipY + bgHeight / 2 + 17); // Point at bottom, larger arrow
-    this.ctx.lineTo(screenPos.x - 11, tooltipY + bgHeight / 2); // Left point of arrow base (26.5% larger)
-    this.ctx.lineTo(screenPos.x + 11, tooltipY + bgHeight / 2); // Right point of arrow base (26.5% larger)
+    this.ctx.moveTo(screenPos.x, tooltipY + bgHeight / 2 + 16); // Point at bottom, larger arrow
+    this.ctx.lineTo(screenPos.x - 11, tooltipY + bgHeight / 2); // Left point of arrow base (25% larger)
+    this.ctx.lineTo(screenPos.x + 11, tooltipY + bgHeight / 2); // Right point of arrow base (25% larger)
     this.ctx.closePath();
     this.ctx.fill();
-    
-    // Draw border for arrow
-    this.ctx.strokeStyle = rainbowColor;
-    this.ctx.lineWidth = 3;
-    this.ctx.stroke();
     
     // Draw tooltip text with white color for better readability
     this.ctx.fillStyle = '#ffffff';
@@ -926,7 +882,7 @@ class RPGGame {
       // Set font and styles
       this.ctx.save();
       this.ctx.globalAlpha = fadeOut;
-      this.ctx.font = `bold ${Math.floor(35 * scale)}px "more", "Courier Prime", "Courier New", monospace`;
+      this.ctx.font = `bold ${Math.floor(28 * scale)}px "more", "Courier Prime", "Courier New", monospace`;
       this.ctx.textAlign = 'center';
       
       // Format text
@@ -987,7 +943,7 @@ class RPGGame {
   }
 
   private drawMapBoundaries(): void {
-    this.ctx.strokeStyle = '#33cccc'; // Cyan color for boundaries
+    this.ctx.strokeStyle = '#ffffff'; // White color for boundaries
     this.ctx.lineWidth = 3;
     
     const corners = [
@@ -1053,7 +1009,7 @@ class RPGGame {
         
         // Draw tooltip for unviewed boxes only
         if (!box.viewed && box.tooltip) {
-          this.drawTooltip(screenPos, box.tooltip, this.animationTime);
+          this.drawTooltip(screenPos, box.tooltip, this.animationTime, i);
         }
       }
     }
@@ -1068,7 +1024,7 @@ class RPGGame {
 
   private drawGrid(): void {
     this.ctx.strokeStyle = '#222';
-    this.ctx.lineWidth = 2;
+    this.ctx.lineWidth = 2 ;
 
     // Draw grid lines within map boundaries only
     // Draw vertical grid lines (running along X axis)
@@ -1119,26 +1075,15 @@ class RPGGame {
 // Also expose the game class globally for manual initialization
 window.RPGGame = RPGGame;
 
-// Store the game instance globally for cleanup access
-let gameInstance: RPGGame | null = null;
-
 // Try to initialize immediately, or wait for DOM if not ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    gameInstance = new RPGGame();
+    new RPGGame();
   });
 } else {
   // DOM is already loaded, initialize immediately
-  gameInstance = new RPGGame();
+  new RPGGame();
 }
-
-// Expose cleanup function globally
-(window as any).cleanupRPGGame = () => {
-  if (gameInstance) {
-    gameInstance.cleanup();
-    gameInstance = null;
-  }
-};
 
 // {
 //   "position": { "x": 1, "y": 1 },
