@@ -1,141 +1,96 @@
 [
   {
-    "position": {
-      "x": 1,
-      "y": 1
-    },
+    "position": { "x": 5, "y": 8 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -25,
+    "scoreChange": -68,
     "tooltip": "ISIS Beheading Video",
     "viewed": false
   },
   {
-    "position": {
-      "x": 60,
-      "y": 8
-    },
+    "position": { "x": 13, "y": 19 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 5,
     "tooltip": "NEW FOOD (FUNNY!)",
     "viewed": false
   },
   {
-    "position": {
-      "x": 5,
-      "y": 41
-    },
+    "position": { "x": 22, "y": 6 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 3,
     "tooltip": "Grape Lady fall",
     "viewed": false
   },
   {
-    "position": {
-      "x": 27,
-      "y": 67
-    },
+    "position": { "x": 8, "y": 29 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 20,
     "tooltip": "kittens inspired by kittens",
     "viewed": false
   },
   {
-    "position": {
-      "x": 44,
-      "y": 22
-    },
+    "position": { "x": 27, "y": 15 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 12,
     "tooltip": "Corgi Flop",
     "viewed": false
   },
   {
-    "position": {
-      "x": 68,
-      "y": 13
-    },
+    "position": { "x": 4, "y": 41 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": -10,
     "tooltip": "My House Walkthrough",
     "viewed": false
   },
   {
-    "position": {
-      "x": 9,
-      "y": 63
-    },
+    "position": { "x": 19, "y": 48 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": -12,
     "tooltip": "Willis McGahee Knee Injury",
     "viewed": false
   },
   {
-    "position": {
-      "x": 33,
-      "y": 19
-    },
+    "position": { "x": 12, "y": 53 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
-    "tooltip": "Willis McGahee Knee Injury",
-    "viewed": false
-  },
-  {
-    "position": {
-      "x": 54,
-      "y": 37
-    },
-    "type": "interactive",
-    "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 11,
     "tooltip": "how is prangent formed",
     "viewed": false
   },
   {
-    "position": {
-      "x": 2,
-      "y": 66
-    },
+    "position": { "x": 30, "y": 25 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 4,
     "tooltip": "end of ze world",
     "viewed": false
   },
   {
-    "position": {
-      "x": 38,
-      "y": 60
-    },
+    "position": { "x": 44, "y": 4 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 25,
     "tooltip": "Look At All Those Chickens",
     "viewed": false
   },
   {
-    "position": {
-      "x": 66,
-      "y": 48
-    },
+    "position": { "x": 17, "y": 34 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
@@ -144,135 +99,273 @@
     "viewed": false
   },
   {
-    "position": {
-      "x": 19,
-      "y": 9
-    },
+    "position": { "x": 41, "y": 19 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 5,
     "tooltip": "Apparently Kid",
     "viewed": false
   },
   {
-    "position": {
-      "x": 57,
-      "y": 27
-    },
+    "position": { "x": 7, "y": 56 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
-    "tooltip": "will smith slapping Chris Rock",
+    "scoreChange": -20,
+    "tooltip": "Will Smith slapping Chris Rock",
     "viewed": false
   },
   {
-    "position": {
-      "x": 24,
-      "y": 60
-    },
+    "position": { "x": 53, "y": 13 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": -7,
     "tooltip": "Friday music video",
     "viewed": false
   },
   {
-    "position": {
-      "x": 41,
-      "y": 12
-    },
+    "position": { "x": 25, "y": 59 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 3,
     "tooltip": "Crichton Leprechaun news story",
     "viewed": false
   },
   {
-    "position": {
-      "x": 7,
-      "y": 25
-    },
+    "position": { "x": 59, "y": 36 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": -30,
     "tooltip": "Salad Fingers",
     "viewed": false
   },
   {
-    "position": {
-      "x": 59,
-      "y": 68
-    },
+    "position": { "x": 34, "y": 56 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": -48,
     "tooltip": "Hug Me I'm Scared",
     "viewed": false
   },
   {
-    "position": {
-      "x": 36,
-      "y": 44
-    },
+    "position": { "x": 56, "y": 22 },
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 4,
     "tooltip": "Fabio gets hit by a goose",
     "viewed": false
   },
   {
-    "position": {
-      "x": 12,
-      "y": 33
-    },
+    "position": { "x": 38, "y": 44 },
     "type": "interactive",
-    "contentUrl": "https://www.youtube.com/watch?v=MPY_EuvimH0",
+    "contentUrl": "https://www.youtube.com/embed/MPY_EuvimH0",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 35,
     "tooltip": "Ron Swanson Drinking Lagavulin by fire",
     "viewed": false
   },
   {
-    "position": {
-      "x": 67,
-      "y": 2
-    },
+    "position": { "x": 21, "y": 53 },
     "type": "interactive",
-    "contentUrl": "https://www.youtube.com/watch?v=MPY_EuvimH0",
+    "contentUrl": "https://www.youtube.com/embed/MPY_EuvimH0",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": 192,
     "tooltip": "cook some soups and eat bread and deserts",
     "viewed": false
   },
   {
-    "position": {
-      "x": 50,
-      "y": 50
-    },
+    "position": { "x": 49, "y": 30 },
     "type": "interactive",
-    "contentUrl": "https://www.youtube.com/watch?v=MPY_EuvimH0",
+    "contentUrl": "https://www.youtube.com/embed/MPY_EuvimH0",
     "contentType": "video",
-    "scoreChange": -2,
+    "scoreChange": -4,
     "tooltip": "Taylor Swift ft. T-Pain - Thug Story",
     "viewed": false
   },
   {
-    "position": {
-      "x": 50,
-      "y": 60
-    },
+    "position": { "x": 15, "y": 38 },
     "type": "interactive",
-    "contentUrl": "https://www.youtube.com/watch?v=-aLYvZ5sX28",
+    "contentUrl": "https://www.youtube.com/embed/-aLYvZ5sX28",
     "contentType": "video",
-    "scoreChange": -2,
-    "tooltip": " Taylor Swift - Trouble (Goat Remix) ",
+    "scoreChange": 4,
+    "tooltip": "Taylor Swift - Trouble (Goat Remix) ",
+    "viewed": false
+  },
+  {
+    "position": { "x": 57, "y": 50 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/MtN1YnoL46Q",
+    "contentType": "video",
+    "scoreChange": -9,
+    "tooltip": "The Duck Song",
+    "viewed": false
+  },
+  {
+    "position": { "x": 46, "y": 17 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/Tx1XIm6q4r4",
+    "contentType": "video",
+    "scoreChange": 1,
+    "tooltip": "Harry Potter Puppet Pals",
+    "viewed": false
+  },
+  {
+    "position": { "x": 23, "y": 44 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/LkCNJRfSZBU",
+    "contentType": "video",
+    "scoreChange": 8,
+    "tooltip": "Leroy Jenkins",
+    "viewed": false
+  },
+  {
+    "position": { "x": 50, "y": 59 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/k1BneeJTDcU",
+    "contentType": "video",
+    "scoreChange": -6,
+    "tooltip": "That Funny Feeling -- Bo Burnham",
+    "viewed": false
+  },
+  {
+    "position": { "x": 28, "y": 11 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/2ZIpFytCSVc",
+    "contentType": "video",
+    "scoreChange": 30,
+    "tooltip": "Plankton sings Pink Pony Club",
+    "viewed": false
+  },
+  {
+    "position": { "x": 59, "y": 28 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/1OzwyG6hOe0",
+    "contentType": "video",
+    "scoreChange": 1,
+    "tooltip": "Dr. Jean - The Guacamole Song",
+    "viewed": false
+  },
+  {
+    "position": { "x": 35, "y": 59 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/4M-zwE33zHA",
+    "contentType": "video",
+    "scoreChange": -60,
+    "tooltip": "Jesus Is My Friend by Sonseed",
+    "viewed": false
+  },
+  {
+    "position": { "x": 11, "y": 25 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/2nGKqH26xlg",
+    "contentType": "video",
+    "scoreChange": 0,
+    "tooltip": "You're My Special Friend",
+    "viewed": false
+  },
+  {
+    "position": { "x": 40, "y": 38 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/1fJnRyzM1fc",
+    "contentType": "video",
+    "scoreChange": -28,
+    "tooltip": "Original Ding Fries Are Done",
+    "viewed": false
+  },
+  {
+    "position": { "x": 20, "y": 11 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/qR3rK0kZFkg",
+    "contentType": "video",
+    "scoreChange": 3000000000,
+    "tooltip": "Jessica's Daily Affirmation",
+    "viewed": false
+  },
+  {
+    "position": { "x": 47, "y": 53 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/8F6EoMdn95E",
+    "contentType": "video",
+    "scoreChange": 10,
+    "tooltip": "My First Hardcore Song by 8yr old Juliet",
+    "viewed": false
+  },
+  {
+    "position": { "x": 16, "y": 23 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/3KquFZYi6L0",
+    "contentType": "video",
+    "scoreChange": -10,
+    "tooltip": "Zuckerberg likes smoked meats",
+    "viewed": false
+  },
+  {
+    "position": { "x": 55, "y": 7 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/xuCn8ux2gbs",
+    "contentType": "video",
+    "scoreChange": 13,
+    "tooltip": "history of the entire world, i guess",
+    "viewed": false
+  },
+  {
+    "position": { "x": 37, "y": 25 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/xuCn8ux2gbs",
+    "contentType": "video",
+    "scoreChange": 20,
+    "tooltip": "Hank Green Humping the Town",
+    "viewed": false
+  },
+  {
+    "position": { "x": 6, "y": 59 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/xuCn8ux2gbs",
+    "contentType": "video",
+    "scoreChange": 8,
+    "tooltip": "Butts",
+    "viewed": false
+  },
+  {
+    "position": { "x": 29, "y": 34 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/6YMPAH67f4o",
+    "contentType": "video",
+    "scoreChange": -50,
+    "tooltip": "Brooklyn 99 - Ska Interview",
+    "viewed": false
+  },
+  {
+    "position": { "x": 52, "y": 35 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/KJ19PJ7-SWc",
+    "contentType": "video",
+    "scoreChange": -5,
+    "tooltip": "Attack Attack! - Stick Stickly",
+    "viewed": false
+  },
+  {
+    "position": { "x": 24, "y": 51 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/kHmvkRoEowc",
+    "contentType": "video",
+    "scoreChange": -18,
+    "tooltip": "LEAVE BRITNEY ALONE ORIGINAL VIDEO",
+    "viewed": false
+  },
+  {
+    "position": { "x": 17, "y": 44 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/9sYElEbRzKA",
+    "contentType": "video",
+    "scoreChange": -3,
+    "tooltip": "Berries and Cream Little Lad Wants You!",
     "viewed": false
   }
 ]
