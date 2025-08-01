@@ -141,7 +141,7 @@ class MediaModal {
     openInstructions() {
         this.modalContent.innerHTML = `
             <div class="modal-text-content instructions-modal">
-                <h2>How to Play</h2>
+                <h2><How to Play<br />The Internet Simulator</h2>
                 <div class="instructions-content">
                     <p><strong>Movement:</strong></p>
                     <ul>

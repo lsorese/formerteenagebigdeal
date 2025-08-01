@@ -896,6 +896,8 @@ blockquote {
   max-width: 600px;
   padding: 20px;
   color: #000;
+  overflow-y: auto;
+  max-height: 80vh;
   
   h2 {
     text-align: center;
@@ -903,12 +905,13 @@ blockquote {
     color: #000;
     font-size: 1.5rem;
     font-weight: bold;
+    line-height: 1rem;
   }
   
   .instructions-content {
     text-align: left;
     line-height: 0.75;
-    
+
     p {
       margin-bottom: 5px;
       font-weight: bold;
