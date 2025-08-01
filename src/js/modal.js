@@ -152,8 +152,8 @@ class MediaModal {
                     <p><strong>Gameplay:</strong></p>
                     <ul>
                         <li>Move around the colorful grid to explore.</li>
-                        <li>Read each block's name and decide if this content is something you want to watch.</li>
-                        <li>Just like the internet at large, some content make you happy and laugh, or haunt and traumatize you.</li>
+                        <li>Read each block's name and decide if this is content you want to watch.</li>
+                        <li>Just like the big internet, some content will make you happy and laugh, or haunt and traumatize you.</li>
                         <li>Viewing some content give points, others will take them away.</li>
                         <li>If you run out of points, you crash out.</li>
                         <li>There's no limit on positive points you can gain.</li>
