@@ -1013,9 +1013,9 @@ blockquote {
 }
 
 .game__control-btn {
-  background: transparent;
-  border: 2px solid #33cccc;
-  color: #33cccc;
+  background: #000;
+  border-color: #fff;
+  color: #fff;
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 0.8rem;
@@ -1023,7 +1023,7 @@ blockquote {
   font-family: 'more', 'Courier New', monospace;
   
   &:hover {
-    background: #33cccc;
+    background: #fff;
     color: #000000;
   }
   
