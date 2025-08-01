@@ -133,8 +133,28 @@ class MediaModal {
 
     loadYouTubeIframe(embedUrl, title) {
         const container = this.modalContent.querySelector('.modal-video-container');
+        
+        // Show loading message
+        container.innerHTML = `
+            <div class="video-loading">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Loading...</div>
+            </div>
+        `;
+        
         const iframe = this.createOptimizedIframe(embedUrl, title, true);
-        container.innerHTML = '';
+        
+        // Hide loading message when iframe loads
+        iframe.addEventListener('load', () => {
+            const loadingElement = container.querySelector('.video-loading');
+            if (loadingElement) {
+                loadingElement.style.opacity = '0';
+                setTimeout(() => {
+                    loadingElement.remove();
+                }, 300);
+            }
+        });
+        
         container.appendChild(iframe);
     }
 
@@ -182,7 +202,27 @@ class MediaModal {
             const container = document.createElement('div');
             container.className = 'modal-video-container';
             
+            // Show loading message
+            container.innerHTML = `
+                <div class="video-loading">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Loading...</div>
+                </div>
+            `;
+            
             const iframe = this.createOptimizedIframe(embedUrl, title, false);
+            
+            // Hide loading message when iframe loads
+            iframe.addEventListener('load', () => {
+                const loadingElement = container.querySelector('.video-loading');
+                if (loadingElement) {
+                    loadingElement.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingElement.remove();
+                    }, 300);
+                }
+            });
+            
             container.appendChild(iframe);
             
             this.modalContent.innerHTML = `<div class="modal-caption">${title}</div>`;
@@ -349,7 +389,11 @@ class MediaModal {
     open() {
         this.modal.classList.add('active');
         this.isOpen = true;
-        document.body.style.overflow = 'hidden';
+        
+        // Instructions modal never manages scroll - scroll is managed by game overlay
+        if (!this.instructionsOpen) {
+            document.body.style.overflow = 'hidden';
+        }
         
         document.dispatchEvent(new CustomEvent('modalOpened'));
         
@@ -357,13 +401,25 @@ class MediaModal {
         closeBtn.focus();
     }
 
-
     close() {
         this.modal.classList.remove('active');
+        const wasInstructionsOpen = this.instructionsOpen;
+        
         this.isOpen = false;
         this.instructionsOpen = false;
-        document.body.style.overflow = '';
+        
+        // Instructions modal NEVER touches scroll styles - game overlay handles all scroll locking
+        if (!wasInstructionsOpen) {
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+        }
+        
         this.modalContent.innerHTML = '';
+        
+        // Clean up the RPG game if it exists
+        if (window.cleanupRPGGame) {
+            window.cleanupRPGGame();
+        }
         
         document.dispatchEvent(new CustomEvent('modalClosed'));
     }

@@ -23,9 +23,16 @@ const hideGameOverlay = (mainLayout) => {
   gameOverlay.style.opacity = '0';
   mainLayout.style.opacity = '1';
   
+  // Clean up the RPG game if it exists
+  if (window.cleanupRPGGame) {
+    window.cleanupRPGGame();
+  }
+  
   setTimeout(() => {
     gameOverlay.style.display = 'none';
     document.body.style.overflow = '';
+    // Also ensure HTML element overflow is reset
+    document.documentElement.style.overflow = '';
   }, 500);
 };
 

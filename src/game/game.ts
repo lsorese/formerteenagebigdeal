@@ -28,7 +28,7 @@ interface GameBox {
 class RPGGame {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private gridSize: number = 50;
+  private gridSize: number = 64;
   private mapWidth: number = 69;
   private mapHeight: number = 69;
   private player!: GameBox;
@@ -135,17 +135,52 @@ class RPGGame {
   private setupCleanupHandlers(): void {
     // Unlock scroll when page is about to unload
     window.addEventListener('beforeunload', () => {
-      this.unlockPageScroll();
+      this.cleanup();
     });
 
     // Also unlock scroll on visibility change (when tab becomes hidden)
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         this.unlockPageScroll();
-      } else {
+      } else if (!this.gameOver) {
         this.lockPageScroll();
       }
     });
+
+    // Handle page navigation/history changes
+    window.addEventListener('popstate', () => {
+      this.cleanup();
+    });
+
+    // Handle when the game element is removed from DOM
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'childList') {
+          mutation.removedNodes.forEach((node) => {
+            if (node === this.canvas || (node instanceof Element && node.contains(this.canvas))) {
+              this.cleanup();
+            }
+          });
+        }
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  public cleanup(): void {
+    this.unlockPageScroll();
+    this.gameOver = true;
+    
+    // Clean up any DOM elements we created
+    if (this.mobileControls && this.mobileControls.parentNode) {
+      this.mobileControls.parentNode.removeChild(this.mobileControls);
+    }
+    if (this.coordinatesDisplay && this.coordinatesDisplay.parentNode) {
+      this.coordinatesDisplay.parentNode.removeChild(this.coordinatesDisplay);
+    }
+    if (this.gameOverOverlay && this.gameOverOverlay.parentNode) {
+      this.gameOverOverlay.parentNode.removeChild(this.gameOverOverlay);
+    }
   }
 
   private setupCanvas(): void {
@@ -768,26 +803,71 @@ class RPGGame {
     this.ctx.stroke();
   }
 
-  private getRainbowColor(index: number, time: number): string {
-    // Create cycling rainbow effect
-    const colorIndex = (index + Math.floor(time * 0.02)) % this.rainbowColors.length;
+  private drawPlayer(screenPos: Position): void {
+    // Make player dot bigger (1.5x the normal size)
+    const playerSize = this.gridSize * 1.5;
+    const halfSize = playerSize * 0.433; // Half width of isometric diamond
+    const quarterHeight = playerSize * 0.25;
+    
+    // Get cycling rainbow color for player
+    const playerColor = this.getPlayerRainbowColor(this.animationTime);
+    
+    this.ctx.fillStyle = playerColor;
+    this.ctx.beginPath();
+    this.ctx.moveTo(screenPos.x, screenPos.y - quarterHeight);
+    this.ctx.lineTo(screenPos.x + halfSize, screenPos.y);
+    this.ctx.lineTo(screenPos.x, screenPos.y + quarterHeight);
+    this.ctx.lineTo(screenPos.x - halfSize, screenPos.y);
+    this.ctx.closePath();
+    this.ctx.fill();
+    
+    // Add thicker outline for player
+    this.ctx.strokeStyle = 'rgba(0, 0, 0, 0.6)';
+    this.ctx.lineWidth = 2;
+    this.ctx.stroke();
+    
+    // Add "YOU" text inside the player box
+    this.ctx.save();
+    this.ctx.font = 'bold 18px "more", "Courier Prime", "Courier New", monospace';
+    this.ctx.textAlign = 'center';
+    this.ctx.fillStyle = '#000';
+    
+    // Draw text with stroke for better visibility
+    this.ctx.strokeStyle = '#fff';
+    this.ctx.lineWidth = 3;
+    this.ctx.strokeText('YOU', screenPos.x, screenPos.y + 4);
+    this.ctx.fillText('YOU', screenPos.x, screenPos.y + 4);
+    
+    this.ctx.restore();
+  }
+
+  private getRainbowColor(index: number, time: number = 0): string {
+    // For player: create cycling rainbow effect with time
+    // For other boxes: use static color based on index
+    const colorIndex = index % this.rainbowColors.length;
+    return this.rainbowColors[colorIndex];
+  }
+
+  private getPlayerRainbowColor(time: number): string {
+    // Create cycling rainbow effect for player only
+    const colorIndex = Math.floor(time * 0.05) % this.rainbowColors.length;
     return this.rainbowColors[colorIndex];
   }
 
   private drawTooltip(screenPos: Position, text: string, time: number): void {
     // Calculate bounce animation
-    const bounceOffset = Math.abs(Math.sin(time * 0.008)) * 9; // Bouncing animation (10% larger)
-    const tooltipY = screenPos.y - 66 - bounceOffset; // Position higher above the tile (10% larger)
+    const bounceOffset = Math.abs(Math.sin(time * 0.008)) * 11; // Bouncing animation (26.5% larger)
+    const tooltipY = screenPos.y - 84 - bounceOffset; // Position higher above the tile (26.5% larger)
     
     // Set font properties - larger and more readable (10% increase)
-    this.ctx.font = 'bold 20px "more", "Courier Prime", "Courier New", monospace';
+    this.ctx.font = 'bold 25px "more", "Courier Prime", "Courier New", monospace';
     this.ctx.textAlign = 'center';
     
     // Measure text width for background
     const textWidth = this.ctx.measureText(text).width;
-    const padding = 18; // Increased padding (10% larger)
+    const padding = 23; // Increased padding (26.5% larger)
     const bgWidth = textWidth + padding * 2;
-    const bgHeight = 35; // Increased height (10% larger)
+    const bgHeight = 44; // Increased height (26.5% larger)
     
     // Draw tooltip background
     this.ctx.fillStyle = 'rgba(17, 17, 17, 0.95)';
@@ -802,9 +882,9 @@ class RPGGame {
     // Draw arrow pointing to the tile (upside down) - 10% larger
     this.ctx.fillStyle = 'rgba(17, 17, 17, 0.95)';
     this.ctx.beginPath();
-    this.ctx.moveTo(screenPos.x, tooltipY + bgHeight / 2 + 13); // Point at bottom, larger arrow
-    this.ctx.lineTo(screenPos.x - 9, tooltipY + bgHeight / 2); // Left point of arrow base (10% larger)
-    this.ctx.lineTo(screenPos.x + 9, tooltipY + bgHeight / 2); // Right point of arrow base (10% larger)
+    this.ctx.moveTo(screenPos.x, tooltipY + bgHeight / 2 + 17); // Point at bottom, larger arrow
+    this.ctx.lineTo(screenPos.x - 11, tooltipY + bgHeight / 2); // Left point of arrow base (26.5% larger)
+    this.ctx.lineTo(screenPos.x + 11, tooltipY + bgHeight / 2); // Right point of arrow base (26.5% larger)
     this.ctx.closePath();
     this.ctx.fill();
     
@@ -846,7 +926,7 @@ class RPGGame {
       // Set font and styles
       this.ctx.save();
       this.ctx.globalAlpha = fadeOut;
-      this.ctx.font = `bold ${Math.floor(28 * scale)}px "more", "Courier Prime", "Courier New", monospace`;
+      this.ctx.font = `bold ${Math.floor(35 * scale)}px "more", "Courier Prime", "Courier New", monospace`;
       this.ctx.textAlign = 'center';
       
       // Format text
@@ -879,7 +959,7 @@ class RPGGame {
 
   private drawScoreChange(screenPos: Position, scoreChange: number): void {
     // Set font properties (10% larger)
-    this.ctx.font = 'bold 15px "more", "Courier Prime", "Courier New", monospace';
+    this.ctx.font = 'bold 19px "more", "Courier Prime", "Courier New", monospace';
     this.ctx.textAlign = 'center';
     
     // Format score text
@@ -960,8 +1040,8 @@ class RPGGame {
           // Use consistent colors for viewed boxes based on score
           tileColor = (box.scoreChange && box.scoreChange > 0) ? '#27ae60' : '#e74c3c'; // Green for positive, red for negative
         } else {
-          // Use rainbow colors for unviewed boxes
-          tileColor = this.getRainbowColor(i, this.animationTime);
+          // Use single rainbow colors for unviewed boxes (static per box)
+          tileColor = this.getRainbowColor(i);
         }
         
         this.drawIsometricTile(screenPos, this.gridSize, tileColor);
@@ -978,9 +1058,9 @@ class RPGGame {
       }
     }
 
-    // Draw player (red) - always visible as camera follows player
+    // Draw player - always visible as camera follows player
     const playerScreenPos = this.worldToScreen(this.player.position);
-    this.drawIsometricTile(playerScreenPos, this.gridSize, '#e74c3c');
+    this.drawPlayer(playerScreenPos);
 
     // Draw floating points notifications
     this.drawPointsNotifications();
@@ -1039,15 +1119,26 @@ class RPGGame {
 // Also expose the game class globally for manual initialization
 window.RPGGame = RPGGame;
 
+// Store the game instance globally for cleanup access
+let gameInstance: RPGGame | null = null;
+
 // Try to initialize immediately, or wait for DOM if not ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    new RPGGame();
+    gameInstance = new RPGGame();
   });
 } else {
   // DOM is already loaded, initialize immediately
-  new RPGGame();
+  gameInstance = new RPGGame();
 }
+
+// Expose cleanup function globally
+(window as any).cleanupRPGGame = () => {
+  if (gameInstance) {
+    gameInstance.cleanup();
+    gameInstance = null;
+  }
+};
 
 // {
 //   "position": { "x": 1, "y": 1 },

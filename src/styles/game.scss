@@ -17,8 +17,8 @@
 
   .dpad {
     display: grid;
-    grid-template-columns: 59.5px 59.5px 59.5px;
-    grid-template-rows: 59.5px 59.5px 59.5px;
+    grid-template-columns: 75px 75px 75px;
+    grid-template-rows: 75px 75px 75px;
     gap: 8px;
     transform: rotate(45deg);
   }
@@ -28,7 +28,7 @@
     border: 3px solid #666;
     color: #ffffff;
     font-family: 'more', 'Courier Prime', 'Courier New', monospace;
-    font-size: 26.4px;
+    font-size: 33px;
     cursor: pointer;
     transition: all 0.2s ease;
     font-weight: bold;
@@ -84,7 +84,7 @@
   z-index: 100000000;
   color: #e74c3c;
   font-family: 'more', 'Courier Prime', 'Courier New', monospace;
-  font-size: 79px;
+  font-size: 100px;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
@@ -150,18 +150,18 @@
     padding: 12px;
 
     .dpad {
-      grid-template-columns: 55.25px 55.25px 55.25px;
-      grid-template-rows: 55.25px 55.25px 55.25px;
+      grid-template-columns: 70px 70px 70px;
+      grid-template-rows: 70px 70px 70px;
       gap: 6px;
     }
 
     .control-btn {
-      font-size: 24.2px;
+      font-size: 31px;
     }
   }
 
   .game-over-overlay {
-    font-size: 53px;
+    font-size: 67px;
     padding: 20px;
     text-align: center;
   }
@@ -173,19 +173,19 @@
     padding: 10px;
 
     .dpad {
-      grid-template-columns: 51px 51px 51px;
-      grid-template-rows: 51px 51px 51px;
+      grid-template-columns: 65px 65px 65px;
+      grid-template-rows: 65px 65px 65px;
       gap: 5px;
     }
 
     .control-btn {
-      font-size: 22px;
+      font-size: 28px;
       border-radius: 10%;
     }
   }
 
   .game-over-overlay {
-    font-size: 40px;
+    font-size: 51px;
   }
 }
 
@@ -195,13 +195,13 @@
     padding: 8px;
     
     .dpad {
-      grid-template-columns: 46.75px 46.75px 46.75px;
-      grid-template-rows: 46.75px 46.75px 46.75px;
+      grid-template-columns: 59px 59px 59px;
+      grid-template-rows: 59px 59px 59px;
       gap: 4px;
     }
 
     .control-btn {
-      font-size: 19.8px;
+      font-size: 25px;
     }
   }
 }
@@ -209,7 +209,7 @@
 .points-notification {
   position: absolute;
   font-family: 'more', 'Courier Prime', 'Courier New', monospace;
-  font-size: 28px;
+  font-size: 35px;
   font-weight: bold;
   z-index: 10500;
   pointer-events: none;
@@ -263,7 +263,7 @@
 .modal-points-notification {
   position: fixed;
   font-family: 'more', 'Courier Prime', 'Courier New', monospace;
-  font-size: 48px;
+  font-size: 61px;
   font-weight: bold;
   z-index: 99999; // Highest possible z-index to appear over modals
   pointer-events: none;
