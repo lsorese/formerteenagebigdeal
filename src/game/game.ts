@@ -410,7 +410,7 @@ class RPGGame {
     // Create game over overlay
     this.gameOverOverlay = document.createElement('div');
     this.gameOverOverlay.className = 'game-over-overlay';
-    this.gameOverOverlay.textContent = 'YOU CRASHED OUT. RELOAD.';
+    this.gameOverOverlay.textContent = 'YOU CRASHED OUT. SORRY. RELOAD.';
     document.body.appendChild(this.gameOverOverlay);
   }
 

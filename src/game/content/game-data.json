@@ -23,7 +23,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/L_jWHffIx5E",
     "contentType": "video",
-    "scoreChange": 12,
+    "scoreChange": -12,
     "tooltip": "Smash Mouth Classic",
     "viewed": false
   },
@@ -41,7 +41,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/fJ9rUzIMcZQ",
     "contentType": "video",
-    "scoreChange": 15,
+    "scoreChange": -15,
     "tooltip": "Bohemian Rhapsody",
     "viewed": false
   },
@@ -59,7 +59,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/y6120QOlsfU",
     "contentType": "video",
-    "scoreChange": 18,
+    "scoreChange": -18,
     "tooltip": "Darude Sandstorm",
     "viewed": false
   },
@@ -77,7 +77,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/hFcLyDb6niA",
     "contentType": "video",
-    "scoreChange": 8,
+    "scoreChange": -8,
     "tooltip": "Cat Vibing",
     "viewed": false
   },
@@ -95,7 +95,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/djV11Xbc914",
     "contentType": "video",
-    "scoreChange": 25,
+    "scoreChange": -25,
     "tooltip": "Take On Me",
     "viewed": false
   },
@@ -113,7 +113,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/Sagg08DrO5U",
     "contentType": "video",
-    "scoreChange": 10,
+    "scoreChange": -10,
     "tooltip": "Shooting Stars",
     "viewed": false
   },
@@ -131,7 +131,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/mxzgwJ8tSE0",
     "contentType": "video",
-    "scoreChange": 22,
+    "scoreChange": -22,
     "tooltip": "Caramelldansen",
     "viewed": false
   },
@@ -149,7 +149,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/wbby9coDRCk",
     "contentType": "video",
-    "scoreChange": 16,
+    "scoreChange": -16,
     "tooltip": "Numa Numa",
     "viewed": false
   },
@@ -167,7 +167,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/NL6CDFn2i3I",
     "contentType": "video",
-    "scoreChange": 14,
+    "scoreChange": -14,
     "tooltip": "What What In The Butt",
     "viewed": false
   },
@@ -185,7 +185,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/lAIGb1lfpBw",
     "contentType": "video",
-    "scoreChange": 9,
+    "scoreChange": -9,
     "tooltip": "Leonard Nimoy Bilbo",
     "viewed": false
   },
@@ -203,7 +203,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/Yb6dZ1IFlKc",
     "contentType": "video",
-    "scoreChange": 13,
+    "scoreChange": -13,
     "tooltip": "All Your Base",
     "viewed": false
   },
@@ -221,7 +221,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/KmtzQCSh6xk",
     "contentType": "video",
-    "scoreChange": 11,
+    "scoreChange": -11,
     "tooltip": "Leek Spin",
     "viewed": false
   },
@@ -239,7 +239,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/oAhvQoLpvsM",
     "contentType": "video",
-    "scoreChange": 19,
+    "scoreChange": -19,
     "tooltip": "Trololo Song",
     "viewed": false
   },
@@ -257,7 +257,7 @@
     "type": "interactive",
     "contentUrl": "https://www.youtube.com/embed/llyiQ4I-mcQ",
     "contentType": "video",
-    "scoreChange": 21,
+    "scoreChange": -21,
     "tooltip": "Hamster Dance",
     "viewed": false
   },
