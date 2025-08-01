@@ -367,5 +367,14 @@
     "scoreChange": -3,
     "tooltip": "Berries and Cream Little Lad Wants You!",
     "viewed": false
+  },
+  {
+    "position": { "x": 41, "y": 22 },
+    "type": "interactive",
+    "contentUrl": "https://www.youtube.com/embed/5_sfnQDr1-o",
+    "contentType": "video",
+    "scoreChange": 15,
+    "tooltip": "Chimpanzee riding on a Segway",
+    "viewed": false
   }
 ]
