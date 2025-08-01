@@ -765,8 +765,8 @@ class RPGGame {
   }
 
   private drawPlayer(screenPos: Position): void {
-    // Make player dot bigger (1.5x the normal size)
-    const playerSize = this.gridSize * 1.5;
+    // Make player dot bigger (1.8x the normal size)
+    const playerSize = this.gridSize * 1.8;
     const halfSize = playerSize * 0.433; // Half width of isometric diamond
     const quarterHeight = playerSize * 0.25;
     
@@ -789,8 +789,9 @@ class RPGGame {
     
     // Add "THIS IS YOU" text inside the player box
     this.ctx.save();
-    this.ctx.font = 'bold 10px "more", "Courier Prime", "Courier New", monospace';
+    this.ctx.font = 'bold 24px "more", "Courier Prime", "Courier New", monospace';
     this.ctx.textAlign = 'center';
+    this.ctx.textBaseline = 'middle';
     this.ctx.fillStyle = '#000';
     
     // Draw text with stroke for better visibility
@@ -1023,6 +1024,23 @@ class RPGGame {
   }
 
   private drawGrid(): void {
+    // Add semi-transparent white background to the grid
+    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+    
+    // Fill the entire map area with the background
+    const topLeft = this.worldToScreen({ x: 0, y: 0 });
+    const topRight = this.worldToScreen({ x: this.mapWidth * this.gridSize, y: 0 });
+    const bottomLeft = this.worldToScreen({ x: 0, y: this.mapHeight * this.gridSize });
+    const bottomRight = this.worldToScreen({ x: this.mapWidth * this.gridSize, y: this.mapHeight * this.gridSize });
+    
+    this.ctx.beginPath();
+    this.ctx.moveTo(topLeft.x, topLeft.y);
+    this.ctx.lineTo(topRight.x, topRight.y);
+    this.ctx.lineTo(bottomRight.x, bottomRight.y);
+    this.ctx.lineTo(bottomLeft.x, bottomLeft.y);
+    this.ctx.closePath();
+    this.ctx.fill();
+    
     this.ctx.strokeStyle = '#222';
     this.ctx.lineWidth = 2 ;
 
