@@ -160,7 +160,7 @@ class MediaModal {
                     </ul>
                 </div>
                 <div class="instructions-footer">
-                    <p><em>Only you decide what you want inside of your mind.</em></p>
+                    <p><em>Everything you invite in becomes part of you. Choose your demons wisely.</em></p>
                 </div>
             </div>
         `;
