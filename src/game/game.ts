@@ -987,8 +987,8 @@ class RPGGame {
   }
 
   private drawGrid(): void {
-    this.ctx.strokeStyle = '#111111';
-    this.ctx.lineWidth = 1;
+    this.ctx.strokeStyle = '#222';
+    this.ctx.lineWidth = 2;
 
     // Draw grid lines within map boundaries only
     // Draw vertical grid lines (running along X axis)
