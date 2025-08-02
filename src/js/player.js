@@ -50,11 +50,20 @@ class AlbumPlayer {
       `/mp3/${baseUrl}.mp3`
     ];
     
+    // Show loading state
+    this.setLoadingState(true);
+    
     this.sound = new Howl({
       src: formats,
       html5: false,
       volume: this.volume,
-      onend: () => this.nextTrack()
+      onend: () => this.nextTrack(),
+      onload: () => {
+        this.setLoadingState(false);
+      },
+      onloaderror: () => {
+        this.setLoadingState(false);
+      }
     });
     
     if (track?.color) {
@@ -66,6 +75,9 @@ class AlbumPlayer {
   
   play() {
     if (!this.sound) return;
+    
+    // Clear loading state when starting to play
+    this.setLoadingState(false);
     
     this.sound.play();
     this.isPlaying = true;
@@ -140,10 +152,14 @@ class AlbumPlayer {
     if (duration > 0) {
       const progress = (seek / duration) * 100;
       this.progressFill.style.width = `${progress}%`;
-      this.timeDisplay.textContent = this.formatTime(seek);
+      
+      // Only update time display if not in loading state
+      if (!this.timeDisplay.classList.contains('loading')) {
+        this.timeDisplay.textContent = this.formatTime(seek);
+      }
       
       const currentTrack = this.tracks[this.currentTrack];
-      if (currentTrack?.color) {
+      if (currentTrack?.color && !this.progressFill.classList.contains('loading')) {
         this.progressFill.style.boxShadow = `inset 0 0 10px ${currentTrack.color}`;
       }
     }
@@ -236,6 +252,18 @@ class AlbumPlayer {
         link.style.color = track.color;
         link.style.setProperty('--hover-color', track.color);
       });
+    }
+  }
+  
+  setLoadingState(isLoading) {
+    if (isLoading) {
+      this.progressFill.classList.add('loading');
+      this.timeDisplay.classList.add('loading');
+      this.timeDisplay.textContent = 'Loading';
+    } else {
+      this.progressFill.classList.remove('loading');
+      this.timeDisplay.classList.remove('loading');
+      this.timeDisplay.textContent = '0:00';
     }
   }
   

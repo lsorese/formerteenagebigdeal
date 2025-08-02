@@ -349,13 +349,6 @@ blockquote {
     image-rendering: pixelated;
   }
   
-  &__progress-fill {
-    height: 100%;
-    background: #ffffff;
-    width: 0%;
-    transition: width 0.1s ease;
-  }
-  
   &__time-display {
     color: #ffffff;
     min-width: 60px;
@@ -367,6 +360,26 @@ blockquote {
     width: 59px;
     font-size: 15px;
     line-height: 0.7rem;
+    
+    &.loading::after {
+      content: "";
+      animation: loading-dots 1.5s infinite;
+    }
+  }
+  
+  &__progress-fill {
+    height: 100%;
+    background: #ffffff;
+    width: 0%;
+    transition: width 0.1s ease;
+    
+    &.loading {
+      background: linear-gradient(45deg, 
+        #ff0000, #ff7f00, #ffff00, #00ff00, 
+        #0000ff, #8f00ff, #ff0000);
+      background-size: 200% 200%;
+      animation: rainbow-gradient 2s linear infinite;
+    }
   }
 }
 
@@ -763,6 +776,19 @@ blockquote {
   85.71% { color: #0040ff; }
   92.86% { color: #8000ff; }
   100% { color: #ff0000; }
+}
+
+@keyframes rainbow-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes loading-dots {
+  0%, 20% { content: ""; }
+  40% { content: "."; }
+  60% { content: ".."; }
+  80%, 100% { content: "..."; }
 }
 
 .error {
