@@ -55,7 +55,8 @@ class AlbumPlayer {
     
     this.sound = new Howl({
       src: formats,
-      html5: false,
+      html5: true,
+      preload: 'metadata',
       volume: this.volume,
       onend: () => this.nextTrack(),
       onload: () => {
