@@ -4,7 +4,7 @@
   "description": "A satirical album exploring internet culture and modern digital life through 15 tracks of commentary on social media, consumerism, and online behavior",
   "releaseDate": "2025",
   "genre": ["Hardcore", "Metalcore", "Heavy Heavy", "Low Low"],
-  "duration": "26:31",
+  "duration": "27:52",
   "coverImage": "/images/cover.jpg",
   "url": "https://formerteenagebigdeal.com",
   "label": "Independent",
@@ -13,7 +13,7 @@
     {
       "id": 1,
       "title": "The Future Is Stupid",
-      "duration": "3:18",
+      "duration": "2:21",
       "url": "/mp3/01-the-future-is-stupid",
       "lyricsFile": "/src/data/lyrics/01-the-future-is-stupid.md",
       "color": "#ff8888"
@@ -37,7 +37,7 @@
     {
       "id": 4,
       "title": "Emergency Broadcast",
-      "duration": "2:32",
+      "duration": "2:31",
       "url": "/mp3/04-emergency-broadcast",
       "lyricsFile": "/src/data/lyrics/04-emergency-broadcast.md",
       "color": "#bbcc44"
@@ -45,7 +45,7 @@
     {
       "id": 5,
       "title": "40oz Stanley Adventure Quencher Travel Tumbler",
-      "duration": "2:39",
+      "duration": "2:38",
       "url": "/mp3/05-40oz-stanley-adventure-quencher-travel-tumbler",
       "lyricsFile": "/src/data/lyrics/05-40oz-stanley-adventure-quencher-travel-tumbler.md",
       "color": "#99cc66"
@@ -85,7 +85,7 @@
     {
       "id": 10,
       "title": "ShamNOW That's What I Call Br00tal Death Metal!",
-      "duration": "2:41",
+      "duration": "1:43",
       "url": "/mp3/10-shamnow-thats-what-i-call-br00tal-death-metal",
       "lyricsFile": "/src/data/lyrics/10-shamnow-thats-what-i-call-br00tal-death-metal.md",
       "color": "#6666cc"
@@ -101,7 +101,7 @@
     {
       "id": 12,
       "title": "Former Teenage Big Deal",
-      "duration": "1:16",
+      "duration": "1:07",
       "url": "/mp3/12-former-teenage-big-deal",
       "lyricsFile": "/src/data/lyrics/12-former-teenage-big-deal.md",
       "color": "#9900cc"
