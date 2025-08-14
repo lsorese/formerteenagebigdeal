@@ -9,7 +9,7 @@ The Future is Dead
 Touch Grass, [Caturday](/images/content/caturday.jpg)
 IRL, [boxxybabee](https://www.youtube.com/watch?v=Yavx9yxTrsw)
 [ANewHopeee](https://www.youtube.com/watch?v=dfwxitFM9p4), Livestream Fail
-[Tai Lopez](https://www.youtube.com/watch?v=Cv1RJTHf5fk), [Fail Whale](https://www.theatlantic.com/technology/archive/2015/01/the-story-behind-twitters-fail-whale/384313/)
+[Tai Lopez](https://www.youtube.com/watch?v=Cv1RJTHf5fk), [Fail Whale](https://www.youtube.com/watch?v=V6CLumsir34)
 
 https://www.youtube.com/watch?v=Yavx9yxTrsw
 
