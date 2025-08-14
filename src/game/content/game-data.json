@@ -299,7 +299,7 @@
     "type": "interactive",
     "contentUrl": "1IYQznBD8oI",
     "contentType": "video",
-    "scoreChange": -50,
+    "scoreChange": -5,
     "tooltip": "Brooklyn 99 - Ska Interview",
     "viewed": false
   },
@@ -307,7 +307,7 @@
     "type": "interactive",
     "contentUrl": "KDzt6yI3Dw8",
     "contentType": "video",
-    "scoreChange": -5,
+    "scoreChange": -25,
     "tooltip": "Attack Attack! - Stick Stickly",
     "viewed": false
   },
@@ -323,7 +323,7 @@
     "type": "interactive",
     "contentUrl": "Q096w0Fz2p4",
     "contentType": "video",
-    "scoreChange": -3,
+    "scoreChange": -30,
     "tooltip": "Berries and Cream Little Lad Wants You!",
     "viewed": false
   },
@@ -333,6 +333,71 @@
     "contentType": "video",
     "scoreChange": 15,
     "tooltip": "Chimpanzee riding on a Segway",
+    "viewed": false
+  },
+
+  {
+    "type": "interactive",
+    "contentUrl": "R9w4vQtG4Zg",
+    "contentType": "video",
+    "scoreChange": -70,
+    "tooltip": "The Strange Things About The Johnsons",
+    "viewed": false
+  },
+  {
+    "type": "interactive",
+    "contentUrl": "ns1SGo3WCF4",
+    "contentType": "video",
+    "scoreChange": -40,
+    "tooltip": "There is Nothing",
+    "viewed": false
+  },
+  {
+    "type": "interactive",
+    "contentUrl": "7HzCHuJ_jns",
+    "contentType": "video",
+    "scoreChange": -15,
+    "tooltip": "refbatch",
+    "viewed": false
+  },
+  {
+    "type": "interactive",
+    "contentUrl": "2dD3Fawk4y0",
+    "contentType": "video",
+    "scoreChange": -25,
+    "tooltip": "Curve",
+    "viewed": false
+  },
+  {
+    "type": "interactive",
+    "contentUrl": "Ra1FFAc0ccE",
+    "contentType": "video",
+    "scoreChange": -50,
+    "tooltip": "Great White The Station nightclub fire West",
+    "viewed": false
+  },
+  {
+    "type": "interactive",
+    "contentUrl": "AEKbFMvkLIc",
+    "contentType": "video",
+    "scoreChange": -25,
+    "tooltip": "Sell Out, Reel Big Fish",
+    "viewed": false
+  },
+  {
+    "type": "interactive",
+    "contentUrl": "JZdMUvzE7XY",
+    "contentType": "video",
+    "scoreChange": -10,
+    "tooltip": "man in banana suit lights himself on fire",
+    "viewed": false
+  },
+  {
+    "type": "interactive",
+    "contentUrl": "6bVa6jn4rpE",
+    "contentType": "video",
+    "scoreChange": -20,
+    "tooltip": " University of Florida student Tasered at Kerry forum ",
     "viewed": false
   }
 ]
