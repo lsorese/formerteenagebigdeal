@@ -16,7 +16,8 @@
       "duration": "2:21",
       "url": "/mp3/01-the-future-is-stupid",
       "lyricsFile": "/src/data/lyrics/01-the-future-is-stupid.md",
-      "color": "#ff8888"
+      "color": "#ff8888",
+      "enabled": true
     },
     {
       "id": 2,
@@ -24,15 +25,17 @@
       "duration": "0:57",
       "url": "/mp3/02-route-666",
       "lyricsFile": "/src/data/lyrics/02-route-666.md",
-      "color": "#ffaa44"
+      "color": "#ffaa44",
+      "enabled": true
     },
     {
       "id": 3,
-      "title": "Lisa Pell: The Tyrant of Sillytown USA",
+      "title": "Lisa P.: The Tyrant of Sillytown USA",
       "duration": "1:25",
       "url": "/mp3/03-lisa-pell-the-tyrant-of-sillytown-usa",
       "lyricsFile": "/src/data/lyrics/03-lisa-pell-the-tyrant-of-sillytown-usa.md",
-      "color": "#ffcc00"
+      "color": "#ffcc00",
+      "enabled": false
     },
     {
       "id": 4,
@@ -40,7 +43,8 @@
       "duration": "2:31",
       "url": "/mp3/04-emergency-broadcast",
       "lyricsFile": "/src/data/lyrics/04-emergency-broadcast.md",
-      "color": "#bbcc44"
+      "color": "#bbcc44",
+      "enabled": false
     },
     {
       "id": 5,
@@ -48,7 +52,8 @@
       "duration": "2:38",
       "url": "/mp3/05-40oz-stanley-adventure-quencher-travel-tumbler",
       "lyricsFile": "/src/data/lyrics/05-40oz-stanley-adventure-quencher-travel-tumbler.md",
-      "color": "#99cc66"
+      "color": "#99cc66",
+      "enabled": false
     },
     {
       "id": 6,
@@ -56,7 +61,8 @@
       "duration": "0:41",
       "url": "/mp3/06-666-secret-steps",
       "lyricsFile": "/src/data/lyrics/06-666-secret-steps.md",
-      "color": "#77cc88"
+      "color": "#77cc88",
+      "enabled": false
     },
     {
       "id": 7,
@@ -64,23 +70,26 @@
       "duration": "1:29",
       "url": "/mp3/07-heal-me-girly-girl-productions-cover",
       "lyricsFile": "/src/data/lyrics/07-heal-me-girly-girl-productions-cover.md",
-      "color": "#55ccaa"
+      "color": "#55ccaa",
+      "enabled": false
     },
     {
       "id": 8,
-      "title": "Joey Chestnut vs. My Foreign Campaign Finance Records",
+      "title": "Joey Chestnut vs. My Campaign Finance Records",
       "duration": "0:39",
       "url": "/mp3/08-joey-chestnut-vs-my-foreign-campaign-finance-records",
       "lyricsFile": "/src/data/lyrics/08-joey-chestnut-vs-my-foreign-campaign-finance-records.md",
-      "color": "#33cccc"
+      "color": "#33cccc",
+      "enabled": false
     },
     {
       "id": 9,
-      "title": "Attn: K-mart Shoppers",
+      "title": "Attn K-mart Associates, Clean Up on S-Club 7",
       "duration": "1:47",
       "url": "/mp3/09-attn-k-mart-shoppers",
       "lyricsFile": "/src/data/lyrics/09-attn-k-mart-shoppers.md",
-      "color": "#5588cc"
+      "color": "#5588cc",
+      "enabled": false
     },
     {
       "id": 10,
@@ -88,7 +97,8 @@
       "duration": "1:43",
       "url": "/mp3/10-shamnow-thats-what-i-call-br00tal-death-metal",
       "lyricsFile": "/src/data/lyrics/10-shamnow-thats-what-i-call-br00tal-death-metal.md",
-      "color": "#6666cc"
+      "color": "#6666cc",
+      "enabled": false
     },
     {
       "id": 11,
@@ -96,7 +106,8 @@
       "duration": "1:08",
       "url": "/mp3/11-this-is-not-financial-advice",
       "lyricsFile": "/src/data/lyrics/11-this-is-not-financial-advice.md",
-      "color": "#7744cc"
+      "color": "#7744cc",
+      "enabled": false
     },
     {
       "id": 12,
@@ -104,7 +115,8 @@
       "duration": "1:07",
       "url": "/mp3/12-former-teenage-big-deal",
       "lyricsFile": "/src/data/lyrics/12-former-teenage-big-deal.md",
-      "color": "#9900cc"
+      "color": "#9900cc",
+      "enabled": false
     },
     {
       "id": 13,
@@ -112,7 +124,8 @@
       "duration": "4:10",
       "url": "/mp3/13-thats-an-outdated-idea-about-sexuality-babygirl",
       "lyricsFile": "/src/data/lyrics/13-thats-an-outdated-idea-about-sexuality-babygirl.md",
-      "color": "#aa2299"
+      "color": "#aa2299",
+      "enabled": false
     },
     {
       "id": 14,
@@ -120,7 +133,8 @@
       "duration": "2:15",
       "url": "/mp3/14-the-trolley-problem-but-all-you-can-do-is-watch",
       "lyricsFile": "/src/data/lyrics/14-the-trolley-problem-but-all-you-can-do-is-watch.md",
-      "color": "#bb4477"
+      "color": "#bb4477",
+      "enabled": false
     },
     {
       "id": 15,
@@ -128,7 +142,8 @@
       "duration": "3:01",
       "url": "/mp3/15-the-cult-of-teotwawki",
       "lyricsFile": "/src/data/lyrics/15-the-cult-of-teotwawki.md",
-      "color": "#cc6655"
+      "color": "#cc6655",
+      "enabled": false
     }
   ]
 }

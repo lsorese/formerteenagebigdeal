@@ -46,6 +46,31 @@ function processHtmlLinks(html) {
 export async function loadTracksWithLyrics(albumData) {
   const md = createMarkdownRenderer();
   
+  const enabledTracks = albumData.tracks.filter(track => track.enabled !== false);
+  
+  return await Promise.all(enabledTracks.map(async (track) => {
+    try {
+      const lyricsPath = join(process.cwd(), track.lyricsFile);
+      const lyricsContent = readFileSync(lyricsPath, 'utf-8');
+      
+      return {
+        ...track,
+        lyricsHtml: md.render(lyricsContent)
+      };
+    } catch (error) {
+      console.warn(`Could not load lyrics for ${track.title}:`, error.message);
+      const fallbackMarkdown = `# ${track.title}\n\n*Lyrics not available*`;
+      return {
+        ...track,
+        lyricsHtml: md.render(fallbackMarkdown)
+      };
+    }
+  }));
+}
+
+export async function loadAllTracksWithLyrics(albumData) {
+  const md = createMarkdownRenderer();
+  
   return await Promise.all(albumData.tracks.map(async (track) => {
     try {
       const lyricsPath = join(process.cwd(), track.lyricsFile);

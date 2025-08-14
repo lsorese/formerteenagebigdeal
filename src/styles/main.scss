@@ -450,6 +450,50 @@ blockquote {
     }
   }
   
+  &--disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    position: relative;
+    background: rgba(20, 20, 20, 0.9);
+    
+    &:hover {
+      background: rgba(20, 20, 20, 0.9);
+      opacity: 0.4;
+    }
+    
+    &::after {
+      content: '🔒';
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    
+    .track__title,
+    .track__number {
+      color: #555555;
+      font-style: italic;
+    }
+    
+    .track__duration {
+      color: #444444;
+    }
+    
+    .track__title::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #666666;
+      margin-right: 6px;
+      opacity: 0.5;
+    }
+  }
+  
   &__number {
     width: 25px;
     color: #ffffff;

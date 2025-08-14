@@ -43,6 +43,12 @@ class AlbumPlayer {
     }
     
     const track = this.tracks[index];
+    
+    // Don't load disabled tracks
+    if (!track || track.enabled === false) {
+      return;
+    }
+    
     const baseUrl = track.url.replace('/mp3/', '');
     const formats = [
       `/webm/${baseUrl}.webm`,
@@ -77,6 +83,11 @@ class AlbumPlayer {
   play() {
     if (!this.sound) return;
     
+    const currentTrack = this.tracks[this.currentTrack];
+    if (!currentTrack || currentTrack.enabled === false) {
+      return;
+    }
+    
     // Clear loading state when starting to play
     this.setLoadingState(false);
     
@@ -102,7 +113,15 @@ class AlbumPlayer {
       this.pause();
     } else {
       if (this.currentTrack < 0) {
-        this.currentTrack = 0;
+        let firstEnabledIndex = 0;
+        while (this.tracks[firstEnabledIndex] && this.tracks[firstEnabledIndex].enabled === false) {
+          firstEnabledIndex++;
+          if (firstEnabledIndex >= this.tracks.length) {
+            firstEnabledIndex = 0;
+            break;
+          }
+        }
+        this.currentTrack = firstEnabledIndex;
         this.loadTrack(this.currentTrack);
       }
       this.play();
@@ -111,23 +130,44 @@ class AlbumPlayer {
   
   nextTrack() {
     this.pauseAllVideos();
-    this.currentTrack = this.currentTrack < 0 
+    let nextIndex = this.currentTrack < 0 
       ? 0 
       : (this.currentTrack + 1) % this.tracks.length;
+    
+    const startIndex = nextIndex;
+    while (this.tracks[nextIndex] && this.tracks[nextIndex].enabled === false) {
+      nextIndex = (nextIndex + 1) % this.tracks.length;
+      if (nextIndex === startIndex) break;
+    }
+    
+    this.currentTrack = nextIndex;
     this.loadTrack(this.currentTrack);
     if (this.isPlaying) this.play();
   }
   
   prevTrack() {
     this.pauseAllVideos();
-    this.currentTrack = this.currentTrack < 0 
+    let prevIndex = this.currentTrack < 0 
       ? this.tracks.length - 1 
       : (this.currentTrack - 1 + this.tracks.length) % this.tracks.length;
+    
+    const startIndex = prevIndex;
+    while (this.tracks[prevIndex] && this.tracks[prevIndex].enabled === false) {
+      prevIndex = (prevIndex - 1 + this.tracks.length) % this.tracks.length;
+      if (prevIndex === startIndex) break;
+    }
+    
+    this.currentTrack = prevIndex;
     this.loadTrack(this.currentTrack);
     if (this.isPlaying) this.play();
   }
   
   selectTrack(index) {
+    const track = this.tracks[index];
+    if (track && track.enabled === false) {
+      return;
+    }
+    
     this.pauseAllVideos();
     this.currentTrack = index;
     this.loadTrack(index);
@@ -311,8 +351,14 @@ class AlbumPlayer {
       }
     });
     
-    document.querySelectorAll('.track').forEach((track, index) => {
-      track.addEventListener('click', () => this.selectTrack(index));
+    document.querySelectorAll('.track').forEach((trackElement) => {
+      trackElement.addEventListener('click', () => {
+        const trackId = parseInt(trackElement.getAttribute('data-track-id'));
+        const trackIndex = this.tracks.findIndex(track => track.id === trackId);
+        if (trackIndex !== -1) {
+          this.selectTrack(trackIndex);
+        }
+      });
     });
     
     document.addEventListener('modalOpened', () => {
