@@ -142,7 +142,7 @@ class UnlockSystem {
     updateUIState() {
         const unlockButton = document.getElementById('unlockButton');
         if (unlockButton) {
-            unlockButton.textContent = this.isUnlocked ? '🔓' : '🔐';
+            unlockButton.textContent = this.isUnlocked ? '🔓 Lock All Tracks' : '🔐 Unlock All Tracks';
             unlockButton.title = this.isUnlocked ? 'Lock tracks' : 'Unlock all tracks';
         }
     }

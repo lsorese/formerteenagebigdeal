@@ -1,3 +1,5 @@
+@use 'game';
+
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @font-face {
@@ -7,8 +9,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
-@import 'game';
 
 $gradient: linear-gradient(to right, #ff8888, #ff9966, #ffaa44, #ffbb22, #ffcc00, #ddcc22, #bbcc44, #99cc66, #77cc88, #55ccaa, #33cccc, #44aacc, #5588cc, #6666cc, #7744cc, #8822cc, #9900cc, #aa2299, #bb4477, #cc6655);
 
@@ -1181,19 +1181,18 @@ blockquote {
 }
 
 .unlock__control-btn {
-  background: #222;
-  border: 1px solid #666;
+  background: #000;
+  border-color: #fff;
   color: #fff;
-  padding: 0.3rem 0.6rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   transition: all 0.2s ease;
   font-family: 'more', 'Courier New', monospace;
-  border-radius: 4px;
   
   &:hover {
-    background: #444;
-    transform: scale(1.1);
+    background: #fff;
+    color: #000000;
   }
   
   &:focus {
