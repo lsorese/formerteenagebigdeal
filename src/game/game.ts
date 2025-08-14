@@ -960,46 +960,95 @@ class RPGGame {
     return this.rainbowColors[colorIndex];
   }
 
-  private drawTooltip(screenPos: Position, text: string, time: number, colorIndex: number): void {
-    // Calculate bounce animation
-    const bounceOffset = Math.abs(Math.sin(time * 0.008)) * 11; // Bouncing animation (25% larger)
-    const tooltipY = screenPos.y - 52 - bounceOffset; // Position 20% closer to the tile
+  private drawTooltip(screenPos: Position, text: string, time: number, colorIndex: number, playerPos: Position, boxPos: Position): void {
+    // Calculate distance between player and box (in grid units)
+    const distance = this.calculateGridDistance(playerPos, boxPos);
     
-    // Set font properties - increased by 5%
-    this.ctx.font = 'bold 23px "more", "Courier Prime", "Courier New", monospace';
+    // Define proximity ranges
+    const maxDistance = 6; // Start fading at 6 tiles away
+    const minDistance = 2; // Full opacity at 2 tiles or closer
+    
+    // Don't show tooltip if too far away
+    if (distance > maxDistance) {
+      return;
+    }
+    
+    // Calculate opacity based on distance
+    let opacity: number;
+    if (distance <= minDistance) {
+      opacity = 0.95; // Full opacity when close
+    } else {
+      // Fade out linearly from minDistance to maxDistance
+      const fadeRange = maxDistance - minDistance;
+      const fadeProgress = (distance - minDistance) / fadeRange;
+      opacity = 0.95 * (1 - fadeProgress); // Fade from 0.95 to 0
+    }
+    
+    // Calculate bounce animation (less bouncy when far away)
+    const bounceIntensity = opacity; // Tie bounce intensity to opacity
+    const bounceOffset = Math.abs(Math.sin(time * 0.008)) * 11 * bounceIntensity;
+    const tooltipY = screenPos.y - 52 - bounceOffset;
+    
+    // Set font properties - make smaller when far away
+    const fontSize = Math.round(23 * Math.max(0.7, opacity / 0.95)); // Scale font size
+    this.ctx.font = `bold ${fontSize}px "more", "Courier Prime", "Courier New", monospace`;
     this.ctx.textAlign = 'center';
     
     // Measure text width for background
     const textWidth = this.ctx.measureText(text).width;
-    const padding = 23; // Increased padding (25% larger)
+    const padding = Math.round(23 * Math.max(0.7, opacity / 0.95)); // Scale padding
     const bgWidth = textWidth + padding * 2;
-    const bgHeight = 44; // Increased height (25% larger)
+    const bgHeight = Math.round(44 * Math.max(0.7, opacity / 0.95)); // Scale height
     
-    // Draw tooltip background
-    this.ctx.fillStyle = 'rgba(17, 17, 17, 0.95)';
+    // Draw tooltip background with opacity
+    this.ctx.fillStyle = `rgba(17, 17, 17, ${opacity})`;
     this.ctx.fillRect(screenPos.x - bgWidth / 2, tooltipY - bgHeight / 2, bgWidth, bgHeight);
     
-    // Draw tooltip border with rainbow effect
+    // Draw tooltip border with rainbow effect and opacity
     const rainbowColor = this.getRainbowColor(colorIndex);
-    this.ctx.strokeStyle = rainbowColor;
-    this.ctx.lineWidth = 3; // Thicker border
+    this.ctx.strokeStyle = this.addOpacityToColor(rainbowColor, opacity);
+    this.ctx.lineWidth = Math.max(1, 3 * opacity); // Scale border thickness
     this.ctx.strokeRect(screenPos.x - bgWidth / 2, tooltipY - bgHeight / 2, bgWidth, bgHeight);
     
-    // Draw arrow pointing to the tile (upside down) - filled with rainbow color
-    this.ctx.fillStyle = rainbowColor;
+    // Draw arrow pointing to the tile with opacity
+    this.ctx.fillStyle = this.addOpacityToColor(rainbowColor, opacity);
     this.ctx.beginPath();
-    this.ctx.moveTo(screenPos.x, tooltipY + bgHeight / 2 + 16); // Point at bottom, larger arrow
-    this.ctx.lineTo(screenPos.x - 11, tooltipY + bgHeight / 2); // Left point of arrow base (25% larger)
-    this.ctx.lineTo(screenPos.x + 11, tooltipY + bgHeight / 2); // Right point of arrow base (25% larger)
+    const arrowSize = Math.round(11 * Math.max(0.7, opacity / 0.95)); // Scale arrow
+    const arrowOffset = Math.round(16 * Math.max(0.7, opacity / 0.95));
+    this.ctx.moveTo(screenPos.x, tooltipY + bgHeight / 2 + arrowOffset);
+    this.ctx.lineTo(screenPos.x - arrowSize, tooltipY + bgHeight / 2);
+    this.ctx.lineTo(screenPos.x + arrowSize, tooltipY + bgHeight / 2);
     this.ctx.closePath();
     this.ctx.fill();
     
-    // Draw tooltip text with white color for better readability
-    this.ctx.fillStyle = '#ffffff';
-    this.ctx.fillText(text, screenPos.x, tooltipY + 6);
+    // Draw tooltip text with opacity
+    this.ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+    this.ctx.fillText(text, screenPos.x, tooltipY + Math.round(6 * Math.max(0.7, opacity / 0.95)));
     
     // Reset text align
     this.ctx.textAlign = 'left';
+  }
+
+  private calculateGridDistance(pos1: Position, pos2: Position): number {
+    const gridX1 = pos1.x / this.gridSize;
+    const gridY1 = pos1.y / this.gridSize;
+    const gridX2 = pos2.x / this.gridSize;
+    const gridY2 = pos2.y / this.gridSize;
+    
+    // Use Manhattan distance (grid movement)
+    return Math.abs(gridX1 - gridX2) + Math.abs(gridY1 - gridY2);
+  }
+
+  private addOpacityToColor(color: string, opacity: number): string {
+    // Convert hex color to rgba with opacity
+    if (color.startsWith('#')) {
+      const hex = color.slice(1);
+      const r = parseInt(hex.slice(0, 2), 16);
+      const g = parseInt(hex.slice(2, 4), 16);
+      const b = parseInt(hex.slice(4, 6), 16);
+      return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+    }
+    return color; // Return as-is if not a hex color
   }
 
   private drawPointsNotifications(): void {
@@ -1154,7 +1203,7 @@ class RPGGame {
         
         // Draw tooltip for unviewed boxes only
         if (!box.viewed && box.tooltip) {
-          this.drawTooltip(screenPos, box.tooltip, this.animationTime, i);
+          this.drawTooltip(screenPos, box.tooltip, this.animationTime, i, this.player.position, box.position);
         }
       }
     }
