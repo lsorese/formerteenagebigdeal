@@ -25,6 +25,12 @@ interface GameBox {
   viewed?: boolean;
 }
 
+interface PlayerState {
+  direction: 'up' | 'down' | 'left' | 'right' | 'idle';
+  animationFrame: number;
+  lastMoveTime: number;
+}
+
 class RPGGame {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
@@ -57,6 +63,11 @@ class RPGGame {
     '#5588cc', '#6666cc', '#7744cc', '#8822cc', '#9900cc', '#aa2299', 
     '#bb4477', '#cc6655'
   ];
+  private playerState: PlayerState = {
+    direction: 'idle',
+    animationFrame: 0,
+    lastMoveTime: 0
+  };
 
   constructor() {
     this.canvas = document.getElementById('game-canvas') as HTMLCanvasElement;
@@ -605,28 +616,39 @@ class RPGGame {
     const oldPosition = { ...this.player.position };
     let newPosition = { ...this.player.position };
     
+    let direction: PlayerState['direction'] = this.playerState.direction;
+    
     switch (key.toLowerCase()) {
       case 'arrowup':
       case 'w':
         newPosition.y -= this.gridSize;
+        direction = 'up';
         break;
       case 'arrowdown':
       case 's':
         newPosition.y += this.gridSize;
+        direction = 'down';
         break;
       case 'arrowleft':
       case 'a':
         newPosition.x -= this.gridSize;
+        direction = 'left';
         break;
       case 'arrowright':
       case 'd':
         newPosition.x += this.gridSize;
+        direction = 'right';
         break;
     }
 
     // Only move if the new position is within bounds
     if (this.isWithinBounds(newPosition)) {
       this.player.position = newPosition;
+      
+      // Update player state for animation
+      this.playerState.direction = direction;
+      this.playerState.lastMoveTime = this.animationTime;
+      this.playerState.animationFrame = 0; // Reset animation
 
       // Update camera to follow player
       this.updateCamera();
@@ -909,42 +931,277 @@ class RPGGame {
   }
 
   private drawPlayer(screenPos: Position): void {
-    // Make player dot bigger (1.8x the normal size)
-    const playerSize = this.gridSize * 1.8;
-    const halfSize = playerSize * 0.433; // Half width of isometric diamond
-    const quarterHeight = playerSize * 0.25;
+    // Update player animation
+    this.updatePlayerAnimation();
     
-    // Get cycling rainbow color for player
-    const playerColor = this.getPlayerRainbowColor(this.animationTime);
+    // Larger pixel size for better visibility on isometric tiles
+    const pixelSize = 5.5; // Increased for much better visibility
     
-    this.ctx.fillStyle = playerColor;
+    // Get cycling rainbow colors for the character
+    const primaryColor = this.getPlayerRainbowColor(this.animationTime);
+    const secondaryColor = this.getPlayerRainbowColor(this.animationTime + 20);
+    
+    // Draw the animated pixel character based on direction and animation frame
+    this.drawPixelCharacter(screenPos, this.playerState.direction, this.playerState.animationFrame, primaryColor, secondaryColor, pixelSize);
+  }
+
+  private updatePlayerAnimation(): void {
+    const timeSinceMove = this.animationTime - this.playerState.lastMoveTime;
+    
+    // If it's been a while since moving, go to idle
+    if (timeSinceMove > 60) { // 1 second at 60fps
+      this.playerState.direction = 'idle';
+    }
+    
+    // Update animation frame (cycles every 30 frames for smooth animation)
+    this.playerState.animationFrame = Math.floor(this.animationTime * 0.15) % 4;
+  }
+
+  private drawPixelCharacter(screenPos: Position, direction: PlayerState['direction'], frame: number, color1: string, color2: string, pixelSize: number): void {
+    this.ctx.save();
+    
+    // Better positioning for isometric diamond tiles
+    const spriteWidth = 8 * pixelSize;
+    const spriteHeight = 6 * pixelSize; // Using actual compact height
+    const startX = screenPos.x - spriteWidth / 2;
+    // Position character to appear "standing" on the diamond tile
+    const startY = screenPos.y - spriteHeight + pixelSize; // Bottom-aligned with slight lift
+    
+    // Add enhanced isometric shadow - diamond shaped to match tile
+    const shadowOpacity = 0.25;
+    const shadowOffset = pixelSize * 0.3;
+    this.ctx.fillStyle = `rgba(0, 0, 0, ${shadowOpacity})`;
+    
+    // Draw diamond-shaped shadow at the base
+    const shadowCenterX = screenPos.x;
+    const shadowCenterY = screenPos.y + pixelSize * 0.5;
+    const shadowSize = spriteWidth * 0.4;
+    
     this.ctx.beginPath();
-    this.ctx.moveTo(screenPos.x, screenPos.y - quarterHeight);
-    this.ctx.lineTo(screenPos.x + halfSize, screenPos.y);
-    this.ctx.lineTo(screenPos.x, screenPos.y + quarterHeight);
-    this.ctx.lineTo(screenPos.x - halfSize, screenPos.y);
+    this.ctx.moveTo(shadowCenterX, shadowCenterY - shadowSize * 0.3);
+    this.ctx.lineTo(shadowCenterX + shadowSize * 0.6, shadowCenterY);
+    this.ctx.lineTo(shadowCenterX, shadowCenterY + shadowSize * 0.3);
+    this.ctx.lineTo(shadowCenterX - shadowSize * 0.6, shadowCenterY);
     this.ctx.closePath();
     this.ctx.fill();
     
-    // Add thicker outline for player
-    this.ctx.strokeStyle = 'rgba(0, 0, 0, 0.6)';
-    this.ctx.lineWidth = 2;
-    this.ctx.stroke();
+    // Add subtle outline for better definition against colorful backgrounds
+    this.ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+    this.ctx.shadowBlur = 1;
+    this.ctx.shadowOffsetX = 0.5;
+    this.ctx.shadowOffsetY = 0.5;
     
-    // Add "THIS IS YOU" text inside the player box
-    this.ctx.save();
-    this.ctx.font = 'bold 24px "more", "Courier Prime", "Courier New", monospace';
+    // Draw sprite based on direction
+    switch (direction) {
+      case 'down':
+      case 'idle':
+        this.drawCharacterDown(startX, startY, frame, color1, color2, pixelSize);
+        break;
+      case 'up':
+        this.drawCharacterUp(startX, startY, frame, color1, color2, pixelSize);
+        break;
+      case 'left':
+        this.drawCharacterLeft(startX, startY, frame, color1, color2, pixelSize);
+        break;
+      case 'right':
+        this.drawCharacterRight(startX, startY, frame, color1, color2, pixelSize);
+        break;
+    }
+    
+    // Reset shadow
+    this.ctx.shadowBlur = 0;
+    this.ctx.shadowOffsetX = 0;
+    this.ctx.shadowOffsetY = 0;
+    
+    // Add "YOU" text underneath the character
+    const textY = startY + spriteHeight + pixelSize * 1.5; // Position below character
+    this.ctx.font = 'bold 16px "more", "Courier Prime", "Courier New", monospace';
     this.ctx.textAlign = 'center';
     this.ctx.textBaseline = 'middle';
-    this.ctx.fillStyle = '#000';
     
-    // Draw text with stroke for better visibility
+    // Add text background for better readability
+    const textMetrics = this.ctx.measureText('YOU');
+    const textWidth = textMetrics.width;
+    const textHeight = 16;
+    const bgPadding = 4;
+    
+    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    this.ctx.fillRect(
+      screenPos.x - textWidth/2 - bgPadding, 
+      textY - textHeight/2 - bgPadding, 
+      textWidth + bgPadding * 2, 
+      textHeight + bgPadding * 2
+    );
+    
+    // Draw "YOU" text with rainbow color
+    this.ctx.fillStyle = color1; // Use the same rainbow color as character
     this.ctx.strokeStyle = '#fff';
     this.ctx.lineWidth = 2;
-    this.ctx.strokeText('YOU', screenPos.x, screenPos.y);
-    this.ctx.fillText('YOU', screenPos.x, screenPos.y);
+    this.ctx.strokeText('YOU', screenPos.x, textY);
+    this.ctx.fillText('YOU', screenPos.x, textY);
+    
+    // Reset text properties
+    this.ctx.textAlign = 'left';
+    this.ctx.textBaseline = 'alphabetic';
     
     this.ctx.restore();
+  }
+
+  private drawPixel(x: number, y: number, color: string, pixelSize: number): void {
+    // Fill the pixel
+    this.ctx.fillStyle = color;
+    this.ctx.fillRect(x, y, pixelSize, pixelSize);
+    
+    // Add subtle border for better definition on isometric tiles
+    if (pixelSize > 3) { // Only add borders for larger pixels
+      this.ctx.strokeStyle = 'rgba(0, 0, 0, 0.15)';
+      this.ctx.lineWidth = 0.5;
+      this.ctx.strokeRect(x, y, pixelSize, pixelSize);
+    }
+  }
+
+  private drawCharacterDown(startX: number, startY: number, frame: number, color1: string, color2: string, pixelSize: number): void {
+    const walking = frame % 2 === 1;
+    
+    // Head (more compact)
+    this.drawPixel(startX + 3*pixelSize, startY + 0*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 0*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 2*pixelSize, startY + 1*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 3*pixelSize, startY + 1*pixelSize, '#000', pixelSize); // Eye
+    this.drawPixel(startX + 4*pixelSize, startY + 1*pixelSize, '#000', pixelSize); // Eye
+    this.drawPixel(startX + 5*pixelSize, startY + 1*pixelSize, color1, pixelSize);
+    
+    // Body (shorter)
+    this.drawPixel(startX + 3*pixelSize, startY + 2*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 2*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 2*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 3*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 5*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    
+    // Legs (animated, shorter)
+    if (walking) {
+      // Walking pose - legs apart
+      this.drawPixel(startX + 2*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 5*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 2*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 5*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+    } else {
+      // Standing pose - legs together
+      this.drawPixel(startX + 3*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 4*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 3*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 4*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+    }
+  }
+
+  private drawCharacterUp(startX: number, startY: number, frame: number, color1: string, color2: string, pixelSize: number): void {
+    const walking = frame % 2 === 1;
+    
+    // Head (back view, compact)
+    this.drawPixel(startX + 3*pixelSize, startY + 0*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 0*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 2*pixelSize, startY + 1*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 3*pixelSize, startY + 1*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 1*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 5*pixelSize, startY + 1*pixelSize, color1, pixelSize);
+    
+    // Body (shorter)
+    this.drawPixel(startX + 3*pixelSize, startY + 2*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 2*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 2*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 3*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 5*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    
+    // Legs (animated, shorter)
+    if (walking) {
+      this.drawPixel(startX + 2*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 5*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 2*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 5*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+    } else {
+      this.drawPixel(startX + 3*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 4*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 3*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 4*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+    }
+  }
+
+  private drawCharacterLeft(startX: number, startY: number, frame: number, color1: string, color2: string, pixelSize: number): void {
+    const walking = frame % 2 === 1;
+    
+    // Head (side view, compact)
+    this.drawPixel(startX + 3*pixelSize, startY + 0*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 0*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 2*pixelSize, startY + 1*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 3*pixelSize, startY + 1*pixelSize, '#000', pixelSize); // Eye
+    this.drawPixel(startX + 4*pixelSize, startY + 1*pixelSize, color1, pixelSize);
+    
+    // Body (shorter)
+    this.drawPixel(startX + 3*pixelSize, startY + 2*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 2*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 2*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 3*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    
+    // Arms (animated, simpler)
+    if (walking) {
+      this.drawPixel(startX + 1*pixelSize, startY + 3*pixelSize, color2, pixelSize); // Arm forward
+      this.drawPixel(startX + 5*pixelSize, startY + 3*pixelSize, color2, pixelSize); // Arm back
+    } else {
+      this.drawPixel(startX + 2*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+      this.drawPixel(startX + 4*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    }
+    
+    // Legs (animated, shorter)
+    if (walking) {
+      this.drawPixel(startX + 2*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 4*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 1*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 4*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+    } else {
+      this.drawPixel(startX + 3*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 3*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+    }
+  }
+
+  private drawCharacterRight(startX: number, startY: number, frame: number, color1: string, color2: string, pixelSize: number): void {
+    const walking = frame % 2 === 1;
+    
+    // Head (side view, mirrored, compact)
+    this.drawPixel(startX + 3*pixelSize, startY + 0*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 0*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 3*pixelSize, startY + 1*pixelSize, color1, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 1*pixelSize, '#000', pixelSize); // Eye
+    this.drawPixel(startX + 5*pixelSize, startY + 1*pixelSize, color1, pixelSize);
+    
+    // Body (shorter)
+    this.drawPixel(startX + 3*pixelSize, startY + 2*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 2*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 3*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 4*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    this.drawPixel(startX + 5*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    
+    // Arms (animated, simpler)
+    if (walking) {
+      this.drawPixel(startX + 2*pixelSize, startY + 3*pixelSize, color2, pixelSize); // Arm back
+      this.drawPixel(startX + 6*pixelSize, startY + 3*pixelSize, color2, pixelSize); // Arm forward
+    } else {
+      this.drawPixel(startX + 3*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+      this.drawPixel(startX + 5*pixelSize, startY + 3*pixelSize, color2, pixelSize);
+    }
+    
+    // Legs (animated, shorter)
+    if (walking) {
+      this.drawPixel(startX + 3*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 5*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 3*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 6*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+    } else {
+      this.drawPixel(startX + 4*pixelSize, startY + 4*pixelSize, color1, pixelSize);
+      this.drawPixel(startX + 4*pixelSize, startY + 5*pixelSize, color1, pixelSize);
+    }
   }
 
   private getRainbowColor(index: number, time: number = 0): string {
