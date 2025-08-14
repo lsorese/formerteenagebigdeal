@@ -1175,6 +1175,33 @@ blockquote {
   }
 }
 
+.unlock-controls {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.unlock__control-btn {
+  background: #222;
+  border: 1px solid #666;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+  font-family: 'more', 'Courier New', monospace;
+  border-radius: 4px;
+  
+  &:hover {
+    background: #444;
+    transform: scale(1.1);
+  }
+  
+  &:focus {
+    outline: 2px solid #33cccc;
+    outline-offset: 2px;
+  }
+}
+
 .game-controls {
   margin-top: 1rem;
   text-align: center;
@@ -1243,6 +1270,98 @@ blockquote {
   height: 100%;
   display: block;
   background: transparent;
+}
+
+.unlock-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.unlock-modal-content {
+  max-width: 400px;
+  padding: 20px;
+  color: #000;
+  text-align: center;
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #000;
+  }
+  
+  p {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 2px solid #666;
+    background: #fff;
+    color: #000;
+    font-family: 'more', 'Courier New', monospace;
+    font-size: 0.9rem;
+    
+    &:focus {
+      outline: none;
+      border-color: #33cccc;
+    }
+  }
+}
+
+.unlock-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 1rem;
+  
+  button {
+    padding: 0.6rem 1.2rem;
+    border: 2px solid #666;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    font-family: 'more', 'Courier New', monospace;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: #f0f0f0;
+    }
+    
+    &:focus {
+      outline: 2px solid #33cccc;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.unlock-error {
+  color: #ff0000;
+  background: #ffe6e6;
+  padding: 0.5rem;
+  border: 1px solid #ff0000;
+  font-size: 0.8rem;
+  
+  &.hidden {
+    display: none;
+  }
 }
 
 

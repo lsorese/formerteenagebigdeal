@@ -36,7 +36,7 @@
       "lyricsFile": "/src/data/lyrics/03-lisa-pell-the-tyrant-of-sillytown-usa.md",
       "color": "#ffcc00",
       "enabled": false,
-      "override": "📅 Available August 28th"
+      "override": "Available August 17th"
     },
     {
       "id": 4,
@@ -46,7 +46,7 @@
       "lyricsFile": "/src/data/lyrics/04-emergency-broadcast.md",
       "color": "#bbcc44",
       "enabled": false,
-      "override": "🚧 Coming Soon"
+      "override": "Available August 19th"
     },
     {
       "id": 5,
@@ -56,7 +56,7 @@
       "lyricsFile": "/src/data/lyrics/05-40oz-stanley-adventure-quencher-travel-tumbler.md",
       "color": "#99cc66",
       "enabled": false,
-      "override": "📅 Available September 15th"
+      "override": "Available August 21st"
     },
     {
       "id": 6,
@@ -66,7 +66,7 @@
       "lyricsFile": "/src/data/lyrics/06-666-secret-steps.md",
       "color": "#77cc88",
       "enabled": false,
-      "override": "⭐ Premium Track"
+      "override": "Available Later"
     },
     {
       "id": 7,
@@ -75,7 +75,8 @@
       "url": "/mp3/07-heal-me-girly-girl-productions-cover",
       "lyricsFile": "/src/data/lyrics/07-heal-me-girly-girl-productions-cover.md",
       "color": "#55ccaa",
-      "enabled": false
+      "enabled": false,
+      "override": "Available Later"
     },
     {
       "id": 8,
@@ -84,7 +85,8 @@
       "url": "/mp3/08-joey-chestnut-vs-my-foreign-campaign-finance-records",
       "lyricsFile": "/src/data/lyrics/08-joey-chestnut-vs-my-foreign-campaign-finance-records.md",
       "color": "#33cccc",
-      "enabled": false
+      "enabled": false,
+      "override": "Available Later"
     },
     {
       "id": 9,
@@ -93,7 +95,8 @@
       "url": "/mp3/09-attn-k-mart-shoppers",
       "lyricsFile": "/src/data/lyrics/09-attn-k-mart-shoppers.md",
       "color": "#5588cc",
-      "enabled": false
+      "enabled": false,
+      "override": "Available Later"
     },
     {
       "id": 10,
@@ -102,7 +105,8 @@
       "url": "/mp3/10-shamnow-thats-what-i-call-br00tal-death-metal",
       "lyricsFile": "/src/data/lyrics/10-shamnow-thats-what-i-call-br00tal-death-metal.md",
       "color": "#6666cc",
-      "enabled": false
+      "enabled": false,
+      "override": "Available Later"
     },
     {
       "id": 11,
@@ -111,7 +115,8 @@
       "url": "/mp3/11-this-is-not-financial-advice",
       "lyricsFile": "/src/data/lyrics/11-this-is-not-financial-advice.md",
       "color": "#7744cc",
-      "enabled": false
+      "enabled": false,
+      "override": "Available Later"
     },
     {
       "id": 12,
@@ -120,7 +125,8 @@
       "url": "/mp3/12-former-teenage-big-deal",
       "lyricsFile": "/src/data/lyrics/12-former-teenage-big-deal.md",
       "color": "#9900cc",
-      "enabled": false
+      "enabled": false,
+      "override": "Available Later"
     },
     {
       "id": 13,
@@ -129,7 +135,8 @@
       "url": "/mp3/13-thats-an-outdated-idea-about-sexuality-babygirl",
       "lyricsFile": "/src/data/lyrics/13-thats-an-outdated-idea-about-sexuality-babygirl.md",
       "color": "#aa2299",
-      "enabled": false
+      "enabled": false,
+      "override": "Available Later"
     },
     {
       "id": 14,
@@ -138,7 +145,8 @@
       "url": "/mp3/14-the-trolley-problem-but-all-you-can-do-is-watch",
       "lyricsFile": "/src/data/lyrics/14-the-trolley-problem-but-all-you-can-do-is-watch.md",
       "color": "#bb4477",
-      "enabled": false
+      "enabled": false,
+      "override": "Available Later"
     },
     {
       "id": 15,
@@ -147,7 +155,8 @@
       "url": "/mp3/15-the-cult-of-teotwawki",
       "lyricsFile": "/src/data/lyrics/15-the-cult-of-teotwawki.md",
       "color": "#cc6655",
-      "enabled": false
+      "enabled": false,
+      "override": "Available Later"
     }
   ]
 }

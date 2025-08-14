@@ -36,7 +36,7 @@ class AlbumPlayer {
     this.updatePlayButtonAnimation();
   }
   
-  loadTrack(index) {
+  loadTrack(index, autoPlay = false) {
     if (this.sound) {
       this.sound.stop();
       this.sound.unload();
@@ -46,15 +46,19 @@ class AlbumPlayer {
     
     // Don't load disabled tracks
     if (!track || track.enabled === false) {
+      console.log(`❌ Cannot load disabled track ${track?.id}`);
       return;
     }
     
     const baseUrl = track.url.replace('/mp3/', '');
     const formats = [
+      `/mp3/${baseUrl}.mp3`, // Try MP3 first since we know these exist
       `/webm/${baseUrl}.webm`,
-      `/aac/${baseUrl}.aac`,
-      `/mp3/${baseUrl}.mp3`
+      `/aac/${baseUrl}.aac`
     ];
+    
+    console.log(`🔄 Loading track ${track.id}: ${track.title}`);
+    console.log(`🔄 Trying formats:`, formats);
     
     // Show loading state
     this.setLoadingState(true);
@@ -62,14 +66,22 @@ class AlbumPlayer {
     this.sound = new Howl({
       src: formats,
       html5: true,
-      preload: 'metadata',
+      preload: true, // Full preload instead of just metadata
       volume: this.volume,
       onend: () => this.nextTrack(),
       onload: () => {
+        console.log(`✅ Track ${track.id} loaded successfully`);
+        this.setLoadingState(false);
+        if (autoPlay) {
+          this.play();
+        }
+      },
+      onloaderror: (id, error) => {
+        console.error(`❌ Failed to load track ${track.id}:`, error);
         this.setLoadingState(false);
       },
-      onloaderror: () => {
-        this.setLoadingState(false);
+      onplayerror: (id, error) => {
+        console.error(`❌ Failed to play track ${track.id}:`, error);
       }
     });
     
@@ -122,9 +134,8 @@ class AlbumPlayer {
           }
         }
         this.currentTrack = firstEnabledIndex;
-        this.loadTrack(this.currentTrack);
+        this.loadTrack(this.currentTrack, true); // autoPlay = true
       }
-      this.play();
     }
   }
   
@@ -141,8 +152,7 @@ class AlbumPlayer {
     }
     
     this.currentTrack = nextIndex;
-    this.loadTrack(this.currentTrack);
-    if (this.isPlaying) this.play();
+    this.loadTrack(this.currentTrack, this.isPlaying); // autoPlay if was playing
   }
   
   prevTrack() {
@@ -158,20 +168,22 @@ class AlbumPlayer {
     }
     
     this.currentTrack = prevIndex;
-    this.loadTrack(this.currentTrack);
-    if (this.isPlaying) this.play();
+    this.loadTrack(this.currentTrack, this.isPlaying); // autoPlay if was playing
   }
   
   selectTrack(index) {
     const track = this.tracks[index];
+    console.log(`🎵 selectTrack(${index}):`, track ? {id: track.id, title: track.title, enabled: track.enabled} : 'Track not found');
+    
     if (track && track.enabled === false) {
+      console.log(`❌ Track ${track.id} is disabled, cannot play`);
       return;
     }
     
+    console.log(`✅ Loading and playing track ${track.id}: ${track.title}`);
     this.pauseAllVideos();
     this.currentTrack = index;
-    this.loadTrack(index);
-    this.play();
+    this.loadTrack(index, true); // autoPlay = true
   }
   
   showDownloadOptions() {
@@ -296,6 +308,13 @@ class AlbumPlayer {
     }
   }
   
+  updateTrackList() {
+    // Update the player's internal track list from the global albumData
+    if (window.albumData && window.albumData.tracks) {
+      this.tracks = window.albumData.tracks;
+    }
+  }
+
   setLoadingState(isLoading) {
     if (isLoading) {
       this.progressFill.classList.add('loading');
@@ -354,9 +373,15 @@ class AlbumPlayer {
     document.querySelectorAll('.track').forEach((trackElement) => {
       trackElement.addEventListener('click', () => {
         const trackId = parseInt(trackElement.getAttribute('data-track-id'));
+        console.log(`🖱️ Track clicked: ID ${trackId}`);
+        
         const trackIndex = this.tracks.findIndex(track => track.id === trackId);
+        console.log(`🔍 Found track at index: ${trackIndex}`);
+        
         if (trackIndex !== -1) {
           this.selectTrack(trackIndex);
+        } else {
+          console.log(`❌ Track ID ${trackId} not found in player tracks`);
         }
       });
     });
@@ -429,7 +454,8 @@ class AccessibilityMode {
 document.addEventListener('DOMContentLoaded', () => {
   const albumData = window.albumData;
   if (albumData?.tracks) {
-    new AlbumPlayer(albumData.tracks, albumData);
+    window.player = new AlbumPlayer(albumData.tracks, albumData);
+    console.log('🎵 Player initialized with tracks:', albumData.tracks.map(t => ({id: t.id, title: t.title, enabled: t.enabled})));
   }
   
   window.mediaModal = new MediaModal();

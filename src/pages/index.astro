@@ -76,7 +76,7 @@ const defaultLyricsHtml = await loadDefaultLyrics();
     })} />
     <link rel="stylesheet" href="/css/styles.css">
     <script src="/js/audio-preloader.js" is:inline></script>
-    <script define:vars={{ albumData: { ...albumData, tracks: tracksWithLyrics } }}>
+    <script define:vars={{ albumData: { ...albumData, tracks: allTracksWithLyrics } }}>
       window.albumData = albumData;
     </script>
     <script src="/js/youtube-toggle.js" is:inline></script>
@@ -126,6 +126,9 @@ const defaultLyricsHtml = await loadDefaultLyrics();
                 class={`track ${track.enabled === false ? 'track--disabled' : ''}`} 
                 data-track-id={track.id}
                 data-has-override={track.override ? 'true' : 'false'}
+                data-original-title={track.title}
+                data-override-text={track.override || ''}
+                data-originally-enabled={track.enabled}
               >
                 <div class="track__number">{track.id}</div>
                 <div class="track__info">
@@ -175,8 +178,32 @@ const defaultLyricsHtml = await loadDefaultLyrics();
       </div>
     </div>
 
+    <!-- Unlock Modal -->
+    <div class="unlock-modal" id="unlockModal">
+      <div class="modal-backdrop">
+        <div class="modal-container">
+          <div class="modal-header">
+            <button class="modal-close" id="unlockModalClose">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="unlock-modal-content">
+              <h2>🔐 Unlock All Tracks</h2>
+              <p>Enter the secret code to unlock all tracks:</p>
+              <input type="password" id="unlockInput" placeholder="Enter unlock code..." />
+              <div class="unlock-buttons">
+                <button id="unlockSubmit">Unlock</button>
+                <button id="unlockCancel">Cancel</button>
+              </div>
+              <div id="unlockError" class="unlock-error hidden"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="/js/main.bundle.js" is:inline></script>
     <script src="/js/game-integration.js" is:inline></script>
+    <script src="/js/unlock.js" is:inline></script>
     <Analytics />
   </body>
 </html>
