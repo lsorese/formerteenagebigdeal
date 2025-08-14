@@ -187,13 +187,17 @@ class RPGGame {
       const gameData = await response.json();
       console.log('Loaded game data:', gameData.length, 'boxes');
       
-      // Convert grid positions to world positions and add any missing properties
-      this.interactiveBoxes = gameData.map((box: any) => ({
+      // Calculate optimal board size based on number of nodes
+      this.calculateOptimalBoardSize(gameData.length);
+      console.log(`Calculated board size: ${this.mapWidth}x${this.mapHeight} for ${gameData.length} nodes`);
+      
+      // Generate random positions for all boxes without overlap
+      const positions = this.generateRandomPositions(gameData.length);
+      
+      // Create interactive boxes with random positions
+      this.interactiveBoxes = gameData.map((box: any, index: number) => ({
         ...box,
-        position: { 
-          x: box.position.x * this.gridSize, 
-          y: box.position.y * this.gridSize 
-        },
+        position: positions[index],
         type: 'interactive' as const,
         contentUrl: box.contentUrl,
         contentType: box.contentType || 'video',
@@ -206,6 +210,146 @@ class RPGGame {
       console.error('Failed to load game data:', error);
       // Fallback to empty array if loading fails
       this.interactiveBoxes = [];
+    }
+  }
+
+  private calculateOptimalBoardSize(nodeCount: number): void {
+    // We need space for nodes + player (1 extra)
+    const totalNodes = nodeCount + 1;
+    
+    // Add significant spacing - use 4x the nodes for very sparse distribution
+    const spacedNodes = totalNodes * 4;
+    
+    // Calculate square root to get roughly square dimensions
+    const baseSideLength = Math.ceil(Math.sqrt(spacedNodes));
+    
+    // Add extra size for breathing room (50% larger than calculated)
+    const sideLength = Math.ceil(baseSideLength * 1.5);
+    
+    // Ensure reasonable size bounds
+    const minSize = 15;  // Larger minimum for spacious feel
+    const maxSize = 80;  // Allow larger boards
+    
+    // Set both width and height to create a square board
+    this.mapWidth = Math.max(minSize, Math.min(maxSize, sideLength));
+    this.mapHeight = Math.max(minSize, Math.min(maxSize, sideLength));
+    
+    // If we still don't have enough space with max size, use rectangular board
+    const totalSpace = this.mapWidth * this.mapHeight;
+    if (totalSpace < spacedNodes) {
+      // Calculate rectangular dimensions that fit all nodes with spacing
+      this.mapWidth = maxSize;
+      this.mapHeight = Math.max(minSize, Math.ceil(spacedNodes / maxSize));
+    }
+  }
+
+  private generateRandomPositions(count: number): Position[] {
+    const positions: Position[] = [];
+    const usedAreas = new Set<string>();
+    const maxAttempts = 2000; // More attempts for better distribution
+    
+    // Reserve a larger area around player spawn (3x3 area)
+    for (let dx = -1; dx <= 1; dx++) {
+      for (let dy = -1; dy <= 1; dy++) {
+        const gridX = 0 + dx;
+        const gridY = 0 + dy;
+        if (gridX >= 0 && gridX < this.mapWidth && gridY >= 0 && gridY < this.mapHeight) {
+          usedAreas.add(`${gridX},${gridY}`);
+        }
+      }
+    }
+    
+    for (let i = 0; i < count; i++) {
+      let attempts = 0;
+      let position: Position;
+      let gridX: number, gridY: number;
+      
+      do {
+        // Use more organic distribution patterns
+        if (Math.random() < 0.3) {
+          // 30% chance for clustered placement (near existing pieces)
+          if (positions.length > 0) {
+            const existingPos = positions[Math.floor(Math.random() * positions.length)];
+            const existingGridX = Math.floor(existingPos.x / this.gridSize);
+            const existingGridY = Math.floor(existingPos.y / this.gridSize);
+            
+            // Place within 3-7 tiles of an existing piece
+            const distance = 3 + Math.floor(Math.random() * 5);
+            const angle = Math.random() * Math.PI * 2;
+            gridX = Math.round(existingGridX + Math.cos(angle) * distance);
+            gridY = Math.round(existingGridY + Math.sin(angle) * distance);
+          } else {
+            gridX = Math.floor(Math.random() * this.mapWidth);
+            gridY = Math.floor(Math.random() * this.mapHeight);
+          }
+        } else {
+          // 70% chance for completely random placement
+          gridX = Math.floor(Math.random() * this.mapWidth);
+          gridY = Math.floor(Math.random() * this.mapHeight);
+        }
+        
+        // Ensure coordinates are within bounds
+        gridX = Math.max(0, Math.min(this.mapWidth - 1, gridX));
+        gridY = Math.max(0, Math.min(this.mapHeight - 1, gridY));
+        
+        position = {
+          x: gridX * this.gridSize,
+          y: gridY * this.gridSize
+        };
+        
+        attempts++;
+      } while (this.isAreaOccupied(gridX, gridY, usedAreas) && attempts < maxAttempts);
+      
+      if (attempts >= maxAttempts) {
+        console.warn(`Could not find unique position for box ${i}, using fallback position`);
+        // Use systematic fallback that still maintains some spacing
+        let fallbackFound = false;
+        for (let y = 0; y < this.mapHeight && !fallbackFound; y++) {
+          for (let x = 0; x < this.mapWidth && !fallbackFound; x++) {
+            if (!this.isAreaOccupied(x, y, usedAreas)) {
+              gridX = x;
+              gridY = y;
+              position = { x: gridX * this.gridSize, y: gridY * this.gridSize };
+              fallbackFound = true;
+            }
+          }
+        }
+      }
+      
+      positions.push(position);
+      // Reserve a 3x3 area around each placed piece to ensure spacing
+      this.markAreaAsUsed(gridX, gridY, usedAreas);
+    }
+    
+    return positions;
+  }
+
+  private isAreaOccupied(centerX: number, centerY: number, usedAreas: Set<string>): boolean {
+    // Check if any cell in a 3x3 area around the center is occupied
+    for (let dx = -1; dx <= 1; dx++) {
+      for (let dy = -1; dy <= 1; dy++) {
+        const checkX = centerX + dx;
+        const checkY = centerY + dy;
+        if (checkX >= 0 && checkX < this.mapWidth && checkY >= 0 && checkY < this.mapHeight) {
+          if (usedAreas.has(`${checkX},${checkY}`)) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  private markAreaAsUsed(centerX: number, centerY: number, usedAreas: Set<string>): void {
+    // Mark a 3x3 area around the center as used
+    for (let dx = -1; dx <= 1; dx++) {
+      for (let dy = -1; dy <= 1; dy++) {
+        const markX = centerX + dx;
+        const markY = centerY + dy;
+        if (markX >= 0 && markX < this.mapWidth && markY >= 0 && markY < this.mapHeight) {
+          usedAreas.add(`${markX},${markY}`);
+        }
+      }
     }
   }
 
