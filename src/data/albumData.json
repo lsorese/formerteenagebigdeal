@@ -35,7 +35,8 @@
       "url": "/mp3/03-lisa-pell-the-tyrant-of-sillytown-usa",
       "lyricsFile": "/src/data/lyrics/03-lisa-pell-the-tyrant-of-sillytown-usa.md",
       "color": "#ffcc00",
-      "enabled": false
+      "enabled": false,
+      "override": "📅 Available August 28th"
     },
     {
       "id": 4,
@@ -44,7 +45,8 @@
       "url": "/mp3/04-emergency-broadcast",
       "lyricsFile": "/src/data/lyrics/04-emergency-broadcast.md",
       "color": "#bbcc44",
-      "enabled": false
+      "enabled": false,
+      "override": "🚧 Coming Soon"
     },
     {
       "id": 5,
@@ -53,7 +55,8 @@
       "url": "/mp3/05-40oz-stanley-adventure-quencher-travel-tumbler",
       "lyricsFile": "/src/data/lyrics/05-40oz-stanley-adventure-quencher-travel-tumbler.md",
       "color": "#99cc66",
-      "enabled": false
+      "enabled": false,
+      "override": "📅 Available September 15th"
     },
     {
       "id": 6,
@@ -62,7 +65,8 @@
       "url": "/mp3/06-666-secret-steps",
       "lyricsFile": "/src/data/lyrics/06-666-secret-steps.md",
       "color": "#77cc88",
-      "enabled": false
+      "enabled": false,
+      "override": "⭐ Premium Track"
     },
     {
       "id": 7,

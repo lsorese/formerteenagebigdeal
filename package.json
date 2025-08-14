@@ -15,7 +15,8 @@
     "@vercel/analytics": "^1.5.0",
     "astro": "^5.11.0",
     "howler": "^2.2.4",
-    "markdown-it": "^14.1.0"
+    "markdown-it": "^14.1.0",
+    "node-id3": "^0.2.9"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",

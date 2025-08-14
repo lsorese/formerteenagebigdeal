@@ -492,6 +492,21 @@ blockquote {
       margin-right: 6px;
       opacity: 0.5;
     }
+    
+    // Override text styling - show normal color when override is present
+    &[data-has-override="true"] {
+      opacity: 0.9;
+      
+      .track__title {
+        color: #ffffff;
+        font-style: normal;
+        opacity: 1;
+        
+        &::before {
+          display: none;
+        }
+      }
+    }
   }
   
   &__number {

@@ -122,16 +122,24 @@ const defaultLyricsHtml = await loadDefaultLyrics();
           
           <div class="tracklist">
             {allTracksWithLyrics.map((track) => (
-              <div class={`track ${track.enabled === false ? 'track--disabled' : ''}`} data-track-id={track.id}>
+              <div 
+                class={`track ${track.enabled === false ? 'track--disabled' : ''}`} 
+                data-track-id={track.id}
+                data-has-override={track.override ? 'true' : 'false'}
+              >
                 <div class="track__number">{track.id}</div>
                 <div class="track__info">
-                  <div class="track__title">{track.title}</div>
+                  <div class="track__title">{track.override || track.title}</div>
                 </div>
                 <div class="track__duration" data-track-color={track.color}>{track.duration}</div>
               </div>
             ))}
           </div>
           
+          <div class="unlock-controls">
+            <button class="unlock__control-btn" id="unlockButton" title="Unlock all tracks">🔐</button>
+          </div>
+
           <div class="game-controls">
             <button class="game__control-btn" id="gameButton">💀 PLAY INTERNET SIMULATOR 💀</button>
           </div>
