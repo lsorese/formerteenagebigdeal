@@ -757,7 +757,9 @@ class RPGGame {
         switch (contentType) {
           case 'video':
             console.log('Opening video modal');
-            this.mediaModal.openVideo(contentUrl, title);
+            // Convert YouTube video ID to full embed URL if needed
+            const videoUrl = this.getVideoEmbedUrl(contentUrl);
+            this.mediaModal.openVideo(videoUrl, title);
             break;
           case 'image':
             console.log('Opening image modal');
@@ -781,6 +783,16 @@ class RPGGame {
       console.error('MediaModal not available, using fallback');
       this.createFallbackModal(contentUrl, contentType, box.tooltip || 'Game Content');
     }
+  }
+
+  private getVideoEmbedUrl(contentUrl: string): string {
+    // Check if contentUrl is already a full URL
+    if (contentUrl.startsWith('http://') || contentUrl.startsWith('https://')) {
+      return contentUrl;
+    }
+    
+    // Assume it's a YouTube video ID and convert to embed URL
+    return `https://www.youtube.com/embed/${contentUrl}`;
   }
 
   private createFallbackModal(contentUrl: string, contentType: string, title: string): void {
@@ -818,7 +830,7 @@ class RPGGame {
     switch (contentType) {
       case 'video':
         content = document.createElement('iframe');
-        (content as HTMLIFrameElement).src = contentUrl;
+        (content as HTMLIFrameElement).src = this.getVideoEmbedUrl(contentUrl);
         (content as HTMLIFrameElement).width = '560';
         (content as HTMLIFrameElement).height = '315';
         break;
