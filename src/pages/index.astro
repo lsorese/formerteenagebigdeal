@@ -143,9 +143,6 @@ const defaultLyricsHtml = await loadDefaultLyrics();
             <button class="game__control-btn" id="gameButton">💀 PLAY INTERNET SIMULATOR 💀</button>
           </div>
                     
-          <div class="unlock-controls">
-            <button class="unlock__control-btn" id="unlockButton" title="Unlock all tracks">🔐 Unlock All Tracks</button>
-          </div>
 
         </div>
       </div>
@@ -179,32 +176,9 @@ const defaultLyricsHtml = await loadDefaultLyrics();
       </div>
     </div>
 
-    <!-- Unlock Modal -->
-    <div class="unlock-modal" id="unlockModal">
-      <div class="modal-backdrop">
-        <div class="modal-container">
-          <div class="modal-header">
-            <button class="modal-close" id="unlockModalClose">×</button>
-          </div>
-          <div class="modal-body">
-            <div class="unlock-modal-content">
-              <h2>🔐 Unlock All Tracks</h2>
-              <p>Enter the secret code to unlock all tracks:</p>
-              <input type="password" id="unlockInput" placeholder="Enter unlock code..." />
-              <div class="unlock-buttons">
-                <button id="unlockSubmit">Unlock</button>
-                <button id="unlockCancel">Cancel</button>
-              </div>
-              <div id="unlockError" class="unlock-error hidden"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <script src="/js/main.bundle.js" is:inline></script>
     <script src="/js/game-integration.js" is:inline></script>
-    <script src="/js/unlock.js" is:inline></script>
     <Analytics />
   </body>
 </html>
