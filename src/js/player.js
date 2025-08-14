@@ -234,6 +234,7 @@ class AlbumPlayer {
     
     this.updateCurrentlyPlaying();
     this.updateButtonStates();
+    this.updateLyrics();
   }
   
   updateCurrentlyPlaying() {
