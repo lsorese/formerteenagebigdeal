@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { readFileSync, existsSync } from 'fs';
+import { join, resolve } from 'path';
 import { createMarkdownRenderer } from './markdown-config';
 
 export async function loadDefaultLyrics() {
@@ -50,8 +50,21 @@ export async function loadTracksWithLyrics(albumData) {
   
   return await Promise.all(enabledTracks.map(async (track) => {
     try {
-      const lyricsPath = join(process.cwd(), track.lyricsFile);
+      // Remove leading slash if present to avoid double slashes
+      const relativePath = track.lyricsFile.startsWith('/') ? track.lyricsFile.slice(1) : track.lyricsFile;
+      const lyricsPath = resolve(process.cwd(), relativePath);
+      
+      // Check if file exists first
+      if (!existsSync(lyricsPath)) {
+        throw new Error(`File not found: ${lyricsPath}`);
+      }
+      
       const lyricsContent = readFileSync(lyricsPath, 'utf-8');
+      
+      // Check if content is empty
+      if (!lyricsContent.trim()) {
+        throw new Error(`File is empty: ${lyricsPath}`);
+      }
       
       return {
         ...track,
@@ -73,8 +86,21 @@ export async function loadAllTracksWithLyrics(albumData) {
   
   return await Promise.all(albumData.tracks.map(async (track) => {
     try {
-      const lyricsPath = join(process.cwd(), track.lyricsFile);
+      // Remove leading slash if present to avoid double slashes
+      const relativePath = track.lyricsFile.startsWith('/') ? track.lyricsFile.slice(1) : track.lyricsFile;
+      const lyricsPath = resolve(process.cwd(), relativePath);
+      
+      // Check if file exists first
+      if (!existsSync(lyricsPath)) {
+        throw new Error(`File not found: ${lyricsPath}`);
+      }
+      
       const lyricsContent = readFileSync(lyricsPath, 'utf-8');
+      
+      // Check if content is empty
+      if (!lyricsContent.trim()) {
+        throw new Error(`File is empty: ${lyricsPath}`);
+      }
       
       return {
         ...track,

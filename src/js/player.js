@@ -260,29 +260,27 @@ class AlbumPlayer {
   
   updateLyrics() {
     const currentTrack = this.tracks[this.currentTrack];
+    
     if (currentTrack) {
       this.lyricsTitle.textContent = `Lyrics - ${currentTrack.title}`;
       this.lyricsContainer.style.display = 'block';
       
+      // Hide all lyrics
       document.querySelectorAll('.lyrics__text').forEach(lyricsEl => {
         lyricsEl.classList.add('hidden');
       });
       
+      // Show current track lyrics
       const currentLyricsEl = document.getElementById(`lyricsText-${currentTrack.id}`);
       if (currentLyricsEl) {
         currentLyricsEl.classList.remove('hidden');
         this.applyTrackColorToLinks(currentTrack);
+      } else {
+        // Fallback: show default lyrics if track-specific lyrics not found
+        this.showDefaultLyrics();
       }
     } else {
-      this.lyricsTitle.textContent = 'Lyrics';
-      this.lyricsContainer.style.display = 'block';
-      
-      document.querySelectorAll('.lyrics__text').forEach(lyricsEl => {
-        lyricsEl.classList.add('hidden');
-      });
-      
-      const defaultLyricsEl = document.getElementById('lyricsText-default');
-      defaultLyricsEl?.classList.remove('hidden');
+      this.showDefaultLyrics();
     }
   }
 
