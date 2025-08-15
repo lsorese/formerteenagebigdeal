@@ -54,7 +54,7 @@
       "lyricsFile": "/src/data/lyrics/05-40oz-stanley-adventure-quencher-travel-tumbler.md",
       "color": "#99cc66",
       "enabled": false,
-      "override": "Available Soon"
+      "override": "Available Later"
     },
     {
       "id": 6,
@@ -64,7 +64,7 @@
       "lyricsFile": "/src/data/lyrics/06-666-secret-steps.md",
       "color": "#77cc88",
       "enabled": false,
-      "override": "Available Soon"
+      "override": "Available Later"
     },
     {
       "id": 7,
