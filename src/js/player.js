@@ -44,8 +44,8 @@ class AlbumPlayer {
     
     const track = this.tracks[index];
     
-    // Don't load disabled tracks
-    if (!track || track.enabled === false) {
+    // Don't load disabled tracks (unless in unlock mode)
+    if (!track || (track.enabled === false && !window.unlockMode)) {
       console.log(`❌ Cannot load disabled track ${track?.id}`);
       return;
     }
@@ -96,7 +96,7 @@ class AlbumPlayer {
     if (!this.sound) return;
     
     const currentTrack = this.tracks[this.currentTrack];
-    if (!currentTrack || currentTrack.enabled === false) {
+    if (!currentTrack || (currentTrack.enabled === false && !window.unlockMode)) {
       return;
     }
     
@@ -126,7 +126,7 @@ class AlbumPlayer {
     } else {
       if (this.currentTrack < 0) {
         let firstEnabledIndex = 0;
-        while (this.tracks[firstEnabledIndex] && this.tracks[firstEnabledIndex].enabled === false) {
+        while (this.tracks[firstEnabledIndex] && (this.tracks[firstEnabledIndex].enabled === false && !window.unlockMode)) {
           firstEnabledIndex++;
           if (firstEnabledIndex >= this.tracks.length) {
             firstEnabledIndex = 0;
@@ -146,7 +146,7 @@ class AlbumPlayer {
       : (this.currentTrack + 1) % this.tracks.length;
     
     const startIndex = nextIndex;
-    while (this.tracks[nextIndex] && this.tracks[nextIndex].enabled === false) {
+    while (this.tracks[nextIndex] && (this.tracks[nextIndex].enabled === false && !window.unlockMode)) {
       nextIndex = (nextIndex + 1) % this.tracks.length;
       if (nextIndex === startIndex) break;
     }
@@ -162,7 +162,7 @@ class AlbumPlayer {
       : (this.currentTrack - 1 + this.tracks.length) % this.tracks.length;
     
     const startIndex = prevIndex;
-    while (this.tracks[prevIndex] && this.tracks[prevIndex].enabled === false) {
+    while (this.tracks[prevIndex] && (this.tracks[prevIndex].enabled === false && !window.unlockMode)) {
       prevIndex = (prevIndex - 1 + this.tracks.length) % this.tracks.length;
       if (prevIndex === startIndex) break;
     }
@@ -175,7 +175,7 @@ class AlbumPlayer {
     const track = this.tracks[index];
     console.log(`🎵 selectTrack(${index}):`, track ? {id: track.id, title: track.title, enabled: track.enabled} : 'Track not found');
     
-    if (track && track.enabled === false) {
+    if (track && (track.enabled === false && !window.unlockMode)) {
       console.log(`❌ Track ${track.id} is disabled, cannot play`);
       return;
     }
