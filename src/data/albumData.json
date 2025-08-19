@@ -53,8 +53,7 @@
       "url": "/mp3/05-40oz-stanley-adventure-quencher-travel-tumbler",
       "lyricsFile": "/src/data/lyrics/05-40oz-stanley-adventure-quencher-travel-tumbler.md",
       "color": "#99cc66",
-      "enabled": false,
-      "override": "Available Later"
+      "enabled": true
     },
     {
       "id": 6,
@@ -63,8 +62,7 @@
       "url": "/mp3/06-666-secret-steps",
       "lyricsFile": "/src/data/lyrics/06-666-secret-steps.md",
       "color": "#77cc88",
-      "enabled": false,
-      "override": "Available Later"
+      "enabled": true
     },
     {
       "id": 7,
