@@ -71,8 +71,7 @@
       "url": "/mp3/07-heal-me-girly-girl-productions-cover",
       "lyricsFile": "/src/data/lyrics/07-heal-me-girly-girl-productions-cover.md",
       "color": "#55ccaa",
-      "enabled": false,
-      "override": "Available Later"
+      "enabled": true
     },
     {
       "id": 8,
