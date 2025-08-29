@@ -80,8 +80,7 @@
       "url": "/mp3/08-joey-chestnut-vs-my-foreign-campaign-finance-records",
       "lyricsFile": "/src/data/lyrics/08-joey-chestnut-vs-my-foreign-campaign-finance-records.md",
       "color": "#33cccc",
-      "enabled": false,
-      "override": "Available Later"
+      "enabled": true
     },
     {
       "id": 9,
@@ -90,8 +89,7 @@
       "url": "/mp3/09-attn-k-mart-shoppers",
       "lyricsFile": "/src/data/lyrics/09-attn-k-mart-shoppers.md",
       "color": "#5588cc",
-      "enabled": false,
-      "override": "Available Later"
+      "enabled": true
     },
     {
       "id": 10,
@@ -100,8 +98,7 @@
       "url": "/mp3/10-shamnow-thats-what-i-call-br00tal-death-metal",
       "lyricsFile": "/src/data/lyrics/10-shamnow-thats-what-i-call-br00tal-death-metal.md",
       "color": "#6666cc",
-      "enabled": false,
-      "override": "Available Later"
+      "enabled": true
     },
     {
       "id": 11,
@@ -110,8 +107,7 @@
       "url": "/mp3/11-this-is-not-financial-advice",
       "lyricsFile": "/src/data/lyrics/11-this-is-not-financial-advice.md",
       "color": "#7744cc",
-      "enabled": false,
-      "override": "Available Later"
+      "enabled": true
     },
     {
       "id": 12,
@@ -120,8 +116,7 @@
       "url": "/mp3/12-former-teenage-big-deal",
       "lyricsFile": "/src/data/lyrics/12-former-teenage-big-deal.md",
       "color": "#9900cc",
-      "enabled": false,
-      "override": "Available Later"
+      "enabled": true
     },
     {
       "id": 13,
