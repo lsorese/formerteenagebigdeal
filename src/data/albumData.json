@@ -125,8 +125,7 @@
       "url": "/mp3/13-thats-an-outdated-idea-about-sexuality-babygirl",
       "lyricsFile": "/src/data/lyrics/13-thats-an-outdated-idea-about-sexuality-babygirl.md",
       "color": "#aa2299",
-      "enabled": false,
-      "override": "Available Later"
+      "enabled": true
     },
     {
       "id": 14,
@@ -135,8 +134,7 @@
       "url": "/mp3/14-the-trolley-problem-but-all-you-can-do-is-watch",
       "lyricsFile": "/src/data/lyrics/14-the-trolley-problem-but-all-you-can-do-is-watch.md",
       "color": "#bb4477",
-      "enabled": false,
-      "override": "Available Later"
+      "enabled": true
     },
     {
       "id": 15,
@@ -145,8 +143,7 @@
       "url": "/mp3/15-the-cult-of-teotwawki",
       "lyricsFile": "/src/data/lyrics/15-the-cult-of-teotwawki.md",
       "color": "#cc6655",
-      "enabled": false,
-      "override": "Available Later"
+      "enabled": true
     }
   ]
 }
