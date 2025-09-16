@@ -91,6 +91,11 @@ module.exports = {
           from: 'src/game/content',
           to: 'src/game/content',
           noErrorOnMissing: true
+        },
+        {
+          from: 'src/assets',
+          to: 'assets',
+          noErrorOnMissing: true
         }
       ]
     })

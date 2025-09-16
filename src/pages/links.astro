@@ -1,0 +1,146 @@
+---
+import albumDataJson from '../data/albumData.json';
+import Analytics from '@vercel/analytics/astro';
+
+const albumData = albumDataJson;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Stream {albumData.title} - {albumData.artist}</title>
+    <meta name="description" content={`Stream ${albumData.title} by ${albumData.artist} on all platforms`} />
+    <meta name="keywords" content={albumData.keywords.join(', ')} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="music.album" />
+    <meta property="og:title" content={`Stream ${albumData.title} - ${albumData.artist}`} />
+    <meta property="og:description" content={`Stream ${albumData.title} by ${albumData.artist} on all platforms`} />
+    <meta property="og:image" content={`${albumData.url}${albumData.coverImage}`} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`Stream ${albumData.title} - ${albumData.artist}`} />
+    <meta name="twitter:description" content={`Stream ${albumData.title} by ${albumData.artist} on all platforms`} />
+    <meta name="twitter:image" content={`${albumData.url}${albumData.coverImage}`} />
+
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <div class="links-page">
+      <div class="links-page__header">
+        <div class="album__artwork-container">
+          <h1 class="album__artist">Logan, <span>from The Internet</span></h1>
+          <h2 class="album__title">
+            <span>F</span><span>o</span><span>r</span><span>m</span><span>e</span><span>r</span><span>&nbsp;</span><span>T</span><span>e</span><span>e</span><span>n</span><span>a</span><span>g</span><span>e</span><span>&nbsp;</span><span>B</span><span>i</span><span>g</span><span>&nbsp;</span><span>D</span><span>e</span><span>a</span><span>l</span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="links-page__content">
+        <div class="streaming-links">
+          <h3 class="streaming-links__title">Stream & Download</h3>
+
+          <div class="streaming-links__list">
+            <a href="/assets/formerteenagebigdeal-loganfromtheinternet-2025.zip" class="streaming-link streaming-link--download" target="_blank" rel="noopener noreferrer">
+              <div class="streaming-link__name">Download FLAC & MP3</div>
+            </a>
+
+            <a href="https://music.apple.com/us/album/former-teenage-big-deal/1838134330" class="streaming-link" target="_blank" rel="noopener noreferrer" style="background-color: rgba(122,44,44,0.95); color: #fff">
+              <div class="streaming-link__name">🍎 Apple Music</div>
+            </a>
+
+            <a href="https://loganfromtheinternet.bandcamp.com/album/former-teenage-big-deal" class="streaming-link" target="_blank" rel="noopener noreferrer" style="background-color: rgba(30, 10, 30, 0.95); color: #fff">
+              <div class="streaming-link__name">🎺 Bandcamp</div>
+            </a>
+
+            <a href="https://open.spotify.com/album/3s5PRxNjoldhyMtbBqhpHm" class="streaming-link" target="_blank" rel="noopener noreferrer" style="background-color: rgba(40, 140, 60, 0.95); color: #fff">
+              <div class="streaming-link__name">💩 Spotify</div>
+            </a>
+
+            <a href="#" class="streaming-link streaming-link--torrent" id="torrent-link" style="background-color: rgba(20, 20, 20, 0.95); color: #fff">
+              <div class="streaming-link__name">💀 Illegal Torrent</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="links-page__footer">
+          <a href="/" class="back-link">← Back to Player</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Torrent Modal -->
+    <div id="torrent-modal" class="torrent-modal hidden">
+      <div class="torrent-modal-content">
+        <div class="torrent-modal-text">They're right here officer! GET 'EM!</div>
+      </div>
+    </div>
+
+    <style>
+      .torrent-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #000 url('../images/BackStarsAni.gif') repeat;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+
+      .torrent-modal.hidden {
+        display: none;
+      }
+
+      .torrent-modal-content {
+        text-align: center;
+        padding: 40px;
+      }
+
+      .torrent-modal-text {
+        font-family: 'more', 'Courier New', monospace;
+        font-size: 3rem;
+        font-weight: bold;
+        color: #ffffff;
+        text-shadow: 2px 2px 0px #000;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @media (max-width: 768px) {
+        .torrent-modal-text {
+          font-size: 2rem;
+          padding: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .torrent-modal-text {
+          font-size: 1.5rem;
+          padding: 15px;
+        }
+      }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const torrentLink = document.getElementById('torrent-link');
+        const torrentModal = document.getElementById('torrent-modal');
+
+        torrentLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          torrentModal.classList.remove('hidden');
+        });
+      });
+    </script>
+
+    <Analytics />
+  </body>
+</html>

@@ -12,9 +12,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^8.2.5",
+    "@astrojs/vercel": "^8.2.7",
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.11.0",
+    "astro": "^5.13.7",
     "howler": "^2.2.4",
     "markdown-it": "^14.1.0",
     "node-id3": "^0.2.9"
